@@ -1,173 +1,69 @@
-/* Global Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    box-sizing: border-box;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #000; /* noir */
+  color: white;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* Header Styles */
 header {
-    background-color: #1c1c1c;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #00bcd4; /* cyan */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
 }
 
-header .logo {
-    font-size: 3em;
-    font-weight: bold;
-    color: #fff;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+.logo h1 {
+  font-size: 2em;
+  color: #fff;
 }
 
-header .benzzone {
-    display: inline-block;
+.flip {
+  display: inline-block;
+  transform: rotateY(180deg);
+  color: #2196f3; /* bleu */
 }
 
-header .benzzone-rotated {
-    display: inline-block;
-    transform: rotate(180deg);
-    color: #ff0;
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-header nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 20px;
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
 }
 
-header nav ul li {
-    display: inline;
-    margin: 0 20px;
-}
-
-header nav ul li a {
-    color: #fff;
-    font-size: 1.2em;
-    transition: color 0.3s ease;
-}
-
-header nav ul li a:hover {
-    color: #ff0;
-}
-
-/* Hero Section Styles */
 .hero {
-    background: linear-gradient(to right, #1c1c1c, #555);
-    color: white;
-    text-align: center;
-    padding: 100px 0;
-    background-size: cover;
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(to right, #2196f3, #00bcd4);
+  color: white;
 }
 
-.hero h1 {
-    font-size: 4.5em;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
+.hero h2 {
+  font-size: 3em;
+  margin-bottom: 10px;
 }
 
 .hero p {
-    font-size: 1.5em;
-    margin-bottom: 30px;
-    line-height: 1.5;
+  font-size: 1.5em;
+  margin-bottom: 20px;
 }
 
-.hero .cta-button {
-    background-color: #ff0;
-    color: #333;
-    padding: 15px 30px;
-    font-size: 1.5em;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+.btn {
+  background-color: white;
+  color: #000;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.hero .cta-button:hover {
-    background-color: #ffcc00;
-}
-
-/* Featured Products Styles */
-.featured-products {
-    display: flex;
-    justify-content: space-around;
-    padding: 60px 20px;
-    background-color: #fff;
-    margin-top: 60px;
-}
-
-.featured-products .product-card {
-    width: 300px;
-    margin: 0 15px;
-    text-align: center;
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    overflow: hidden;
-}
-
-.featured-products .product-card:hover {
-    transform: translateY(-10px);
-}
-
-.featured-products .product-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
-}
-
-.featured-products .product-card h3 {
-    margin: 20px 0;
-    font-size: 1.5em;
-}
-
-.featured-products .product-card p {
-    font-size: 1em;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-/* Footer Styles */
 footer {
-    background-color: #1c1c1c;
-    color: #fff;
-    text-align: center;
-    padding: 30px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+  text-align: center;
+  padding: 20px;
+  background-color: #111;
 }
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 3em;
-    }
-
-    .hero p {
-        font-size: 1.2em;
-    }
-
-    .hero .cta-button {
-        font-size: 1.2em;
-    }
-
-    .featured-products {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .featured-products .product-card {
-        width: 80%;
-        margin-bottom: 30px;
-    }
-  }
