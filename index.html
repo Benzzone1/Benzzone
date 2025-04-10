@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benzzone - Votre destination tech</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #1c1c1c;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 3em;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 3px;
+        }
+
+        .benzzone {
+            display: inline-block;
+        }
+
+        .benzzone-rotated {
+            display: inline-block;
+            transform: rotate(180deg);
+            font-size: 3.5em;
+            color: #ff0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, #333, #666);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            background-size: cover;
+        }
+
+        .hero-content h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background-color: #ff0;
+            color: #333;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #ffcc00;
+        }
+
+        /* Featured Products Section */
+        .featured-products {
+            display: flex;
+            justify-content: center;
+            padding: 50px 0;
+            background-color: #fff;
+        }
+
+        .product-card {
+            width: 250px;
+            margin: 0 15px;
+            text-align: center;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .product-card h3 {
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+
+        .product-card p {
+            color: #666;
+            font-size: 1em;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <span class="benzzone">Ben</span>
+            <span class="benzzone-rotated">Z</span>
+            <span class="benzzone">zone</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Boutique</a></li>
+                <li><a href="#">À propos</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Panier</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                Bienvenue chez <span class="benzzone">Benzzone</span>
+            </h1>
+            <p>Votre destination tech pour la maison, au meilleur prix.</p>
+            <a href="#" class="cta-button">Explorez nos produits</a>
+        </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS SECTION -->
+    <section class="featured-products">
+        <div class="product-card">
+            <img src="product1.jpg" alt="Produit 1">
+            <h3>Produit 1</h3>
+            <p>Description rapide du produit 1</p>
+        </div>
+        <div class="product-card">
+            <img src="product2.jpg" alt="Produit 2">
+            <h3>Produit 2</h3>
+            <p>Description rapide du produit 2</p>
+        </div>
+        <div class="product-card">
+            <img src="product3.jpg" alt="Produit 3">
+            <h3>Produit 3</h3>
+            <p>Description rapide du produit 3</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Benzzone - Tous droits réservés.</p>
+    </footer>
+</body>
+
+  </html>
