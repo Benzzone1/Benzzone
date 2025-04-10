@@ -14,194 +14,156 @@
       --shadow: rgba(0, 0, 0, 0.2);
     }
 
-    * {
-      box-sizing: border-box;
+    body {
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, var(--main-color), var(--accent-color));
-      color: var(--text-light);
-      overflow-x: hidden;
+      background-color: #f4f4f4;
     }
 
     header {
-      background-color: rgba(0,0,0,0.5);
+      position: relative;
+      background: var(--main-color);
       padding: 20px;
-      box-shadow: 0 4px 10px var(--shadow);
-      position: sticky;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1;
+    }
+
+    /* Background bleu foncé en arrière */
+    header::before {
+      content: '';
+      position: absolute;
       top: 0;
-      z-index: 0; /* Placer l'arrière-plan en arrière */
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--main-color);
+      z-index: -1;
     }
 
     .logo {
-      font-size: 2.5em; /* Réduit la taille du logo */
-      font-weight: bold;
-      cursor: pointer;
-      text-shadow: 2px 2px 6px #000;
-      transition: transform 0.3s ease;
-      text-align: center;
-      z-index: 1; /* Positionner au-dessus de l'arrière-plan */
-    }
-
-    .logo:hover {
-      transform: scale(1.05);
-    }
-
-    .main-content {
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    .main-content h1 {
-      font-size: 3.5em;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    }
-
-    .main-content p {
-      font-size: 1.2em;
-      margin: 25px 0;
-    }
-
-    .main-content .shop-button {
-      background: var(--button-color);
-      padding: 14px 28px;
-      border-radius: 30px;
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      box-shadow: 0 4px 8px var(--shadow);
-      transition: all 0.3s ease;
-      margin-bottom: 20px;
-      display: inline-block;
-    }
-
-    .main-content .shop-button:hover {
-      background: var(--button-hover);
-      transform: scale(1.05);
-    }
-
-    .category-buttons {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .category-buttons a {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid var(--button-color);
-      padding: 12px 22px;
-      border-radius: 30px;
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      box-shadow: 0 4px 8px var(--shadow);
-      transition: all 0.3s ease;
-    }
-
-    .category-buttons a:hover {
-      background: var(--button-hover);
-      transform: scale(1.05);
-    }
-
-    .btn-absolute {
       position: absolute;
-      background: var(--button-color);
-      padding: 10px 18px;
-      border-radius: 25px;
-      color: white;
-      font-weight: bold;
+      top: 20px;
+      left: 20px;
+      width: 100px; /* Réduire la taille du logo */
+      z-index: 2;
+    }
+
+    .logo img {
+      width: 100%;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .button-container a {
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: var(--button-color);
+      color: var(--text-light);
       text-decoration: none;
-      box-shadow: 0 4px 8px var(--shadow);
-      transition: all 0.3s ease;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
     }
 
-    .btn-absolute:hover {
-      background: var(--button-hover);
+    .button-container a:hover {
+      background-color: var(--button-hover);
     }
 
-    .btn-profil {
-      top: 10px;
-      left: 10px;
-      z-index: 2; /* Mettre le bouton Profil au-dessus */
+    /* Positionnement des boutons */
+    .top-buttons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
     }
 
-    .btn-parametres {
-      top: 10px;
-      right: 10px;
-      z-index: 2; /* Mettre le bouton Paramètres au-dessus */
+    .top-buttons a {
+      margin-bottom: 10px;
+      padding: 8px 16px;
+      font-size: 14px;
+      background-color: transparent;
+      color: var(--text-light);
+      border: 1px solid var(--text-light);
+      border-radius: 5px;
     }
 
-    .btn-mail {
-      top: 60px;
-      right: 10px;
-      z-index: 2; /* Mettre le bouton Mail au-dessus */
+    /* Bouton profil juste en dessous du logo */
+    .profile-button {
+      position: absolute;
+      top: 100px;
+      left: 20px;
+      background-color: transparent;
+      color: var(--text-light);
+      border: 1px solid var(--text-light);
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 5px;
     }
 
+    /* Bouton paramètres sous le bouton profil */
+    .settings-button {
+      position: absolute;
+      top: 140px;
+      left: 20px;
+      background-color: transparent;
+      color: var(--text-light);
+      border: 1px solid var(--text-light);
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 5px;
+    }
+
+    /* Footer restant inchangé */
     footer {
-      background-color: rgba(0,0,0,0.4);
-      padding: 25px 15px;
+      background: var(--accent-color);
+      color: var(--text-light);
+      padding: 10px;
       text-align: center;
-      margin-top: 60px;
-      box-shadow: 0 -4px 10px var(--shadow);
-    }
-
-    footer a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-      color: #e0e0e0;
-    }
-
-    footer p {
-      margin-top: 10px;
-      font-size: 0.9em;
-      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-  <!-- Boutons absolus -->
-  <a href="#" class="btn-absolute btn-profil">Profil</a>
-  <a href="#" class="btn-absolute btn-parametres">Paramètres</a>
-  <a href="mailto:contact@benzzone.com" class="btn-absolute btn-mail">Mail</a>
 
   <header>
-    <div class="logo" onclick="location.href='#'">Benzzone</div>
+    <div class="logo">
+      <img src="logo_benzzone.png" alt="Benzzone Logo">
+    </div>
+
+    <div class="button-container">
+      <a href="#products">Produits</a>
+      <a href="#start-shopping">Commencer les achats</a>
+    </div>
+
+    <div class="top-buttons">
+      <a href="#profile">Profil</a>
+      <a href="#settings">Paramètres</a>
+    </div>
+
+    <div class="profile-button">
+      <a href="#profile">Profil</a>
+    </div>
+
+    <div class="settings-button">
+      <a href="#settings">Paramètres</a>
+    </div>
   </header>
 
-  <div class="main-content">
-    <h1>Bienvenue sur Benzzone</h1>
-    <a href="#" class="shop-button">Produits & Commencer les achats</a>
-    <p>Découvrez nos meilleures catégories</p>
-    <div class="category-buttons">
-      <a href="#">Tech</a>
-      <a href="#">Maison</a>
-      <a href="#">Cuisine</a>
-      <a href="#">Beauté</a>
-      <a href="#">Mode</a>
-      <a href="#">Jeux</a>
-      <a href="#">Sport</a>
-      <a href="#">Livres</a>
-      <a href="#">Accessoires</a>
-      <a href="#">Jardin</a>
-    </div>
-  </div>
+  <main>
+    <!-- Contenu principal -->
+  </main>
 
   <footer>
-    <a href="#">À propos</a>
-    <a href="#">Contact</a>
-    <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
+    <p>&copy; 2025 Benzzone, Tous droits réservés.</p>
   </footer>
+
 </body>
 </html>
