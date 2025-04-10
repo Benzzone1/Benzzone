@@ -6,147 +6,180 @@
   <title>Benzzone</title>
   <style>
     :root {
-      --cyan: #00bcd4;
-      --dark: #111;
-      --light: #f5f5f5;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Arial", sans-serif;
+      --primary: #1e3a8a;
+      --secondary: #3b82f6;
+      --accent: #f59e0b;
+      --background: linear-gradient(135deg, #e0f2fe, #fef9c3);
+      --text: #1f2937;
+      --white: #ffffff;
     }
 
     body {
-      background: var(--light);
-      color: var(--dark);
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--background);
+      color: var(--text);
     }
 
     header {
-      background-color: var(--dark);
-      color: white;
+      background: var(--primary);
       padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     .logo {
-      font-size: 2rem;
+      font-size: 28px;
       font-weight: bold;
-      color: var(--cyan);
-      text-align: center;
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    .logo span:nth-child(2) {
+      transform: rotateY(180deg);
+      display: inline-block;
     }
 
     nav {
       display: flex;
-      justify-content: center;
+      gap: 15px;
       flex-wrap: wrap;
-      margin-top: 10px;
     }
 
     nav a {
-      color: white;
-      margin: 10px 15px;
+      color: var(--white);
       text-decoration: none;
-      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: var(--secondary);
+      transition: background 0.3s ease;
     }
 
     nav a:hover {
-      color: var(--cyan);
+      background: var(--accent);
     }
 
-    .banner {
-      background: var(--cyan);
-      color: white;
+    .hero {
       text-align: center;
-      padding: 10px;
+      padding: 80px 20px 50px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 15px 30px;
+      background: var(--accent);
+      color: var(--white);
       font-weight: bold;
-    }
-
-    .section-title {
-      text-align: center;
-      margin: 30px 0 10px;
-      font-size: 1.8rem;
-      color: var(--dark);
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-
-    .product {
-      background: white;
+      border: none;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      padding: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .cta:hover {
+      background: var(--primary);
+    }
+
+    .categories {
+      padding: 50px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .category {
+      background: var(--white);
+      padding: 20px;
       text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
     }
 
-    .product img {
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .product p {
-      margin-top: 8px;
-      color: var(--dark);
+    .category:hover {
+      transform: translateY(-5px);
     }
 
     footer {
-      background: var(--dark);
-      color: white;
+      background: var(--primary);
+      color: var(--white);
       text-align: center;
       padding: 20px;
-      margin-top: 40px;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .cta {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo">Benᴢzone</div>
+    <div class="logo" onclick="window.location.href='index.html'">
+      B<span>z</span>nzzone
+    </div>
     <nav>
       <a href="#">Accueil</a>
       <a href="#">Produits</a>
-      <a href="#">Nouveautés</a>
       <a href="#">Contact</a>
+      <a href="#">Paramètres</a>
+      <a href="#">Profil</a>
+      <a href="#">À propos</a>
+      <a href="#">Commencer les achats</a>
+      <a href="#">Mail</a>
     </nav>
   </header>
 
-  <div class="banner">Livraison gratuite à partir de 29€ !</div>
-
-  <section>
-    <h2 class="section-title">Super Offres</h2>
-    <div class="products">
-      <div class="product">
-        <img src="https://via.placeholder.com/200x200" alt="Produit 1" />
-        <p>Produit 1 - 19,99€</p>
-      </div>
-      <div class="product">
-        <img src="https://via.placeholder.com/200x200" alt="Produit 2" />
-        <p>Produit 2 - 25,00€</p>
-      </div>
-    </div>
+  <section class="hero">
+    <h1>Bienvenue sur B<span>z</span>nzzone</h1>
+    <p>Vos produits préférés, livrés avec style.</p>
+    <a class="cta" href="#">Commencer les achats</a>
   </section>
 
-  <section>
-    <h2 class="section-title">Recommandés pour vous</h2>
-    <div class="products">
-      <div class="product">
-        <img src="https://via.placeholder.com/200x200" alt="Produit 3" />
-        <p>Produit 3 - 15,50€</p>
-      </div>
-      <div class="product">
-        <img src="https://via.placeholder.com/200x200" alt="Produit 4" />
-        <p>Produit 4 - 18,75€</p>
-      </div>
-    </div>
+  <section class="categories">
+    <div class="category">Tech</div>
+    <div class="category">Maison</div>
+    <div class="category">Cuisine</div>
+    <div class="category">Beauté</div>
+    <div class="category">Mode</div>
+    <div class="category">Jeux</div>
+    <div class="category">Sport</div>
+    <div class="category">Électronique</div>
+    <div class="category">Livres</div>
+    <div class="category">Accessoires</div>
   </section>
 
   <footer>
-    &copy; 2025 Benᴢzone. Tous droits réservés.
+    &copy; 2025 B<span>z</span>nzzone. Tous droits réservés.
   </footer>
 
 </body>
