@@ -12,7 +12,7 @@
       --button-hover: #376bb0;
       --text-light: #ffffff;
       --shadow: rgba(0, 0, 0, 0.2);
-      --header-color: #243b62; /* Couleur différente pour la tête */
+      --header-footer-color: #243b62; /* Couleur partagée pour la tête et les pieds */
     }
 
     * {
@@ -29,12 +29,13 @@
     }
 
     header {
-      background-color: var(--header-color); /* Nouvelle couleur de fond pour la tête */
+      background-color: var(--header-footer-color); /* Même couleur que le pied de page */
       padding: 20px;
       box-shadow: 0 4px 10px var(--shadow);
       position: sticky;
       top: 0;
       z-index: 999;
+      margin-bottom: 30px; /* Espacement entre la tête et le corps */
     }
 
     /* Logo Benzzone */
@@ -78,7 +79,7 @@
       position: absolute;
       top: 20px;
       right: 20px;
-      background-color: transparent;
+      background-color: var(--button-color); /* Mise en avant avec la couleur des boutons */
       color: white;
       border: 1px solid white;
       padding: 8px 15px;
@@ -86,10 +87,11 @@
       cursor: pointer;
       border-radius: 4px;
       transition: background-color 0.3s;
+      z-index: 1000; /* Assurer qu'il soit devant le fond */
     }
 
     .btn-parametres:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: var(--button-hover);
     }
 
     /* Mail Button */
@@ -171,7 +173,7 @@
     }
 
     footer {
-      background-color: rgba(0,0,0,0.4);
+      background-color: var(--header-footer-color); /* Même couleur que la tête */
       padding: 25px 15px;
       text-align: center;
       margin-top: 60px;
