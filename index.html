@@ -5,182 +5,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Benzzone</title>
   <style>
-    :root {
-      --primary: #1e3a8a;
-      --secondary: #3b82f6;
-      --accent: #f59e0b;
-      --background: linear-gradient(135deg, #e0f2fe, #fef9c3);
-      --text: #1f2937;
-      --white: #ffffff;
-    }
-
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: var(--background);
-      color: var(--text);
+      background: linear-gradient(to bottom right, #1e3c72, #2a5298); /* Ta palette */
+      color: white;
     }
 
     header {
-      background: var(--primary);
-      padding: 20px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
     }
 
     .logo {
-      font-size: 28px;
+      font-size: 2.5em;
       font-weight: bold;
-      color: var(--white);
-      cursor: pointer;
-    }
-
-    .logo span:nth-child(2) {
-      transform: rotateY(180deg);
-      display: inline-block;
-    }
-
-    nav {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: var(--white);
-      text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 8px;
-      background: var(--secondary);
-      transition: background 0.3s ease;
-    }
-
-    nav a:hover {
-      background: var(--accent);
-    }
-
-    .hero {
-      text-align: center;
-      padding: 80px 20px 50px;
-    }
-
-    .hero h1 {
-      font-size: 48px;
       margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 20px;
-      margin-bottom: 30px;
-    }
-
-    .cta {
-      display: inline-block;
-      padding: 15px 30px;
-      background: var(--accent);
-      color: var(--white);
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
       cursor: pointer;
-      font-size: 18px;
+    }
+
+    .top-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .top-buttons a,
+    .category-buttons a {
+      background: #4e9af1;
+      padding: 10px 20px;
+      border-radius: 25px;
       text-decoration: none;
+      color: white;
+      font-weight: 500;
       transition: background 0.3s ease;
     }
 
-    .cta:hover {
-      background: var(--primary);
+    .top-buttons a:hover,
+    .category-buttons a:hover {
+      background: #376bb0;
     }
 
-    .categories {
-      padding: 50px 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-    }
-
-    .category {
-      background: var(--white);
-      padding: 20px;
+    .main-content {
       text-align: center;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
+      padding: 50px 20px;
     }
 
-    .category:hover {
-      transform: translateY(-5px);
+    .main-content h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .category-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      max-width: 900px;
+      margin: 0 auto 50px;
     }
 
     footer {
-      background: var(--primary);
-      color: var(--white);
-      text-align: center;
+      background-color: rgba(0,0,0,0.6);
       padding: 20px;
+      text-align: center;
       margin-top: 50px;
     }
 
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: center;
-      }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 500;
+    }
 
-      .hero h1 {
-        font-size: 32px;
-      }
-
-      .cta {
-        font-size: 16px;
-      }
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="logo" onclick="window.location.href='index.html'">
-      B<span>z</span>nzzone
-    </div>
-    <nav>
+    <div class="logo" onclick="location.href='#'">Benzzone</div>
+    <div class="top-buttons">
       <a href="#">Accueil</a>
       <a href="#">Produits</a>
-      <a href="#">Contact</a>
       <a href="#">Paramètres</a>
       <a href="#">Profil</a>
-      <a href="#">À propos</a>
       <a href="#">Commencer les achats</a>
-      <a href="#">Mail</a>
-    </nav>
+      <a href="mailto:contact@benzzone.com">Mail</a>
+    </div>
   </header>
 
-  <section class="hero">
-    <h1>Bienvenue sur B<span>z</span>nzzone</h1>
-    <p>Vos produits préférés, livrés avec style.</p>
-    <a class="cta" href="#">Commencer les achats</a>
-  </section>
-
-  <section class="categories">
-    <div class="category">Tech</div>
-    <div class="category">Maison</div>
-    <div class="category">Cuisine</div>
-    <div class="category">Beauté</div>
-    <div class="category">Mode</div>
-    <div class="category">Jeux</div>
-    <div class="category">Sport</div>
-    <div class="category">Électronique</div>
-    <div class="category">Livres</div>
-    <div class="category">Accessoires</div>
-  </section>
+  <div class="main-content">
+    <h1>Bienvenue sur Benzzone</h1>
+    <p>Découvrez nos meilleures catégories</p>
+    <div class="category-buttons">
+      <a href="#">Tech</a>
+      <a href="#">Maison</a>
+      <a href="#">Cuisine</a>
+      <a href="#">Beauté</a>
+      <a href="#">Mode</a>
+      <a href="#">Jeux</a>
+      <a href="#">Sport</a>
+      <a href="#">Livres</a>
+      <a href="#">Accessoires</a>
+      <a href="#">Jardin</a>
+    </div>
+  </div>
 
   <footer>
-    &copy; 2025 B<span>z</span>nzzone. Tous droits réservés.
+    <a href="#">À propos</a>
+    <a href="#">Contact</a>
+    <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
   </footer>
-
 </body>
 </html>
