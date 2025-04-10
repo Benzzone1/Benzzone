@@ -8,10 +8,10 @@
 
 /* Color palette */
 :root {
-  --main-blue: #003366;
-  --cyan: #00b5e2;
-  --black: #111;
-  --white: #fff;
+  --main-blue: #003366;   /* Bleu */
+  --cyan: #00b5e2;        /* Cyan */
+  --black: #111;          /* Noir */
+  --white: #fff;          /* Blanc */
 }
 
 body {
@@ -123,4 +123,4 @@ footer {
   color: var(--white);
   text-align: center;
   padding: 20px;
-}
+  }
