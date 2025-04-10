@@ -1,127 +1,233 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benzzone</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f1f1f1;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benzzone</title>
+  <style>
+    :root {
+      --main-color: #1e3c72;
+      --accent-color: #2a5298;
+      --button-color: #4e9af1;
+      --button-hover: #376bb0;
+      --text-light: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.2);
+    }
 
-        /* Tête (header) */
-        header {
-            background-color: #003366;
-            position: relative;
-            padding: 10px 20px;
-            color: white;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        /* Logo Benzzone */
-        .logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 30px;
-            font-weight: bold;
-        }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--main-color), var(--accent-color));
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
 
-        /* Boutons */
-        .header-buttons {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
+    header {
+      background-color: rgba(0,0,0,0.5);
+      padding: 20px;
+      box-shadow: 0 4px 10px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
 
-        .header-buttons button {
-            background-color: transparent;
-            color: white;
-            border: 1px solid white;
-            padding: 8px 15px;
-            margin: 5px 0;
-            cursor: pointer;
-            font-size: 14px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
+    /* Logo Benzzone */
+    .logo {
+      font-size: 2.5em;
+      font-weight: bold;
+      cursor: pointer;
+      text-shadow: 2px 2px 6px #000;
+      transition: transform 0.3s ease;
+      text-align: left;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
 
-        .header-buttons button:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+    .logo:hover {
+      transform: scale(1.05);
+    }
 
-        /* Profil sous logo */
-        .profile {
-            position: absolute;
-            top: 70px;
-            left: 20px;
-            background-color: transparent;
-            color: white;
-            border: 1px solid white;
-            padding: 8px 15px;
-            font-size: 14px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
+    /* Profil Button */
+    .btn-profil {
+      position: absolute;
+      top: 80px;
+      left: 20px;
+      background-color: transparent;
+      color: white;
+      border: 1px solid white;
+      padding: 8px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
 
-        .profile:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+    .btn-profil:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
 
-        /* Corps du site */
-        .main-content {
-            padding: 20px;
-            background-color: #fff;
-            margin-top: 100px;
-        }
+    /* Paramètres Button */
+    .btn-parametres {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: transparent;
+      color: white;
+      border: 1px solid white;
+      padding: 8px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
 
-        /* Pied de page (footer) */
-        footer {
-            background-color: #003366;
-            padding: 20px;
-            color: white;
-            text-align: center;
-            position: relative;
-        }
+    .btn-parametres:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
 
-        footer a {
-            color: white;
-            text-decoration: none;
-        }
+    /* Mail Button */
+    .btn-mail {
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: transparent;
+      color: white;
+      border: 1px solid white;
+      padding: 8px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    .btn-mail:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .main-content {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .main-content h1 {
+      font-size: 3.5em;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .main-content p {
+      font-size: 1.2em;
+      margin: 25px 0;
+    }
+
+    .main-content .shop-button {
+      background: var(--button-color);
+      padding: 14px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      box-shadow: 0 4px 8px var(--shadow);
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .main-content .shop-button:hover {
+      background: var(--button-hover);
+      transform: scale(1.05);
+    }
+
+    .category-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .category-buttons a {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid var(--button-color);
+      padding: 12px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      box-shadow: 0 4px 8px var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .category-buttons a:hover {
+      background: var(--button-hover);
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: rgba(0,0,0,0.4);
+      padding: 25px 15px;
+      text-align: center;
+      margin-top: 60px;
+      box-shadow: 0 -4px 10px var(--shadow);
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #e0e0e0;
+    }
+
+    footer p {
+      margin-top: 10px;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            Benzzone
-        </div>
-        <div class="header-buttons">
-            <button>Paramètres</button>
-            <button>Mail</button>
-        </div>
-        <button class="profile">Profil</button>
-    </header>
+  <!-- Boutons absolus -->
+  <a href="#" class="btn-absolute btn-profil">Profil</a>
+  <a href="#" class="btn-absolute btn-parametres">Paramètres</a>
+  <a href="mailto:contact@benzzone.com" class="btn-absolute btn-mail">Mail</a>
 
-    <div class="main-content">
-        <!-- Contenu du site, corps comme avant -->
-        <h1>Bienvenue sur Benzzone</h1>
-        <p>Découvrez nos meilleures catégories !</p>
-        <!-- Ajoutez ici vos sections de contenu -->
+  <header>
+    <div class="logo" onclick="location.href='#'">Benzzone</div>
+  </header>
+
+  <div class="main-content">
+    <h1>Bienvenue sur Benzzone</h1>
+    <a href="#" class="shop-button">Produits & Commencer les achats</a>
+    <p>Découvrez nos meilleures catégories</p>
+    <div class="category-buttons">
+      <a href="#">Tech</a>
+      <a href="#">Maison</a>
+      <a href="#">Cuisine</a>
+      <a href="#">Beauté</a>
+      <a href="#">Mode</a>
+      <a href="#">Jeux</a>
+      <a href="#">Sport</a>
+      <a href="#">Livres</a>
+      <a href="#">Accessoires</a>
+      <a href="#">Jardin</a>
     </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2025 Benzzone, Tous droits réservés</p>
-        <a href="#contact">Contact</a> | <a href="#about">À propos</a>
-    </footer>
+  <footer>
+    <a href="#">À propos</a>
+    <a href="#">Contact</a>
+    <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
+  </footer>
 </body>
 </html>
