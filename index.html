@@ -5,86 +5,130 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Benzzone</title>
   <style>
-    body {
+    :root {
+      --main-color: #1e3c72;
+      --accent-color: #2a5298;
+      --button-color: #4e9af1;
+      --button-hover: #376bb0;
+      --text-light: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #1e3c72, #2a5298); /* Ta palette */
-      color: white;
+      background: linear-gradient(135deg, var(--main-color), var(--accent-color));
+      color: var(--text-light);
+      overflow-x: hidden;
     }
 
     header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: rgba(0,0,0,0.6);
+      background-color: rgba(0,0,0,0.5);
       padding: 20px;
+      box-shadow: 0 4px 10px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
 
     .logo {
-      font-size: 2.5em;
+      font-size: 3em;
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       cursor: pointer;
+      text-shadow: 2px 2px 6px #000;
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .top-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .top-buttons a,
     .category-buttons a {
-      background: #4e9af1;
-      padding: 10px 20px;
-      border-radius: 25px;
+      background: var(--button-color);
+      padding: 12px 22px;
+      border-radius: 30px;
       text-decoration: none;
       color: white;
       font-weight: 500;
-      transition: background 0.3s ease;
+      box-shadow: 0 4px 8px var(--shadow);
+      transition: all 0.3s ease;
     }
 
     .top-buttons a:hover,
     .category-buttons a:hover {
-      background: #376bb0;
+      background: var(--button-hover);
+      transform: scale(1.05);
     }
 
     .main-content {
       text-align: center;
-      padding: 50px 20px;
+      padding: 60px 20px;
     }
 
     .main-content h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
+      font-size: 3.5em;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .main-content p {
+      font-size: 1.2em;
+      margin-bottom: 40px;
     }
 
     .category-buttons {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px;
-      max-width: 900px;
-      margin: 0 auto 50px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .category-buttons a {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid var(--button-color);
     }
 
     footer {
-      background-color: rgba(0,0,0,0.6);
-      padding: 20px;
+      background-color: rgba(0,0,0,0.4);
+      padding: 25px 15px;
       text-align: center;
-      margin-top: 50px;
+      margin-top: 60px;
+      box-shadow: 0 -4px 10px var(--shadow);
     }
 
     footer a {
       color: #fff;
       text-decoration: none;
-      margin: 0 10px;
+      margin: 0 15px;
       font-weight: 500;
+      transition: color 0.3s ease;
     }
 
     footer a:hover {
-      text-decoration: underline;
+      color: #e0e0e0;
+    }
+
+    footer p {
+      margin-top: 10px;
+      font-size: 0.9em;
+      opacity: 0.8;
     }
   </style>
 </head>
