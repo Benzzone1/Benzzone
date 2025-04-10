@@ -1,0 +1,126 @@
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Color palette */
+:root {
+  --main-blue: #003366;
+  --cyan: #00b5e2;
+  --black: #111;
+  --white: #fff;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: var(--black);
+}
+
+header {
+  background-color: var(--main-blue);
+  padding: 10px 20px;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  font-size: 24px;
+  color: var(--white);
+  font-weight: bold;
+}
+
+header nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+header nav a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+header nav a:hover {
+  color: var(--cyan);
+}
+
+.hero {
+  background-color: var(--cyan);
+  color: var(--white);
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.hero .cta-button {
+  background-color: var(--main-blue);
+  color: var(--white);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.hero .cta-button:hover {
+  background-color: var(--cyan);
+}
+
+.featured-products {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.product-item {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-item:hover {
+  transform: translateY(-10px);
+}
+
+.product-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-item h3 {
+  margin-top: 15px;
+  color: var(--main-blue);
+  font-size: 18px;
+}
+
+.product-item .cta-button {
+  background-color: var(--main-blue);
+  color: var(--white);
+  padding: 8px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.product-item .cta-button:hover {
+  background-color: var(--cyan);
+}
+
+footer {
+  background-color: var(--main-blue);
+  color: var(--white);
+  text-align: center;
+  padding: 20px;
+}
