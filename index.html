@@ -2,100 +2,143 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Benzzone</title>
   <style>
-    :root {
-      --blue: #1e88e5;
-      --cyan: #00bcd4;
-      --black: #000000;
-      --white: #ffffff;
-    }
-
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: var(--black);
-      color: var(--white);
+      background-color: #f4faff;
+      color: #111;
+      scroll-behavior: smooth;
     }
 
     header {
-      background: linear-gradient(90deg, var(--blue), var(--cyan));
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background-color: #000;
+      color: #00ffff;
+      padding: 20px;
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
     }
 
-    .logo {
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--white);
+    nav {
+      background-color: #00334d;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav a {
-      color: var(--white);
+      color: #fff;
       text-decoration: none;
-      margin-left: 20px;
-      font-size: 1rem;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 100px 20px;
-      background-color: var(--blue);
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: var(--white);
-    }
-
-    .btn {
-      margin-top: 30px;
-      padding: 12px 30px;
-      background-color: var(--cyan);
-      border: none;
-      color: var(--black);
+      margin: 0 15px;
       font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #00ffff;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    #accueil {
+      text-align: center;
+    }
+
+    #accueil h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    #accueil p {
+      font-size: 18px;
+      color: #444;
+    }
+
+    #produits h2 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: #e6f7ff;
+      border: 1px solid #b3e0ff;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      height: 150px;
+      object-fit: cover;
+      margin-bottom: 15px;
       border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
+    }
+
+    .product-card h3 {
+      color: #00334d;
+      margin: 10px 0;
     }
 
     footer {
+      background-color: #000;
+      color: #fff;
       text-align: center;
       padding: 20px;
-      background-color: var(--black);
-      border-top: 1px solid var(--cyan);
-      color: var(--cyan);
+      margin-top: 60px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">Benzzone</div>
-    <nav>
-      <a href="#">Accueil</a>
-      <a href="#">Produits</a>
-      <a href="#">À propos</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+  <header>Benzzone</header>
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#produits">Produits</a>
+  </nav>
 
-  <section class="hero">
-    <h1>Bienvenue sur Benzzone</h1>
-    <p>Découvrez des produits variés grâce à nos affiliations de qualité.</p>
-    <button class="btn">Explorer maintenant</button>
+  <section id="accueil">
+    <h1>Bienvenue chez Benzzone</h1>
+    <p>Explorez nos produits connectés et innovants pour votre maison ou votre bureau.</p>
+  </section>
+
+  <section id="produits">
+    <h2>Nos Produits</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200x150?text=Produit+1" alt="Produit 1">
+        <h3>Lampe Intelligente</h3>
+        <p>Éclairage connecté, contrôle par app.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200x150?text=Produit+2" alt="Produit 2">
+        <h3>Caméra Sécurité</h3>
+        <p>Surveillance Wi-Fi, vision de nuit.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200x150?text=Produit+3" alt="Produit 3">
+        <h3>Robot Aspirateur</h3>
+        <p>Nettoyage automatique, recharge intelligente.</p>
+      </div>
+    </div>
   </section>
 
   <footer>
-    &copy; 2025 Benzzone. Tous droits réservés.
+    © 2025 Benzzone. Tous droits réservés.
   </footer>
 </body>
 </html>
