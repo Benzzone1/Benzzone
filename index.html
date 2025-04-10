@@ -33,7 +33,7 @@
       box-shadow: 0 4px 10px var(--shadow);
       position: sticky;
       top: 0;
-      z-index: 999;
+      z-index: 0; /* Placer l'arrière-plan en arrière */
     }
 
     .logo {
@@ -43,6 +43,7 @@
       text-shadow: 2px 2px 6px #000;
       transition: transform 0.3s ease;
       text-align: center;
+      z-index: 1; /* Positionner au-dessus de l'arrière-plan */
     }
 
     .logo:hover {
@@ -127,16 +128,19 @@
     .btn-profil {
       top: 10px;
       left: 10px;
+      z-index: 2; /* Mettre le bouton Profil au-dessus */
     }
 
     .btn-parametres {
       top: 10px;
       right: 10px;
+      z-index: 2; /* Mettre le bouton Paramètres au-dessus */
     }
 
     .btn-mail {
       top: 60px;
       right: 10px;
+      z-index: 2; /* Mettre le bouton Mail au-dessus */
     }
 
     footer {
