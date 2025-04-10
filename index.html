@@ -39,7 +39,6 @@
     .logo {
       font-size: 3em;
       font-weight: bold;
-      margin-bottom: 15px;
       cursor: pointer;
       text-shadow: 2px 2px 6px #000;
       transition: transform 0.3s ease;
@@ -47,32 +46,6 @@
     }
 
     .logo:hover {
-      transform: scale(1.05);
-    }
-
-    .top-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-bottom: 10px;
-    }
-
-    .top-buttons a,
-    .category-buttons a {
-      background: var(--button-color);
-      padding: 12px 22px;
-      border-radius: 30px;
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      box-shadow: 0 4px 8px var(--shadow);
-      transition: all 0.3s ease;
-    }
-
-    .top-buttons a:hover,
-    .category-buttons a:hover {
-      background: var(--button-hover);
       transform: scale(1.05);
     }
 
@@ -89,7 +62,25 @@
 
     .main-content p {
       font-size: 1.2em;
-      margin-bottom: 40px;
+      margin: 25px 0;
+    }
+
+    .main-content .shop-button {
+      background: var(--button-color);
+      padding: 14px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      box-shadow: 0 4px 8px var(--shadow);
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .main-content .shop-button:hover {
+      background: var(--button-hover);
+      transform: scale(1.05);
     }
 
     .category-buttons {
@@ -103,6 +94,49 @@
     .category-buttons a {
       background: rgba(255, 255, 255, 0.1);
       border: 2px solid var(--button-color);
+      padding: 12px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      box-shadow: 0 4px 8px var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .category-buttons a:hover {
+      background: var(--button-hover);
+      transform: scale(1.05);
+    }
+
+    .btn-absolute {
+      position: absolute;
+      background: var(--button-color);
+      padding: 10px 18px;
+      border-radius: 25px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 8px var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .btn-absolute:hover {
+      background: var(--button-hover);
+    }
+
+    .btn-profil {
+      top: 10px;
+      left: 10px;
+    }
+
+    .btn-parametres {
+      top: 10px;
+      right: 10px;
+    }
+
+    .btn-mail {
+      top: 60px;
+      right: 10px;
     }
 
     footer {
@@ -133,20 +167,18 @@
   </style>
 </head>
 <body>
+  <!-- Boutons absolus -->
+  <a href="#" class="btn-absolute btn-profil">Profil</a>
+  <a href="#" class="btn-absolute btn-parametres">Paramètres</a>
+  <a href="mailto:contact@benzzone.com" class="btn-absolute btn-mail">Mail</a>
+
   <header>
     <div class="logo" onclick="location.href='#'">Benzzone</div>
-    <div class="top-buttons">
-      <a href="#">Accueil</a>
-      <a href="#">Produits</a>
-      <a href="#">Paramètres</a>
-      <a href="#">Profil</a>
-      <a href="#">Commencer les achats</a>
-      <a href="mailto:contact@benzzone.com">Mail</a>
-    </div>
   </header>
 
   <div class="main-content">
     <h1>Bienvenue sur Benzzone</h1>
+    <a href="#" class="shop-button">Produits & Commencer les achats</a>
     <p>Découvrez nos meilleures catégories</p>
     <div class="category-buttons">
       <a href="#">Tech</a>
@@ -168,4 +200,4 @@
     <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
   </footer>
 </body>
-</html>
+                          </html>
