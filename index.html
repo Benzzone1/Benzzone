@@ -1,55 +1,153 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Benzzone - Accueil</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benzzone</title>
+  <style>
+    :root {
+      --cyan: #00bcd4;
+      --dark: #111;
+      --light: #f5f5f5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Arial", sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--dark);
+    }
+
+    header {
+      background-color: var(--dark);
+      color: white;
+      padding: 20px;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--cyan);
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin: 10px 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--cyan);
+    }
+
+    .banner {
+      background: var(--cyan);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 30px 0 10px;
+      font-size: 1.8rem;
+      color: var(--dark);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .product p {
+      margin-top: 8px;
+      color: var(--dark);
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
+
   <header>
+    <div class="logo">Benᴢzone</div>
     <nav>
-      <div class="logo">
-        <span class="benzzone">Benzzone</span>
-      </div>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="produits.html">Produits</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <a href="#">Accueil</a>
+      <a href="#">Produits</a>
+      <a href="#">Nouveautés</a>
+      <a href="#">Contact</a>
     </nav>
   </header>
-  
-  <main>
-    <section class="hero">
-      <div class="hero-text">
-        <h1>Bienvenue sur Benzzone</h1>
-        <p>Les meilleurs produits tech pour votre maison et plus encore.</p>
-        <a href="produits.html" class="cta-button">Voir nos produits</a>
+
+  <div class="banner">Livraison gratuite à partir de 29€ !</div>
+
+  <section>
+    <h2 class="section-title">Super Offres</h2>
+    <div class="products">
+      <div class="product">
+        <img src="https://via.placeholder.com/200x200" alt="Produit 1" />
+        <p>Produit 1 - 19,99€</p>
       </div>
-    </section>
-    
-    <section class="featured-products">
-      <h2>Produits phares</h2>
-      <div class="product-gallery">
-        <div class="product-item">
-          <img src="image1.jpg" alt="Produit 1">
-          <h3>Produit 1</h3>
-        </div>
-        <div class="product-item">
-          <img src="image2.jpg" alt="Produit 2">
-          <h3>Produit 2</h3>
-        </div>
-        <div class="product-item">
-          <img src="image3.jpg" alt="Produit 3">
-          <h3>Produit 3</h3>
-        </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200x200" alt="Produit 2" />
+        <p>Produit 2 - 25,00€</p>
       </div>
-    </section>
-  </main>
-  
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Recommandés pour vous</h2>
+    <div class="products">
+      <div class="product">
+        <img src="https://via.placeholder.com/200x200" alt="Produit 3" />
+        <p>Produit 3 - 15,50€</p>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200x200" alt="Produit 4" />
+        <p>Produit 4 - 18,75€</p>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p>© 2025 Benzzone. Tous droits réservés.</p>
+    &copy; 2025 Benᴢzone. Tous droits réservés.
   </footer>
+
 </body>
 </html>
