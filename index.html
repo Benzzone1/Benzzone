@@ -4,33 +4,98 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Benzzone</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --blue: #1e88e5;
+      --cyan: #00bcd4;
+      --black: #000000;
+      --white: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--white);
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 1rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background-color: var(--blue);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--white);
+    }
+
+    .btn {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background-color: var(--cyan);
+      border: none;
+      color: var(--black);
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--black);
+      border-top: 1px solid var(--cyan);
+      color: var(--cyan);
+    }
+  </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <h1>BENZ<span class="flip">Z</span>ONE</h1>
-    </div>
+    <div class="logo">Benzzone</div>
     <nav>
-      <ul>
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Produits</a></li>
-        <li><a href="#">À propos</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+      <a href="#">Accueil</a>
+      <a href="#">Produits</a>
+      <a href="#">À propos</a>
+      <a href="#">Contact</a>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <h2>Bienvenue sur Benzzone</h2>
-      <p>Découvrez les meilleurs produits tech et maison</p>
-      <a href="#" class="btn">Explorer</a>
-    </section>
-  </main>
+  <section class="hero">
+    <h1>Bienvenue sur Benzzone</h1>
+    <p>Découvrez des produits variés grâce à nos affiliations de qualité.</p>
+    <button class="btn">Explorer maintenant</button>
+  </section>
 
   <footer>
-    <p>&copy; 2025 BENZ<span class="flip">Z</span>ONE. Tous droits réservés.</p>
+    &copy; 2025 Benzzone. Tous droits réservés.
   </footer>
 </body>
 </html>
