@@ -55,64 +55,27 @@
       transform: scale(1.05);
     }
 
-    /* Profil Button */
-    .btn-profil {
-      position: absolute;
-      top: 70px; /* Monté plus haut */
-      left: 20px;
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-      padding: 8px 15px;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-    }
-
-    .btn-profil:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Paramètres Button */
-    .btn-parametres {
+    /* Icônes de profil, paramètres et mail */
+    .header-icons {
       position: absolute;
       top: 20px;
       right: 20px;
-      background-color: var(--button-color); /* Mise en avant avec la couleur des boutons */
+      display: flex;
+      gap: 15px;
+    }
+
+    .header-icons a {
+      font-size: 20px;
       color: white;
-      border: 1px solid white;
-      padding: 8px 15px;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-      z-index: 1000; /* Assurer qu'il soit devant le fond */
+      text-decoration: none;
+      transition: color 0.3s ease;
     }
 
-    .btn-parametres:hover {
-      background-color: var(--button-hover);
+    .header-icons a:hover {
+      color: #e0e0e0;
     }
 
-    /* Mail Button */
-    .btn-mail {
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-      padding: 8px 15px;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-    }
-
-    .btn-mail:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
+    /* Main Content */
     .main-content {
       text-align: center;
       padding: 100px 20px 20px; /* Plus d'espace entre la tête et le corps */
@@ -172,6 +135,60 @@
       transform: scale(1.05);
     }
 
+    /* Products Section */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .product-card h3 {
+      margin-top: 15px;
+      font-size: 1.2em;
+      color: white;
+    }
+
+    .product-card p {
+      color: white;
+      font-size: 0.9em;
+      margin: 10px 0;
+    }
+
+    .product-card .buy-button {
+      background-color: var(--button-color);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .product-card .buy-button:hover {
+      background-color: var(--button-hover);
+    }
+
+    /* Footer */
     footer {
       background-color: var(--header-footer-color); /* Même couleur que la tête */
       padding: 25px 15px;
@@ -200,13 +217,14 @@
   </style>
 </head>
 <body>
-  <!-- Boutons absolus -->
-  <a href="#" class="btn-absolute btn-profil">Profil</a>
-  <a href="#" class="btn-absolute btn-parametres">Paramètres</a>
-  <a href="mailto:contact@benzzone.com" class="btn-absolute btn-mail">Mail</a>
-
+  <!-- Header with icons -->
   <header>
     <div class="logo" onclick="location.href='#'">Benzzone</div>
+    <div class="header-icons">
+      <a href="#"><i class="fa fa-user"></i></a> <!-- Profil Icon -->
+      <a href="#"><i class="fa fa-cogs"></i></a> <!-- Paramètres Icon -->
+      <a href="mailto:contact@benzzone.com"><i class="fa fa-envelope"></i></a> <!-- Mail Icon -->
+    </div>
   </header>
 
   <div class="main-content">
@@ -225,12 +243,35 @@
       <a href="#">Accessoires</a>
       <a href="#">Jardin</a>
     </div>
+    
+    <!-- Liste de produits phares -->
+    <div class="products">
+      <!-- 50 produits phares (exemple) -->
+      <div class="product-card">
+        <img src="produit1.jpg" alt="Produit 1">
+        <h3>Produit 1</h3>
+        <p>Description du produit 1</p>
+        <a href="detail-produit.html" class="buy-button">Acheter</a>
+      </div>
+      <div class="product-card">
+        <img src="produit2.jpg" alt="Produit 2">
+        <h3>Produit 2</h3>
+        <p>Description du produit 2</p>
+        <a href="detail-produit.html" class="buy-button">Acheter</a>
+      </div>
+      <!-- Ajoute 48 autres produits ici -->
+    </div>
   </div>
 
   <footer>
     <a href="#">À propos</a>
     <a href="#">Contact</a>
+    <a href="#">FAQ</a>
+    <a href="#">Qui sommes-nous</a>
     <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
   </footer>
+
+  <!-- Ajout des icônes FontAwesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
