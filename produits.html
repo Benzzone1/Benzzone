@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="fr">
-<head>
+<!DOCTYPE html><html lang="fr"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Benzzone - Produits</title>
@@ -15,13 +14,12 @@
       --header-color: #243b62;
       --background-color: #f4f4f4;
       --button-active-color: #376bb0;
-    }* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }body {
   font-family: 'Segoe UI', sans-serif;
   background: var(--background-color);
   color: var(--main-color);
@@ -98,52 +96,102 @@ h1 {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  padding: 15px;
+  padding: 10px;
   text-align: center;
 }
 
 .product-card img {
   max-width: 100%;
-  height: auto;
+  height: 150px;
+  object-fit: cover;
   border-radius: 8px;
 }
 
 .product-card h3 {
-  font-size: 1.2em;
+  font-size: 1em;
   color: var(--main-color);
-  margin: 10px 0;
+  margin: 10px 0 5px;
+}
+
+.product-card p {
+  font-size: 0.8em;
+  color: #666;
+  margin: 5px 0;
 }
 
 .product-card .price {
+  font-size: 1.1em;
   font-weight: bold;
   color: var(--button-color);
-  margin: 10px 0;
 }
 
 .btn-buy {
   background-color: var(--button-color);
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 14px;
+  padding: 8px 15px;
+  font-size: 13px;
   border-radius: 20px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
 }
 .btn-buy:hover {
   background-color: var(--button-hover);
 }
 
+.category-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 10px;
+}
+
+.category-buttons a {
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px solid var(--button-color);
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: var(--main-color);
+  font-weight: 500;
+  box-shadow: 0 4px 8px var(--shadow);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.category-buttons a:hover {
+  background: var(--button-hover);
+  color: white;
+}
+
 footer {
-  margin-top: 40px;
+  margin-top: 60px;
   background-color: var(--header-color);
   text-align: center;
   color: white;
-  padding: 20px 10px;
+  padding: 25px 10px;
 }
+
 footer a {
   color: #fff;
-  margin: 0 10px;
+  margin: 0 12px;
   text-decoration: none;
+  font-weight: 500;
+}
+
+footer a:hover {
+  color: #e0e0e0;
+}
+
+footer p {
+  margin-top: 10px;
+  font-size: 0.9em;
+  opacity: 0.8;
 }
 
   </style>
@@ -157,35 +205,48 @@ footer a {
       <a href="#"><span class="material-icons">settings</span></a>
     </div>
   </header>  <div class="content">
-    <h1>Nos Produits</h1><div class="filters">
-  <select>
-    <option value="all">Tous les Produits</option>
-    <option value="tech">Technologie</option>
-    <option value="home">Maison</option>
-    <option value="beauty">Beauté</option>
-    <option value="fashion">Mode</option>
-  </select>
-
-  <select>
-    <option value="price-low-to-high">Prix : Croissant</option>
-    <option value="price-high-to-low">Prix : Décroissant</option>
-  </select>
+    <h1>Nos Produits</h1>
+    <div class="filters">
+      <select>
+        <option value="all">Tous les Produits</option>
+        <option value="tech">Technologie</option>
+        <option value="home">Maison</option>
+        <option value="beauty">Beauté</option>
+        <option value="fashion">Mode</option>
+      </select>
+      <select>
+        <option value="price-low-to-high">Prix : Croissant</option>
+        <option value="price-high-to-low">Prix : Décroissant</option>
+      </select>
+    </div><div class="products" id="product-list">
+  <!-- Les produits seront générés ici -->
 </div>
 
-<div class="products" id="product-list">
-  <!-- Les produits seront générés par JS -->
+<div class="category-buttons">
+  <a href="#">Tech</a>
+  <a href="#">Maison</a>
+  <a href="#">Cuisine</a>
+  <a href="#">Beauté</a>
+  <a href="#">Mode</a>
+  <a href="#">Jeux</a>
+  <a href="#">Sport</a>
+  <a href="#">Livres</a>
+  <a href="#">Accessoires</a>
+  <a href="#">Jardin</a>
 </div>
 
   </div>  <footer>
-  <div class="nav-buttons">
-    <a href="a-propos.html">À propos</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
-</footer>  <script>
-    const products = Array.from({ length: 20 }, (_, i) => ({
+    <div class="nav-buttons">
+      <a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">FAQ</a>
+      <a href="#">Qui sommes-nous</a>
+    </div>
+    <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
+  </footer>  <script>
+    const products = Array.from({ length: 25 }, (_, i) => ({
       name: `Produit ${i + 1}`,
-      desc: `Une description du produit ${i + 1}.`,
+      desc: `Description brève.`,
       price: `${Math.floor(Math.random() * 200 + 30)},00 €`,
       img: `https://via.placeholder.com/250x250?text=Produit+${i + 1}`
     }));
@@ -200,7 +261,7 @@ footer a {
         <h3>${p.name}</h3>
         <p>${p.desc}</p>
         <p class="price">${p.price}</p>
-        <button class="btn-buy" onclick="location.href='detail-produit.html'">Acheter</button>
+        <button class="btn-buy" onclick="location.href='detail-produit.html'"><span class='material-icons'>add_shopping_cart</span> Acheter</button>
       `;
       productList.appendChild(card);
     });
