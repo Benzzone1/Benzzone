@@ -15,7 +15,6 @@
       --header-color: #243b62;
       --background-color: #f4f4f4;
     }
-
     body {
       font-family: 'Segoe UI', sans-serif;
       background: var(--background-color);
@@ -235,7 +234,7 @@
       <button onclick="alert('Recherche')">🔍</button>
       <button onclick="alert('Paramètres')">⚙️</button>
       <button onclick="location.href='panier.html'">
-        🛒 <span id="compteur-panier" class="panier-count"></span>
+        🛒 <span id="compteur-panier" class="panier-count">0</span>
       </button>
     </div>
   </header>
@@ -253,18 +252,15 @@
         <select id="categorie"><option>Mode</option><option>Tech</option></select>
       </div>
       <p><strong>Prix : </strong><span id="prix-produit">€99.99</span></p>
-
       <div class="ratings">
         <span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>
         <small>(3/5)</small>
       </div>
-
       <div class="actions">
         <button class="btn-buy" onclick="ajouterAuPanier()">Acheter</button>
         <button class="btn-like">❤️ J'aime</button>
         <button class="btn-comment">💬 Commenter</button>
       </div>
-
       <div class="comments">
         <h3>Commentaires :</h3>
         <div class="comment-box"><strong>Jean :</strong> Super produit, je recommande !</div>
@@ -291,6 +287,9 @@
   </footer>
 
   <script>
+    // Ligne facultative : à activer une seule fois pour réinitialiser le panier
+    // localStorage.setItem("panier", JSON.stringify([]));
+
     function mettreAJourCompteur() {
       const panier = JSON.parse(localStorage.getItem("panier")) || [];
       document.getElementById("compteur-panier").textContent = panier.length;
