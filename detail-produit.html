@@ -132,7 +132,7 @@
     }
 
     .comments {
-      margin-top: 30px;
+      margin-top: 80px;
     }
 
     .comments h3 {
@@ -160,7 +160,7 @@
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
     }
 
@@ -185,9 +185,29 @@
     footer {
       background-color: var(--header-color);
       color: white;
+      padding: 30px 20px;
+    }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    footer .footer-links a {
+      color: white;
+      text-decoration: none;
+      margin: 5px 10px;
+    }
+
+    footer .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    footer .copyright {
       text-align: center;
-      padding: 20px;
-      margin-top: 40px;
+      font-size: 0.9em;
     }
   </style>
 </head>
@@ -210,20 +230,9 @@
       <p>Description détaillée du produit avec ses fonctionnalités clés et avantages.</p>
 
       <div class="options">
-        <select>
-          <option>Taille: S</option>
-          <option>Taille: M</option>
-          <option>Taille: L</option>
-        </select>
-        <select>
-          <option>Couleur: Rouge</option>
-          <option>Couleur: Bleu</option>
-          <option>Couleur: Noir</option>
-        </select>
-        <select>
-          <option>Catégorie: Mode</option>
-          <option>Catégorie: Tech</option>
-        </select>
+        <select id="taille"><option>S</option><option>M</option><option>L</option></select>
+        <select id="couleur"><option>Rouge</option><option>Bleu</option><option>Noir</option></select>
+        <select id="categorie"><option>Mode</option><option>Tech</option></select>
       </div>
 
       <p><strong>Prix : </strong>€99,99</p>
@@ -234,19 +243,15 @@
       </div>
 
       <div class="actions">
-        <button class="btn-buy" onclick="alert('Produit ajouté au panier !')">Acheter</button>
+        <button class="btn-buy" onclick="ajouterAuPanier()">Acheter</button>
         <button class="btn-like">❤️ J'aime</button>
         <button class="btn-comment">💬 Commenter</button>
       </div>
 
       <div class="comments">
         <h3>Commentaires :</h3>
-        <div class="comment-box">
-          <strong>Jean :</strong> Super produit, je recommande !
-        </div>
-        <div class="comment-box">
-          <strong>Sarah :</strong> Livraison rapide et qualité au top.
-        </div>
+        <div class="comment-box"><strong>Jean :</strong> Super produit, je recommande !</div>
+        <div class="comment-box"><strong>Sarah :</strong> Livraison rapide et qualité au top.</div>
       </div>
     </div>
   </div>
@@ -254,26 +259,49 @@
   <div class="similar-products">
     <h2>Produits Similaires</h2>
     <div class="product-grid">
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200" alt="Similaire 1">
-        <h4>Produit A</h4>
-        <p>€59,99</p>
-      </div>
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200" alt="Similaire 2">
-        <h4>Produit B</h4>
-        <p>€89,99</p>
-      </div>
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200" alt="Similaire 3">
-        <h4>Produit C</h4>
-        <p>€74,99</p>
-      </div>
+      <!-- Généré automatiquement par JS -->
     </div>
   </div>
 
   <footer>
-    &copy; 2025 Benzzone. Tous droits réservés.
+    <div class="footer-links">
+      <a href="about.html">À propos</a>
+      <a href="contact.html">Contact</a>
+      <a href="conditions.html">Conditions</a>
+      <a href="confidentialite.html">Confidentialité</a>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Benzzone. Tous droits réservés.
+    </div>
   </footer>
+
+  <script>
+    function ajouterAuPanier() {
+      const produit = {
+        nom: "Nom du Produit",
+        taille: document.getElementById("taille").value,
+        couleur: document.getElementById("couleur").value,
+        categorie: document.getElementById("categorie").value,
+        prix: 99.99
+      };
+      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+      panier.push(produit);
+      localStorage.setItem("panier", JSON.stringify(panier));
+      alert("Produit ajouté au panier !");
+    }
+
+    // Génération dynamique des 30 produits similaires
+    const grid = document.querySelector('.product-grid');
+    for (let i = 1; i <= 30; i++) {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <img src="https://via.placeholder.com/200?text=Produit+${i}" alt="Similaire ${i}">
+        <h4>Produit ${i}</h4>
+        <p>€${(Math.random() * 100 + 10).toFixed(2)}</p>
+      `;
+      grid.appendChild(card);
+    }
+  </script>
 </body>
 </html>
