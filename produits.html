@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html><html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Benzzone - Produits</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     :root {
       --main-color: #1e3c72;
@@ -15,329 +15,192 @@
       --header-color: #243b62;
       --background-color: #f4f4f4;
       --button-active-color: #376bb0;
-    }
+    }* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--background-color);
+  color: var(--main-color);
+}
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--background-color);
-      color: var(--text-light);
-    }
+header {
+  background-color: var(--header-color);
+  padding: 20px;
+  box-shadow: 0 4px 10px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    header {
-      background-color: var(--header-color);
-      padding: 20px;
-      box-shadow: 0 4px 10px var(--shadow);
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.logo {
+  font-size: 2.2em;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  text-shadow: 2px 2px 6px #000;
+  transition: transform 0.3s ease;
+}
+.logo:hover {
+  transform: scale(1.05);
+}
 
-    /* Logo Benzzone */
-    .logo {
-      font-size: 2.5em;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-      text-shadow: 2px 2px 6px #000;
-      transition: transform 0.3s ease;
-    }
+.nav-icons a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+  font-size: 28px;
+  transition: color 0.3s;
+}
+.nav-icons a:hover {
+  color: var(--button-color);
+}
 
-    .logo:hover {
-      transform: scale(1.05);
-    }
+.content {
+  padding: 40px 20px;
+}
 
-    /* Boutons de navigation */
-    .nav-buttons {
-      display: flex;
-      gap: 20px;
-    }
+h1 {
+  text-align: center;
+  color: var(--main-color);
+  margin-bottom: 30px;
+}
 
-    .nav-buttons a {
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-      padding: 10px 20px;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-      text-decoration: none;
-    }
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
 
-    .nav-buttons a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
+.filters select {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--button-color);
+  background-color: #fff;
+  color: var(--main-color);
+}
 
-    .nav-buttons .active {
-      background-color: var(--button-active-color);
-    }
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
 
-    /* Bouton Recherche */
-    .btn-recherche {
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-      padding: 10px 20px;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-      text-decoration: none;
-    }
+.product-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+}
 
-    .btn-recherche:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
+.product-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
 
-    /* Bouton Panier */
-    .btn-panier {
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-      padding: 10px 20px;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-      text-decoration: none;
-    }
+.product-card h3 {
+  font-size: 1.2em;
+  color: var(--main-color);
+  margin: 10px 0;
+}
 
-    .btn-panier:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
+.product-card .price {
+  font-weight: bold;
+  color: var(--button-color);
+  margin: 10px 0;
+}
 
-    /* Bouton Paramètres */
-    .btn-parametres {
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-      padding: 10px 20px;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-      text-decoration: none;
-    }
+.btn-buy {
+  background-color: var(--button-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.btn-buy:hover {
+  background-color: var(--button-hover);
+}
 
-    .btn-parametres:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
+footer {
+  margin-top: 40px;
+  background-color: var(--header-color);
+  text-align: center;
+  color: white;
+  padding: 20px 10px;
+}
+footer a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
 
-    .content {
-      padding: 50px 20px;
-      text-align: center;
-    }
-
-    .content h1 {
-      font-size: 3em;
-      margin-bottom: 30px;
-      color: var(--main-color);
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-bottom: 50px;
-    }
-
-    .product-card {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .product-card:hover {
-      transform: translateY(-10px);
-    }
-
-    .product-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    .product-card h3 {
-      font-size: 1.5em;
-      margin-top: 15px;
-      color: var(--main-color);
-    }
-
-    .product-card p {
-      font-size: 1em;
-      margin: 10px 0;
-    }
-
-    .product-card .price {
-      font-size: 1.2em;
-      font-weight: bold;
-      color: var(--button-color);
-    }
-
-    .product-card .btn-buy {
-      background-color: var(--button-color);
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      font-size: 16px;
-      margin-top: 15px;
-      cursor: pointer;
-      border-radius: 25px;
-      transition: background-color 0.3s;
-    }
-
-    .product-card .btn-buy:hover {
-      background-color: var(--button-hover);
-    }
-
-    .filters {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-bottom: 40px;
-    }
-
-    .filters select {
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 4px;
-      border: 1px solid var(--button-color);
-      background-color: #fff;
-      color: var(--main-color);
-      cursor: pointer;
-      transition: border-color 0.3s;
-    }
-
-    .filters select:hover {
-      border-color: var(--button-hover);
-    }
-
-    footer {
-      background-color: var(--header-color);
-      color: white;
-      text-align: center;
-      padding: 25px 15px;
-      margin-top: 60px;
-      box-shadow: 0 -4px 10px var(--shadow);
-    }
-
-    footer a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-      color: #e0e0e0;
-    }
-
-    footer p {
-      margin-top: 10px;
-      font-size: 0.9em;
-      opacity: 0.8;
-    }
   </style>
 </head>
 <body>
   <header>
     <div class="logo" onclick="location.href='index.html'">Benzzone</div>
-    <div class="nav-buttons">
-      <a href="index.html" class="active">Accueil</a>
-      <a href="produits.html">Produits</a>
+    <div class="nav-icons">
+      <a href="#"><span class="material-icons">search</span></a>
+      <a href="#"><span class="material-icons">shopping_cart</span></a>
+      <a href="#"><span class="material-icons">settings</span></a>
     </div>
-    <div class="nav-buttons">
-      <a href="#" class="btn-recherche">Recherche</a>
-      <a href="#" class="btn-panier">Panier</a>
-      <a href="#" class="btn-parametres">Paramètres</a>
-    </div>
-  </header>
+  </header>  <div class="content">
+    <h1>Nos Produits</h1><div class="filters">
+  <select>
+    <option value="all">Tous les Produits</option>
+    <option value="tech">Technologie</option>
+    <option value="home">Maison</option>
+    <option value="beauty">Beauté</option>
+    <option value="fashion">Mode</option>
+  </select>
 
-  <div class="content">
-    <h1>Nos Produits</h1>
+  <select>
+    <option value="price-low-to-high">Prix : Croissant</option>
+    <option value="price-high-to-low">Prix : Décroissant</option>
+  </select>
+</div>
 
-    <div class="filters">
-      <select>
-        <option value="all">Tous les Produits</option>
-        <option value="tech">Technologie</option>
-        <option value="home">Maison</option>
-        <option value="beauty">Beauté</option>
-        <option value="fashion">Mode</option>
-      </select>
+<div class="products" id="product-list">
+  <!-- Les produits seront générés par JS -->
+</div>
 
-      <select>
-        <option value="price-low-to-high">Prix : Croissant</option>
-        <option value="price-high-to-low">Prix : Décroissant</option>
-      </select>
-    </div>
-
-    <div class="products">
-      <div class="product-card">
-        <img src="https://via.placeholder.com/250x250" alt="Product 1">
-        <h3>Produit 1</h3>
-        <p>Une description succincte du produit.</p>
-        <p class="price">€99,99</p>
-        <button class="btn-buy">Acheter</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://via.placeholder.com/250x250" alt="Product 2">
-        <h3>Produit 2</h3>
-        <p>Une description succincte du produit.</p>
-        <p class="price">€149,99</p>
-        <button class="btn-buy">Acheter</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://via.placeholder.com/250x250" alt="Product 3">
-        <h3>Produit 3</h3>
-        <p>Une description succincte du produit.</p>
-        <p class="price">€49,99</p>
-        <button class="btn-buy">Acheter</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://via.placeholder.com/250x250" alt="Product 4">
-        <h3>Produit 4</h3>
-        <p>Une description succincte du produit.</p>
-        <p class="price">€79,99</p>
-        <button class="btn-buy">Acheter</button>
-      </div>
-    </div>
-
-    <div class="filters">
-      <select>
-        <option value="all">Tous les Produits</option>
-        <option value="tech">Technologie</option>
-        <option value="home">Maison</option>
-        <option value="beauty">Beauté</option>
-        <option value="fashion">Mode</option>
-      </select>
-
-      <select>
-        <option value="price-low-to-high">Prix : Croissant</option>
-        <option value="price-high-to-low">Prix : Décroissant</option>
-      </select>
-    </div>
-  </div>
-
-  <footer>
+  </div>  <footer>
     <a href="#">À propos</a>
     <a href="#">Contact</a>
     <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
-  </footer>
-</body>
+  </footer>  <script>
+    const products = Array.from({ length: 20 }, (_, i) => ({
+      name: `Produit ${i + 1}`,
+      desc: `Une description du produit ${i + 1}.`,
+      price: `${Math.floor(Math.random() * 200 + 30)},00 €`,
+      img: `https://via.placeholder.com/250x250?text=Produit+${i + 1}`
+    }));
+
+    const productList = document.getElementById('product-list');
+
+    products.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <img src="${p.img}" alt="${p.name}" />
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+        <p class="price">${p.price}</p>
+        <button class="btn-buy" onclick="location.href='detail-produit.html'">Acheter</button>
+      `;
+      productList.appendChild(card);
+    });
+  </script></body>
 </html>
