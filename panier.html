@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benzzone - Panier</title>
+  <style>
+    :root {
+      --main-color: #1e3c72;
+      --accent-color: #2a5298;
+      --button-color: #4e9af1;
+      --button-hover: #376bb0;
+      --text-light: #ffffff;
+      --header-color: #243b62;
+      --background-color: #f4f4f4;
+      --shadow: rgba(0, 0, 0, 0.2);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--background-color);
+      color: #333;
+    }
+
+    header {
+      background-color: var(--header-color);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      box-shadow: 0 4px 10px var(--shadow);
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .header-buttons button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
+      margin-left: 15px;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--main-color);
+      margin: 30px 0 20px;
+    }
+
+    .cart-container {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px var(--shadow);
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .item-details {
+      flex-grow: 1;
+      margin-left: 20px;
+    }
+
+    .item-details h3 {
+      margin: 0;
+      font-size: 1.1em;
+      color: var(--main-color);
+    }
+
+    .item-details p {
+      margin: 5px 0;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .item-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .item-actions button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .remove-btn {
+      background-color: #ff6b6b;
+      color: white;
+    }
+
+    .total-section {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: var(--main-color);
+    }
+
+    .checkout-btn {
+      background-color: var(--button-color);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 20px;
+      float: right;
+    }
+
+    .checkout-btn:hover {
+      background-color: var(--button-hover);
+    }
+
+    footer {
+      background-color: var(--header-color);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    footer .footer-links {
+      margin-bottom: 10px;
+    }
+
+    footer a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo" onclick="location.href='index.html'">Benzzone</div>
+    <div class="header-buttons">
+      <button onclick="location.href='produits.html'">🛍️</button>
+      <button onclick="location.href='parametres.html'">⚙️</button>
+    </div>
+  </header>
+
+  <h1>Votre Panier</h1>
+
+  <div class="cart-container" id="cart-items">
+    <!-- Produits dans le panier -->
+  </div>
+
+  <div class="cart-container">
+    <div class="total-section">Total : <span id="total-price">0 €</span></div>
+    <button class="checkout-btn">Passer la commande</button>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="a-propos.html">À propos de nous</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+      <a href="qui-sommes-nous.html">Qui sommes-nous ?</a>
+    </div>
+    &copy; 2025 Benzzone. Tous droits réservés.
+  </footer>
+
+  <script>
+    // Simuler des produits dans le panier
+    const panier = [
+      {
+        nom: 'Produit 1',
+        prix: 49.99,
+        image: 'https://via.placeholder.com/100'
+      },
+      {
+        nom: 'Produit 2',
+        prix: 79.99,
+        image: 'https://via.placeholder.com/100'
+      }
+    ];
+
+    const cartContainer = document.getElementById('cart-items');
+    let total = 0;
+
+    panier.forEach((item, index) => {
+      total += item.prix;
+
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        <img src="${item.image}" alt="${item.nom}">
+        <div class="item-details">
+          <h3>${item.nom}</h3>
+          <p>Prix: €${item.prix.toFixed(2)}</p>
+        </div>
+        <div class="item-actions">
+          <button class="remove-btn" onclick="removeItem(${index})">Supprimer</button>
+        </div>
+      `;
+      cartContainer.appendChild(div);
+    });
+
+    document.getElementById('total-price').textContent = total.toFixed(2) + " €";
+
+    function removeItem(index) {
+      alert("Fonction de suppression à implémenter");
+    }
+  </script>
+</body>
+</html>
