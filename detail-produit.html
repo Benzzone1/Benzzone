@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Benzzone - Détail Produit</title>
   <style>
-    /* Tout ton style d'origine est conservé ici, inchangé */
     :root {
       --main-color: #1e3c72;
       --accent-color: #2a5298;
@@ -266,9 +265,10 @@
         taille: document.getElementById("taille").value,
         couleur: document.getElementById("couleur").value,
         categorie: document.getElementById("categorie").value,
-        image: document.getElementById("img-produit").src
+        image: document.getElementById("img-produit").src,
+        description: document.getElementById("description-produit").textContent
       };
-      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+      const panier = JSON.parse(localStorage.getItem("panier")) || [];
       panier.push(produit);
       localStorage.setItem("panier", JSON.stringify(panier));
       mettreAJourCompteur();
@@ -290,13 +290,15 @@
     }
 
     function ajouterAuPanierDepuisSimilaire(produit) {
-      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+      produit.taille = "M";
+      produit.couleur = "Rouge";
+      produit.categorie = "Autre";
+      const panier = JSON.parse(localStorage.getItem("panier")) || [];
       panier.push(produit);
       localStorage.setItem("panier", JSON.stringify(panier));
       mettreAJourCompteur();
     }
 
-    // Synchronisation du compteur si une autre page modifie le panier
     window.addEventListener("storage", function(e) {
       if (e.key === "panier") {
         mettreAJourCompteur();
@@ -325,4 +327,4 @@
     }
   </script>
 </body>
-    </html>
+      </html>
