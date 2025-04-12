@@ -228,7 +228,7 @@
     }
   </style>
 </head>
-<body onload="mettreAJourCompteur()">
+<body onload="chargerProduit();mettreAJourCompteur();">
   <header>
     <div class="logo" onclick="location.href='index.html'">Benzzone</div>
     <div class="header-buttons">
@@ -242,18 +242,17 @@
 
   <div class="product-container">
     <div class="product-image">
-      <img src="https://via.placeholder.com/450x450" alt="Produit">
+      <img id="img-produit" src="https://via.placeholder.com/450x450" alt="Produit">
     </div>
     <div class="product-details">
-      <h1>Nom du Produit</h1>
-      <p>Description détaillée du produit avec ses fonctionnalités clés et avantages.</p>
+      <h1 id="nom-produit">Nom du Produit</h1>
+      <p id="description-produit">Description détaillée du produit.</p>
       <div class="options">
         <select id="taille"><option>S</option><option>M</option><option>L</option></select>
         <select id="couleur"><option>Rouge</option><option>Bleu</option><option>Noir</option></select>
         <select id="categorie"><option>Mode</option><option>Tech</option></select>
       </div>
-
-      <p><strong>Prix : </strong>€99,99</p>
+      <p><strong>Prix : </strong><span id="prix-produit">€99.99</span></p>
 
       <div class="ratings">
         <span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>
@@ -276,9 +275,7 @@
 
   <div class="similar-products">
     <h2>Produits Similaires</h2>
-    <div class="product-grid">
-      <!-- Généré dynamiquement -->
-    </div>
+    <div class="product-grid" id="similar-grid"></div>
   </div>
 
   <footer>
@@ -294,13 +291,21 @@
   </footer>
 
   <script>
-    function ajouterAuPanier(nom = "Nom du Produit", prix = 99.99) {
+    function mettreAJourCompteur() {
+      const panier = JSON.parse(localStorage.getItem("panier")) || [];
+      document.getElementById("compteur-panier").textContent = panier.length;
+    }
+
+    function ajouterAuPanier() {
+      const nom = document.getElementById("nom-produit").textContent;
+      const prixText = document.getElementById("prix-produit").textContent.replace("€", "");
+      const prix = parseFloat(prixText);
       const produit = {
         nom,
-        taille: document.getElementById("taille")?.value || "",
-        couleur: document.getElementById("couleur")?.value || "",
-        categorie: document.getElementById("categorie")?.value || "",
-        prix
+        prix,
+        taille: document.getElementById("taille").value,
+        couleur: document.getElementById("couleur").value,
+        categorie: document.getElementById("categorie").value
       };
       let panier = JSON.parse(localStorage.getItem("panier")) || [];
       panier.push(produit);
@@ -308,25 +313,49 @@
       mettreAJourCompteur();
     }
 
-    function mettreAJourCompteur() {
-      const panier = JSON.parse(localStorage.getItem("panier")) || [];
-      document.getElementById("compteur-panier").textContent = panier.length;
+    function chargerProduit() {
+      const produit = JSON.parse(localStorage.getItem("produitSelectionne"));
+      if (produit) {
+        document.getElementById("nom-produit").textContent = produit.nom;
+        document.getElementById("prix-produit").textContent = `€${produit.prix}`;
+        document.getElementById("img-produit").src = produit.image;
+        document.getElementById("description-produit").textContent = produit.description || "Un super produit de qualité.";
+      }
     }
 
-    const grid = document.querySelector('.product-grid');
+    function voirDetails(produit) {
+      localStorage.setItem("produitSelectionne", JSON.stringify(produit));
+      location.href = "detail-produit.html";
+    }
+
+    const grid = document.getElementById("similar-grid");
     for (let i = 1; i <= 30; i++) {
       const prix = (Math.random() * 100 + 10).toFixed(2);
+      const produit = {
+        nom: `Produit ${i}`,
+        prix,
+        image: `https://via.placeholder.com/200?text=Produit+${i}`,
+        description: `Description du produit ${i}`
+      };
+
       const card = document.createElement('div');
       card.className = 'product-card';
       card.innerHTML = `
-        <img src="https://via.placeholder.com/200?text=Produit+${i}" alt="Similaire ${i}">
-        <h4>Produit ${i}</h4>
-        <p>€${prix}</p>
-        <button class="btn-buy" onclick="ajouterAuPanier('Produit ${i}', ${prix})">Acheter</button>
-        <button class="btn-panier" onclick="ajouterAuPanier('Produit ${i}', ${prix})">🛒</button>
+        <img src="${produit.image}" alt="${produit.nom}">
+        <h4>${produit.nom}</h4>
+        <p>€${produit.prix}</p>
+        <button class="btn-buy" onclick='voirDetails(${JSON.stringify(produit)})'>Acheter</button>
+        <button class="btn-panier" onclick='ajouterAuPanierDepuisSimilaire(${JSON.stringify(produit)})'>🛒</button>
       `;
       grid.appendChild(card);
     }
+
+    function ajouterAuPanierDepuisSimilaire(produit) {
+      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+      panier.push(produit);
+      localStorage.setItem("panier", JSON.stringify(panier));
+      mettreAJourCompteur();
+    }
   </script>
 </body>
-                                     </html>
+</html>
