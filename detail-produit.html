@@ -328,6 +328,13 @@
       location.href = "detail-produit.html";
     }
 
+    function ajouterAuPanierDepuisSimilaire(produit) {
+      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+      panier.push(produit);
+      localStorage.setItem("panier", JSON.stringify(panier));
+      mettreAJourCompteur();
+    }
+
     const grid = document.getElementById("similar-grid");
     for (let i = 1; i <= 30; i++) {
       const prix = (Math.random() * 100 + 10).toFixed(2);
@@ -348,13 +355,6 @@
         <button class="btn-panier" onclick='ajouterAuPanierDepuisSimilaire(${JSON.stringify(produit)})'>🛒</button>
       `;
       grid.appendChild(card);
-    }
-
-    function ajouterAuPanierDepuisSimilaire(produit) {
-      let panier = JSON.parse(localStorage.getItem("panier")) || [];
-      panier.push(produit);
-      localStorage.setItem("panier", JSON.stringify(panier));
-      mettreAJourCompteur();
     }
   </script>
 </body>
