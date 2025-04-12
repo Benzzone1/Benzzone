@@ -227,7 +227,7 @@
     }
   </style>
 </head>
-<body onload="chargerProduit();mettreAJourCompteur();">
+<body onload="localStorage.removeItem('panier');mettreAJourCompteur();chargerProduit();">
   <header>
     <div class="logo" onclick="location.href='index.html'">Benzzone</div>
     <div class="header-buttons">
