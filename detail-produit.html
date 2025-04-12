@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Benzzone</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>Benzzone - Détail Produit</title>
   <style>
     :root {
       --main-color: #1e3c72;
@@ -13,273 +12,268 @@
       --button-hover: #376bb0;
       --text-light: #ffffff;
       --shadow: rgba(0, 0, 0, 0.2);
-      --header-footer-color: #243b62;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      --header-color: #243b62;
+      --background-color: #f4f4f4;
     }
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, var(--main-color), var(--accent-color));
-      color: var(--text-light);
-      overflow-x: hidden;
+      background: var(--background-color);
+      margin: 0;
+      color: #333;
     }
 
     header {
-      background-color: var(--header-footer-color);
-      padding: 20px;
+      background-color: var(--header-color);
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       box-shadow: 0 4px 10px var(--shadow);
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      margin-bottom: 30px;
     }
 
     .logo {
-      font-size: 2em;
+      font-size: 1.8em;
       font-weight: bold;
+      color: white;
       cursor: pointer;
-      text-shadow: 2px 2px 6px #000;
-      transition: transform 0.3s ease;
-      text-align: left;
-      position: absolute;
-      top: 20px;
-      left: 20px;
     }
 
-    .logo:hover {
-      transform: scale(1.05);
-    }
-
-    .btn-absolute {
-      width: 42px;
-      height: 42px;
+    .header-buttons {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 0;
-      position: absolute;
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-      border-radius: 4px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .btn-profil { top: 70px; left: 20px; }
-    .btn-parametres { top: 20px; right: 20px; background-color: var(--button-color); }
-    .btn-mail { top: 70px; right: 20px; }
-
-    .btn-absolute:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .main-content {
-      text-align: center;
-      padding: 100px 20px 20px;
-    }
-
-    .main-content h1 {
-      font-size: 3.5em;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    }
-
-    .main-content p {
-      font-size: 1.2em;
-      margin: 25px 0;
-    }
-
-    .shop-button {
-      background: var(--button-color);
-      padding: 14px 28px;
-      border-radius: 30px;
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      box-shadow: 0 4px 8px var(--shadow);
-      transition: all 0.3s ease;
-      margin-bottom: 20px;
-      display: inline-block;
-    }
-
-    .shop-button:hover {
-      background: var(--button-hover);
-      transform: scale(1.05);
-    }
-
-    .category-buttons {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 15px;
-      max-width: 1000px;
-      margin: 0 auto;
     }
 
-    .category-buttons a {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid var(--button-color);
-      padding: 12px 22px;
-      border-radius: 30px;
-      text-decoration: none;
+    .header-buttons button {
+      background: none;
+      border: none;
       color: white;
-      font-weight: 500;
-      box-shadow: 0 4px 8px var(--shadow);
-      transition: all 0.3s ease;
+      font-size: 1em;
+      cursor: pointer;
+      padding: 8px;
+      transition: transform 0.2s;
     }
 
-    .category-buttons a:hover {
-      background: var(--button-hover);
-      transform: scale(1.05);
+    .header-buttons button:hover {
+      transform: scale(1.1);
     }
 
-    .category-title {
-      font-size: 1.5em;
-      margin: 40px 20px 10px;
-      text-align: left;
-    }
-
-    .featured-products {
+    .product-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: 1fr 1fr;
+      padding: 50px;
+      gap: 40px;
+    }
+
+    .product-image img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-details h1 {
+      font-size: 2.5em;
+      color: var(--main-color);
+    }
+
+    .product-details p {
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+
+    .options {
+      margin: 20px 0;
+    }
+
+    .options select {
+      margin-right: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .actions button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn-buy {
+      background-color: var(--button-color);
+      color: white;
+    }
+
+    .btn-buy:hover {
+      background-color: var(--button-hover);
+    }
+
+    .btn-like, .btn-comment {
+      background-color: #eee;
+    }
+
+    .ratings {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .ratings span {
+      font-size: 1.5em;
+      color: gold;
+    }
+
+    .comments {
+      margin-top: 30px;
+    }
+
+    .comments h3 {
+      margin-bottom: 10px;
+      color: var(--main-color);
+    }
+
+    .comment-box {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px var(--shadow);
+    }
+
+    .similar-products {
+      padding: 40px;
+      background-color: #fff;
+    }
+
+    .similar-products h2 {
+      color: var(--main-color);
+      margin-bottom: 25px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
     }
 
     .product-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+      background: #f9f9f9;
       padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px var(--shadow);
       text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .product-card:hover {
-      transform: scale(1.05);
     }
 
     .product-card img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
+      max-width: 100%;
       border-radius: 8px;
     }
 
     .product-card h4 {
-      font-size: 0.9em;
-      opacity: 0.85;
-      margin-top: 10px;
+      margin: 10px 0;
+      color: var(--main-color);
     }
 
     footer {
-      background-color: var(--header-footer-color);
-      padding: 25px 15px;
+      background-color: var(--header-color);
+      color: white;
       text-align: center;
-      margin-top: 60px;
-      box-shadow: 0 -4px 10px var(--shadow);
-    }
-
-    footer a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-      color: #e0e0e0;
-    }
-
-    footer p {
-      margin-top: 10px;
-      font-size: 0.9em;
-      opacity: 0.8;
+      padding: 20px;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <a href="#" class="btn-absolute btn-profil" title="Profil"><i class="fas fa-user"></i></a>
-  <a href="#" class="btn-absolute btn-parametres" title="Paramètres"><i class="fas fa-cog"></i></a>
-  <a href="mailto:contact@benzzone.com" class="btn-absolute btn-mail" title="Mail"><i class="fas fa-envelope"></i></a>
-
   <header>
-    <div class="logo" onclick="location.href='#'">Benzzone</div>
+    <div class="logo" onclick="location.href='index.html'">Benzzone</div>
+    <div class="header-buttons">
+      <button onclick="alert('Recherche')">🔍</button>
+      <button onclick="alert('Paramètres')">⚙️</button>
+      <button onclick="alert('Panier')">🛒</button>
+    </div>
   </header>
 
-  <div class="main-content">
-    <h1>Bienvenue sur Benzzone</h1>
-    <a href="produits.html" class="shop-button">Produits & Commencer les achats</a>
-    <p>Découvrez nos meilleures catégories</p>
-    <div class="category-buttons">
-      <a href="#">Tech</a>
-      <a href="#">Maison</a>
-      <a href="#">Cuisine</a>
-      <a href="#">Beauté</a>
-      <a href="#">Mode</a>
-      <a href="#">Jeux</a>
-      <a href="#">Sport</a>
-      <a href="#">Livres</a>
-      <a href="#">Accessoires</a>
-      <a href="#">Jardin</a>
+  <div class="product-container">
+    <div class="product-image">
+      <img src="https://via.placeholder.com/450x450" alt="Produit">
+    </div>
+    <div class="product-details">
+      <h1>Nom du Produit</h1>
+      <p>Description détaillée du produit avec ses fonctionnalités clés et avantages.</p>
+
+      <div class="options">
+        <select>
+          <option>Taille: S</option>
+          <option>Taille: M</option>
+          <option>Taille: L</option>
+        </select>
+        <select>
+          <option>Couleur: Rouge</option>
+          <option>Couleur: Bleu</option>
+          <option>Couleur: Noir</option>
+        </select>
+        <select>
+          <option>Catégorie: Mode</option>
+          <option>Catégorie: Tech</option>
+        </select>
+      </div>
+
+      <p><strong>Prix : </strong>€99,99</p>
+
+      <div class="ratings">
+        <span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>
+        <small>(3/5)</small>
+      </div>
+
+      <div class="actions">
+        <button class="btn-buy" onclick="alert('Produit ajouté au panier !')">Acheter</button>
+        <button class="btn-like">❤️ J'aime</button>
+        <button class="btn-comment">💬 Commenter</button>
+      </div>
+
+      <div class="comments">
+        <h3>Commentaires :</h3>
+        <div class="comment-box">
+          <strong>Jean :</strong> Super produit, je recommande !
+        </div>
+        <div class="comment-box">
+          <strong>Sarah :</strong> Livraison rapide et qualité au top.
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Produits par catégories -->
-  <h3 class="category-title">Tech</h3>
-  <div class="featured-products">
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Tech+1"><h4>Casque Bluetooth</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Tech+2"><h4>Smartwatch</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Tech+3"><h4>Mini projecteur</h4></div>
-  </div>
-
-  <h3 class="category-title">Maison</h3>
-  <div class="featured-products">
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Maison+1"><h4>Lampe LED</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Maison+2"><h4>Diffuseur d’huiles</h4></div>
-  </div>
-
-  <h3 class="category-title">Cuisine</h3>
-  <div class="featured-products">
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Cuisine+1"><h4>Mixeur portable</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Cuisine+2"><h4>Balance numérique</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Cuisine+3"><h4>Moulin à café</h4></div>
-  </div>
-
-  <h3 class="category-title">Beauté</h3>
-  <div class="featured-products">
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Beauté+1"><h4>Brosse visage</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Beauté+2"><h4>Soin LED</h4></div>
-  </div>
-
-  <h3 class="category-title">Jeux & Sport</h3>
-  <div class="featured-products">
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Sport+1"><h4>Tapis yoga</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Jeux+1"><h4>Manette sans fil</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Jeux+2"><h4>Casque gamer</h4></div>
-  </div>
-
-  <h3 class="category-title">Livres</h3>
-  <div class="featured-products">
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Livre+1"><h4>Roman science-fiction</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Livre+2"><h4>Développement perso</h4></div>
+  <div class="similar-products">
+    <h2>Produits Similaires</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200" alt="Similaire 1">
+        <h4>Produit A</h4>
+        <p>€59,99</p>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200" alt="Similaire 2">
+        <h4>Produit B</h4>
+        <p>€89,99</p>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200" alt="Similaire 3">
+        <h4>Produit C</h4>
+        <p>€74,99</p>
+      </div>
+    </div>
   </div>
 
   <footer>
-    <a href="#">À propos</a>
-    <a href="#">Contact</a>
-    <a href="#">FAQ</a>
-    <a href="#">Qui sommes-nous</a>
-    <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
+    &copy; 2025 Benzzone. Tous droits réservés.
   </footer>
 </body>
-  </html>
+</html>
