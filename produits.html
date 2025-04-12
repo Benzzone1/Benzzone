@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="fr"><head>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Benzzone - Produits</title>
@@ -14,242 +16,244 @@
       --header-color: #243b62;
       --background-color: #f4f4f4;
       --button-active-color: #376bb0;
-    }* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-<script>
-  function ajouterAuPanier(nom, image, prix) {
-    const produit = {
-      name: nom,
-      img: image,
-      price: prix
-    };
-
-    let panier = JSON.parse(localStorage.getItem("cart")) || [];
-    panier.push(produit);
-    localStorage.setItem("cart", JSON.stringify(panier));
-
-    // Mettre à jour le compteur si besoin
-    const compteur = document.getElementById("cart-count");
-    if (compteur) {
-      compteur.textContent = panier.length;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    alert("Produit ajouté au panier !");
-  }
-</script>
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--background-color);
-  color: var(--main-color);
-}
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--background-color);
+      color: var(--main-color);
+    }
 
-header {
-  background-color: var(--header-color);
-  padding: 20px;
-  box-shadow: 0 4px 10px var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    header {
+      background-color: var(--header-color);
+      padding: 20px;
+      box-shadow: 0 4px 10px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.logo {
-  font-size: 2.2em;
-  font-weight: bold;
-  color: white;
-  cursor: pointer;
-  text-shadow: 2px 2px 6px #000;
-  transition: transform 0.3s ease;
-}
-.logo:hover {
-  transform: scale(1.05);
-}
+    .logo {
+      font-size: 2.2em;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      text-shadow: 2px 2px 6px #000;
+      transition: transform 0.3s ease;
+    }
+    .logo:hover {
+      transform: scale(1.05);
+    }
 
-.nav-icons a {
-  color: white;
-  text-decoration: none;
-  margin-left: 15px;
-  font-size: 28px;
-  transition: color 0.3s;
-}
-.nav-icons a:hover {
-  color: var(--button-color);
-}
+    .nav-icons a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-size: 28px;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-icons a:hover {
+      color: var(--button-color);
+    }
 
-.content {
-  padding: 40px 20px;
-}
+    .content {
+      padding: 40px 20px;
+    }
 
-h1 {
-  text-align: center;
-  color: var(--main-color);
-  margin-bottom: 30px;
-}
+    h1 {
+      text-align: center;
+      color: var(--main-color);
+      margin-bottom: 30px;
+    }
 
-.category-buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  max-width: 1000px;
-  margin: 0 auto 40px;
-}
+    .category-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      max-width: 1000px;
+      margin: 0 auto 40px;
+    }
 
-.category-buttons a {
-  background: rgba(78, 154, 241, 0.1);
-  border: 2px solid var(--button-color);
-  padding: 12px 22px;
-  border-radius: 30px;
-  text-decoration: none;
-  color: var(--main-color);
-  font-weight: 500;
-  box-shadow: 0 4px 8px var(--shadow);
-  transition: all 0.3s ease;
-  text-align: center;
-}
+    .category-buttons a {
+      background: rgba(78, 154, 241, 0.1);
+      border: 2px solid var(--button-color);
+      padding: 12px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: var(--main-color);
+      font-weight: 500;
+      box-shadow: 0 4px 8px var(--shadow);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
 
-.category-buttons a:hover {
-  background: var(--button-hover);
-  color: white;
-}
+    .category-buttons a:hover {
+      background: var(--button-hover);
+      color: white;
+    }
 
-.filters {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-bottom: 30px;
-}
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
 
-.filters select {
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  border: 1px solid var(--button-color);
-  background-color: #fff;
-  color: var(--main-color);
-}
+    .filters select {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid var(--button-color);
+      background-color: #fff;
+      color: var(--main-color);
+    }
 
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-}
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-.product-card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  padding: 15px;
-  text-align: center;
-}
+    .product-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+    }
 
-.product-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
 
-.product-card h3 {
-  font-size: 1.1em;
-  color: var(--main-color);
-  margin: 8px 0;
-}
+    .product-card h3 {
+      font-size: 1.1em;
+      color: var(--main-color);
+      margin: 8px 0;
+    }
 
-.product-card .price {
-  font-weight: bold;
-  color: var(--button-color);
-  margin: 8px 0;
-}
+    .product-card .price {
+      font-weight: bold;
+      color: var(--button-color);
+      margin: 8px 0;
+    }
 
-.btn-buy, .btn-cart {
-  background-color: var(--button-color);
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  font-size: 13px;
-  border-radius: 20px;
-  cursor: pointer;
-  margin: 5px 4px;
-}
+    .btn-buy, .btn-cart {
+      background-color: var(--button-color);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      font-size: 13px;
+      border-radius: 20px;
+      cursor: pointer;
+      margin: 5px 4px;
+    }
 
-.btn-buy:hover, .btn-cart:hover {
-  background-color: var(--button-hover);
-}
+    .btn-buy:hover, .btn-cart:hover {
+      background-color: var(--button-hover);
+    }
 
-.btn-cart .material-icons {
-  vertical-align: middle;
-}
+    .btn-cart .material-icons {
+      vertical-align: middle;
+    }
 
-footer {
-  margin-top: 60px;
-  background-color: var(--header-color);
-  text-align: center;
-  color: white;
-  padding: 25px 15px;
-  box-shadow: 0 -4px 10px var(--shadow);
-}
-footer a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-footer a:hover {
-  color: #e0e0e0;
-}
-footer p {
-  margin-top: 10px;
-  font-size: 0.9em;
-  opacity: 0.8;
-}
+    footer {
+      margin-top: 60px;
+      background-color: var(--header-color);
+      text-align: center;
+      color: white;
+      padding: 25px 15px;
+      box-shadow: 0 -4px 10px var(--shadow);
+    }
 
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #e0e0e0;
+    }
+
+    footer p {
+      margin-top: 10px;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+
+    #cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      padding: 2px 6px;
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="logo" onclick="location.href='index.html'">Benzzone</div>
     <div class="nav-icons">
-      <a href="#"><span class="material-icons">search</span></a>
-      <a href="#"><span class="material-icons">shopping_cart</span></a>
+      <a href="panier.html">
+        <span class="material-icons">shopping_cart</span>
+        <span id="cart-count">0</span>
+      </a>
       <a href="#"><span class="material-icons">settings</span></a>
     </div>
-  </header>  <div class="content">
-    <h1>Nos Produits</h1><div class="category-buttons">
-  <a href="#">Tech</a>
-  <a href="#">Maison</a>
-  <a href="#">Cuisine</a>
-  <a href="#">Beauté</a>
-  <a href="#">Mode</a>
-  <a href="#">Jeux</a>
-  <a href="#">Sport</a>
-  <a href="#">Livres</a>
-  <a href="#">Accessoires</a>
-  <a href="#">Jardin</a>
-</div>
+  </header>
 
-<div class="filters">
-  <select>
-    <option value="all">Tous les Produits</option>
-    <option value="tech">Technologie</option>
-    <option value="home">Maison</option>
-    <option value="beauty">Beauté</option>
-    <option value="fashion">Mode</option>
-  </select>
+  <div class="content">
+    <h1>Nos Produits</h1>
 
-  <select>
-    <option value="price-low-to-high">Prix : Croissant</option>
-    <option value="price-high-to-low">Prix : Décroissant</option>
-  </select>
-</div>
+    <div class="category-buttons">
+      <a href="#">Tech</a>
+      <a href="#">Maison</a>
+      <a href="#">Cuisine</a>
+      <a href="#">Beauté</a>
+      <a href="#">Mode</a>
+      <a href="#">Jeux</a>
+      <a href="#">Sport</a>
+      <a href="#">Livres</a>
+      <a href="#">Accessoires</a>
+      <a href="#">Jardin</a>
+    </div>
 
-<div class="products" id="product-list"></div>
+    <div class="filters">
+      <select>
+        <option value="all">Tous les Produits</option>
+        <option value="tech">Technologie</option>
+        <option value="home">Maison</option>
+        <option value="beauty">Beauté</option>
+        <option value="fashion">Mode</option>
+      </select>
 
-  </div>  <footer>
+      <select>
+        <option value="price-low-to-high">Prix : Croissant</option>
+        <option value="price-high-to-low">Prix : Décroissant</option>
+      </select>
+    </div>
+
+    <div class="products" id="product-list"></div>
+  </div>
+
+  <footer>
     <div class="nav-buttons">
       <a href="#">À propos</a>
       <a href="#">Contact</a>
@@ -257,7 +261,28 @@ footer p {
       <a href="#">Qui sommes-nous</a>
     </div>
     <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
-  </footer>  <script>
+  </footer>
+
+  <script>
+    function ajouterAuPanier(nom, image, prix) {
+      const produit = {
+        name: nom,
+        img: image,
+        price: prix
+      };
+
+      let panier = JSON.parse(localStorage.getItem("cart")) || [];
+      panier.push(produit);
+      localStorage.setItem("cart", JSON.stringify(panier));
+
+      const compteur = document.getElementById("cart-count");
+      if (compteur) {
+        compteur.textContent = panier.length;
+      }
+
+      alert("Produit ajouté au panier !");
+    }
+
     const products = Array.from({ length: 25 }, (_, i) => ({
       name: `Produit ${i + 1}`,
       desc: `Produit ${i + 1}`,
@@ -275,7 +300,7 @@ footer p {
         <h3>${p.name}</h3>
         <p class="price">${p.price}</p>
         <div>
-          <button class="btn-cart" onclick="alert('Ajouté au panier : ${p.name}')">
+          <button class="btn-cart" onclick="ajouterAuPanier('${p.name}', '${p.img}', '${p.price}')">
             <span class="material-icons">shopping_cart</span>
           </button>
           <button class="btn-buy" onclick="location.href='detail-produit.html'">Acheter</button>
@@ -283,5 +308,15 @@ footer p {
       `;
       productList.appendChild(card);
     });
-  </script></body>
+
+    // Mise à jour du compteur au chargement de la page
+    window.onload = function () {
+      const panier = JSON.parse(localStorage.getItem("cart")) || [];
+      const compteur = document.getElementById("cart-count");
+      if (compteur) {
+        compteur.textContent = panier.length;
+      }
+    };
+  </script>
+</body>
 </html>
