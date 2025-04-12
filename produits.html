@@ -19,7 +19,27 @@
   margin: 0;
   padding: 0;
 }
+<script>
+  function ajouterAuPanier(nom, image, prix) {
+    const produit = {
+      name: nom,
+      img: image,
+      price: prix
+    };
 
+    let panier = JSON.parse(localStorage.getItem("cart")) || [];
+    panier.push(produit);
+    localStorage.setItem("cart", JSON.stringify(panier));
+
+    // Mettre à jour le compteur si besoin
+    const compteur = document.getElementById("cart-count");
+    if (compteur) {
+      compteur.textContent = panier.length;
+    }
+
+    alert("Produit ajouté au panier !");
+  }
+</script>
 body {
   font-family: 'Segoe UI', sans-serif;
   background: var(--background-color);
