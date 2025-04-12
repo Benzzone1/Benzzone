@@ -59,17 +59,6 @@
       position: relative;
     }
 
-    .cart-count {
-      position: absolute;
-      top: -5px;
-      right: -8px;
-      background-color: red;
-      color: white;
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 12px;
-    }
-
     .content {
       padding: 40px 20px;
     }
@@ -92,6 +81,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       padding: 15px;
       text-align: center;
+      position: relative;
     }
 
     .item-card img {
@@ -110,6 +100,47 @@
       font-weight: bold;
     }
 
+    .remove-btn {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.2em;
+      color: var(--main-color);
+      cursor: pointer;
+    }
+
+    .empty {
+      text-align: center;
+      margin-top: 50px;
+      color: gray;
+    }
+
+    .total-section {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: var(--main-color);
+    }
+
+    .checkout-btn {
+      margin: 20px auto 0;
+      display: block;
+      padding: 12px 25px;
+      background-color: var(--button-color);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .checkout-btn:hover {
+      background-color: var(--button-hover);
+    }
+
     footer {
       background-color: var(--header-color);
       color: white;
@@ -123,12 +154,6 @@
       margin: 0 10px;
       text-decoration: none;
     }
-
-    .empty {
-      text-align: center;
-      margin-top: 50px;
-      color: gray;
-    }
   </style>
 </head>
 <body>
@@ -138,10 +163,7 @@
       <div class="logo" onclick="location.href='index.html'">Benzzone</div>
     </div>
     <div class="header-buttons">
-      <button onclick="alert('Paramètres')">⚙️</button>
-      <button>
-        🛒<span class="cart-count" id="cart-count">0</span>
-      </button>
+      <button onclick="alert('Recherche')">🔍</button>
     </div>
   </header>
 
@@ -149,6 +171,8 @@
     <h1>Mon Panier</h1>
     <div class="cart-items" id="cart-items"></div>
     <div class="empty" id="empty-text">Votre panier est vide.</div>
+    <div class="total-section" id="total-price"></div>
+    <button class="checkout-btn" onclick="passerCommande()">Passer votre commande</button>
   </div>
 
   <footer>
@@ -164,31 +188,52 @@
   <script>
     function updateCartCount() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const countEl = document.getElementById('cart-count');
-      countEl.textContent = cart.length;
+      // compteur supprimé du header
+    }
+
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
     }
 
     function renderCart() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       const container = document.getElementById('cart-items');
       const emptyText = document.getElementById('empty-text');
+      const totalEl = document.getElementById('total-price');
 
       container.innerHTML = '';
+      let total = 0;
+
       if (cart.length === 0) {
         emptyText.style.display = 'block';
+        totalEl.textContent = '';
       } else {
         emptyText.style.display = 'none';
-        cart.forEach(p => {
+        cart.forEach((p, index) => {
+          const price = parseFloat(p.price);
+          total += price;
+
           const card = document.createElement('div');
           card.className = 'item-card';
           card.innerHTML = `
+            <button class="remove-btn" onclick="removeItem(${index})">&times;</button>
             <img src="${p.img}" alt="${p.name}" />
             <h3>${p.name}</h3>
-            <p class="price">${p.price}</p>
+            <p class="price">${p.price} €</p>
           `;
           container.appendChild(card);
         });
+        totalEl.textContent = `Total : ${total.toFixed(2)} €`;
       }
+    }
+
+    function passerCommande() {
+      alert("Merci pour votre commande !");
+      localStorage.removeItem('cart');
+      renderCart();
     }
 
     updateCartCount();
