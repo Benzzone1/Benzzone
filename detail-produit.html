@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benzzone - Détail Produit</title>
+  <style>
+    :root {
+      --main-color: #1e3c72;
+      --accent-color: #2a5298;
+      --button-color: #4e9af1;
+      --button-hover: #376bb0;
+      --text-light: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.2);
+      --header-color: #243b62;
+      --background-color: #f4f4f4;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--background-color);
+      margin: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: var(--header-color);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px var(--shadow);
+    }
+
+    .logo {
+      font-size: 2em;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-buttons a {
+      color: white;
+      text-decoration: none;
+      background-color: transparent;
+      border: 1px solid white;
+      padding: 8px 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-buttons a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .product-image {
+      flex: 1 1 400px;
+    }
+
+    .product-image img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-details {
+      flex: 1 1 400px;
+    }
+
+    .product-details h1 {
+      font-size: 2.5em;
+      color: var(--main-color);
+      margin-bottom: 15px;
+    }
+
+    .product-details p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .price {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: var(--button-color);
+      margin-bottom: 25px;
+    }
+
+    .btn-buy {
+      background-color: var(--button-color);
+      color: white;
+      padding: 14px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-buy:hover {
+      background-color: var(--button-hover);
+    }
+
+    footer {
+      background-color: var(--header-color);
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" onclick="location.href='index.html'">Benzzone</div>
+    <div class="nav-buttons">
+      <a href="#">Recherche</a>
+      <a href="#">Paramètres</a>
+      <a href="#">Panier</a>
+    </div>
+  </header>
+
+  <div class="product-container">
+    <div class="product-image">
+      <img src="https://via.placeholder.com/500x500" alt="Produit Exemple">
+    </div>
+    <div class="product-details">
+      <h1>Nom du Produit</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ce produit est parfait pour améliorer votre quotidien avec style et efficacité.</p>
+      <p class="price">€129,99</p>
+      <button class="btn-buy">Ajouter au panier</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
+  </footer>
+</body>
+  </html>
