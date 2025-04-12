@@ -14,12 +14,13 @@
       --header-color: #243b62;
       --background-color: #f4f4f4;
       --button-active-color: #376bb0;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }body {
+    }* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: 'Segoe UI', sans-serif;
   background: var(--background-color);
   color: var(--main-color);
@@ -70,6 +71,32 @@ h1 {
   margin-bottom: 30px;
 }
 
+.category-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  max-width: 1000px;
+  margin: 0 auto 40px;
+}
+
+.category-buttons a {
+  background: rgba(78, 154, 241, 0.1);
+  border: 2px solid var(--button-color);
+  padding: 12px 22px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: var(--main-color);
+  font-weight: 500;
+  box-shadow: 0 4px 8px var(--shadow);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.category-buttons a:hover {
+  background: var(--button-hover);
+  color: white;
+}
+
 .filters {
   display: flex;
   justify-content: center;
@@ -96,77 +123,45 @@ h1 {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  padding: 10px;
+  padding: 15px;
   text-align: center;
 }
 
 .product-card img {
   max-width: 100%;
-  height: 150px;
-  object-fit: cover;
+  height: auto;
   border-radius: 8px;
 }
 
 .product-card h3 {
-  font-size: 1em;
+  font-size: 1.1em;
   color: var(--main-color);
-  margin: 10px 0 5px;
-}
-
-.product-card p {
-  font-size: 0.8em;
-  color: #666;
-  margin: 5px 0;
+  margin: 8px 0;
 }
 
 .product-card .price {
-  font-size: 1.1em;
   font-weight: bold;
   color: var(--button-color);
+  margin: 8px 0;
 }
 
-.btn-buy {
+.btn-buy, .btn-cart {
   background-color: var(--button-color);
   color: white;
   border: none;
-  padding: 8px 15px;
+  padding: 8px 14px;
   font-size: 13px;
   border-radius: 20px;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 8px;
+  margin: 5px 4px;
 }
-.btn-buy:hover {
+
+.btn-buy:hover, .btn-cart:hover {
   background-color: var(--button-hover);
 }
 
-.category-buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 0 10px;
-}
-
-.category-buttons a {
-  background: rgba(0, 0, 0, 0.05);
-  border: 2px solid var(--button-color);
-  padding: 10px 20px;
-  border-radius: 30px;
-  text-decoration: none;
-  color: var(--main-color);
-  font-weight: 500;
-  box-shadow: 0 4px 8px var(--shadow);
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.category-buttons a:hover {
-  background: var(--button-hover);
-  color: white;
+.btn-cart .material-icons {
+  vertical-align: middle;
 }
 
 footer {
@@ -174,20 +169,19 @@ footer {
   background-color: var(--header-color);
   text-align: center;
   color: white;
-  padding: 25px 10px;
+  padding: 25px 15px;
+  box-shadow: 0 -4px 10px var(--shadow);
 }
-
 footer a {
   color: #fff;
-  margin: 0 12px;
   text-decoration: none;
+  margin: 0 15px;
   font-weight: 500;
+  transition: color 0.3s ease;
 }
-
 footer a:hover {
   color: #e0e0e0;
 }
-
 footer p {
   margin-top: 10px;
   font-size: 0.9em;
@@ -205,24 +199,7 @@ footer p {
       <a href="#"><span class="material-icons">settings</span></a>
     </div>
   </header>  <div class="content">
-    <h1>Nos Produits</h1>
-    <div class="filters">
-      <select>
-        <option value="all">Tous les Produits</option>
-        <option value="tech">Technologie</option>
-        <option value="home">Maison</option>
-        <option value="beauty">Beauté</option>
-        <option value="fashion">Mode</option>
-      </select>
-      <select>
-        <option value="price-low-to-high">Prix : Croissant</option>
-        <option value="price-high-to-low">Prix : Décroissant</option>
-      </select>
-    </div><div class="products" id="product-list">
-  <!-- Les produits seront générés ici -->
-</div>
-
-<div class="category-buttons">
+    <h1>Nos Produits</h1><div class="category-buttons">
   <a href="#">Tech</a>
   <a href="#">Maison</a>
   <a href="#">Cuisine</a>
@@ -235,10 +212,27 @@ footer p {
   <a href="#">Jardin</a>
 </div>
 
+<div class="filters">
+  <select>
+    <option value="all">Tous les Produits</option>
+    <option value="tech">Technologie</option>
+    <option value="home">Maison</option>
+    <option value="beauty">Beauté</option>
+    <option value="fashion">Mode</option>
+  </select>
+
+  <select>
+    <option value="price-low-to-high">Prix : Croissant</option>
+    <option value="price-high-to-low">Prix : Décroissant</option>
+  </select>
+</div>
+
+<div class="products" id="product-list"></div>
+
   </div>  <footer>
     <div class="nav-buttons">
-      <a href="a-propos.html">À propos</a>
-      <a href="contact.html">Contact</a>
+      <a href="#">À propos</a>
+      <a href="#">Contact</a>
       <a href="#">FAQ</a>
       <a href="#">Qui sommes-nous</a>
     </div>
@@ -246,7 +240,7 @@ footer p {
   </footer>  <script>
     const products = Array.from({ length: 25 }, (_, i) => ({
       name: `Produit ${i + 1}`,
-      desc: `Description brève.`,
+      desc: `Produit ${i + 1}`,
       price: `${Math.floor(Math.random() * 200 + 30)},00 €`,
       img: `https://via.placeholder.com/250x250?text=Produit+${i + 1}`
     }));
@@ -259,9 +253,13 @@ footer p {
       card.innerHTML = `
         <img src="${p.img}" alt="${p.name}" />
         <h3>${p.name}</h3>
-        <p>${p.desc}</p>
         <p class="price">${p.price}</p>
-        <button class="btn-buy" onclick="location.href='detail-produit.html'"><span class='material-icons'>add_shopping_cart</span> Acheter</button>
+        <div>
+          <button class="btn-cart" onclick="alert('Ajouté au panier : ${p.name}')">
+            <span class="material-icons">shopping_cart</span>
+          </button>
+          <button class="btn-buy" onclick="location.href='detail-produit.html'">Acheter</button>
+        </div>
       `;
       productList.appendChild(card);
     });
