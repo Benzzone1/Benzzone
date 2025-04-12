@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
+<!DOCTYPE html><html lang="fr"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Benzzone - Détail Produit</title>
@@ -14,232 +12,92 @@
       --shadow: rgba(0, 0, 0, 0.2);
       --header-color: #243b62;
       --background-color: #f4f4f4;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--background-color);
-      margin: 0;
-      color: #333;
-    }
+    }body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--background-color);
+  margin: 0;
+  color: #333;
+}header { background-color: var(--header-color); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px var(--shadow); }
 
-    header {
-      background-color: var(--header-color);
-      padding: 15px 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 10px var(--shadow);
-    }
+.logo { font-size: 1.8em; font-weight: bold; color: white; cursor: pointer; }
 
-    .logo {
-      font-size: 1.8em;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-    }
+.header-buttons { display: flex; align-items: center; gap: 15px; }
 
-    .header-buttons {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
+.header-buttons button { background: none; border: none; color: white; font-size: 1em; cursor: pointer; padding: 8px; transition: transform 0.2s; position: relative; }
 
-    .header-buttons button {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1em;
-      cursor: pointer;
-      padding: 8px;
-      transition: transform 0.2s;
-      position: relative;
-    }
+.header-buttons button:hover { transform: scale(1.1); }
 
-    .header-buttons button:hover {
-      transform: scale(1.1);
-    }
+.panier-count { position: absolute; top: 0; right: 0; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.7em; }
 
-    .panier-count {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: red;
-      color: white;
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 0.7em;
-    }
+.product-container { display: grid; grid-template-columns: 1fr 1fr; padding: 50px; gap: 40px; }
 
-    .product-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding: 50px;
-      gap: 40px;
-    }
+.product-image img { max-width: 100%; border-radius: 10px; }
 
-    .product-image img {
-      max-width: 100%;
-      border-radius: 10px;
-    }
+.product-details h1 { font-size: 2.5em; color: var(--main-color); }
 
-    .product-details h1 {
-      font-size: 2.5em;
-      color: var(--main-color);
-    }
+.product-details p { margin: 10px 0; font-size: 1.1em; }
 
-    .product-details p {
-      margin: 10px 0;
-      font-size: 1.1em;
-    }
+.options { margin: 20px 0; }
 
-    .options {
-      margin: 20px 0;
-    }
+.options select { margin-right: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
 
-    .options select {
-      margin-right: 15px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
+.actions { display: flex; gap: 15px; margin: 20px 0; }
 
-    .actions {
-      display: flex;
-      gap: 15px;
-      margin: 20px 0;
-    }
+.actions button { padding: 12px 20px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; }
 
-    .actions button {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+.btn-buy { background-color: var(--button-color); color: white; }
 
-    .btn-buy {
-      background-color: var(--button-color);
-      color: white;
-    }
+.btn-buy:hover { background-color: var(--button-hover); }
 
-    .btn-buy:hover {
-      background-color: var(--button-hover);
-    }
+.btn-like, .btn-comment { background-color: #eee; }
 
-    .btn-like, .btn-comment {
-      background-color: #eee;
-    }
+.ratings { margin-top: 20px; display: flex; align-items: center; gap: 5px; }
 
-    .ratings {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
+.ratings span { font-size: 1.5em; color: gold; }
 
-    .ratings span {
-      font-size: 1.5em;
-      color: gold;
-    }
+.comments { margin-top: 80px; }
 
-    .comments {
-      margin-top: 80px;
-    }
+.comments h3 { margin-bottom: 10px; color: var(--main-color); }
 
-    .comments h3 {
-      margin-bottom: 10px;
-      color: var(--main-color);
-    }
+.comment-box { background: #fff; padding: 15px; margin-bottom: 10px; border-radius: 5px; box-shadow: 0 2px 6px var(--shadow); }
 
-    .comment-box {
-      background: #fff;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      box-shadow: 0 2px 6px var(--shadow);
-    }
+.similar-products { padding: 40px; background-color: #fff; }
 
-    .similar-products {
-      padding: 40px;
-      background-color: #fff;
-    }
+.similar-products h2 { color: var(--main-color); margin-bottom: 25px; }
 
-    .similar-products h2 {
-      color: var(--main-color);
-      margin-bottom: 25px;
-    }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
 
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-    }
+.product-card { background: #f9f9f9; padding: 15px; border-radius: 10px; box-shadow: 0 2px 6px var(--shadow); text-align: center; }
 
-    .product-card {
-      background: #f9f9f9;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px var(--shadow);
-      text-align: center;
-    }
+.product-card img { max-width: 100%; border-radius: 8px; }
 
-    .product-card img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
+.product-card h4 { margin: 10px 0; color: var(--main-color); }
 
-    .product-card h4 {
-      margin: 10px 0;
-      color: var(--main-color);
-    }
+.product-card .btn-buy, .product-card .btn-panier { margin-top: 5px; width: 100%; }
 
-    .product-card .btn-buy, .product-card .btn-panier {
-      margin-top: 5px;
-      width: 100%;
-    }
+footer { background-color: var(--header-color); color: white; padding: 30px 20px; }
 
-    footer {
-      background-color: var(--header-color);
-      color: white;
-      padding: 30px 20px;
-    }
+footer .footer-links { display: flex; justify-content: space-around; flex-wrap: wrap; margin-bottom: 15px; }
 
-    footer .footer-links {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      margin-bottom: 15px;
-    }
+footer .footer-links a { color: white; text-decoration: none; margin: 5px 10px; }
 
-    footer .footer-links a {
-      color: white;
-      text-decoration: none;
-      margin: 5px 10px;
-    }
+footer .footer-links a:hover { text-decoration: underline; }
 
-    footer .footer-links a:hover {
-      text-decoration: underline;
-    }
+footer .copyright { text-align: center; font-size: 0.9em; }
 
-    footer .copyright {
-      text-align: center;
-      font-size: 0.9em;
-    }
   </style>
 </head>
-<body onload="localStorage.removeItem('panier');mettreAJourCompteur();chargerProduit();">
+<body onload="chargerProduit();mettreAJourCompteur();">
   <header>
     <div class="logo" onclick="location.href='index.html'">Benzzone</div>
     <div class="header-buttons">
       <button onclick="alert('Recherche')">🔍</button>
       <button onclick="alert('Paramètres')">⚙️</button>
       <button onclick="location.href='panier.html'">
-        🛒 <span id="compteur-panier" class="panier-count">0</span>
+        🛒 <span id="compteur-panier" class="panier-count"></span>
       </button>
     </div>
-  </header>
-
-  <div class="product-container">
+  </header>  <div class="product-container">
     <div class="product-image">
       <img id="img-produit" src="https://via.placeholder.com/450x450" alt="Produit">
     </div>
@@ -251,30 +109,22 @@
         <select id="couleur"><option>Rouge</option><option>Bleu</option><option>Noir</option></select>
         <select id="categorie"><option>Mode</option><option>Tech</option></select>
       </div>
-      <p><strong>Prix : </strong><span id="prix-produit">€99.99</span></p>
-      <div class="ratings">
-        <span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>
-        <small>(3/5)</small>
-      </div>
-      <div class="actions">
-        <button class="btn-buy" onclick="ajouterAuPanier()">Acheter</button>
-        <button class="btn-like">❤️ J'aime</button>
-        <button class="btn-comment">💬 Commenter</button>
-      </div>
-      <div class="comments">
-        <h3>Commentaires :</h3>
-        <div class="comment-box"><strong>Jean :</strong> Super produit, je recommande !</div>
-        <div class="comment-box"><strong>Sarah :</strong> Livraison rapide et qualité au top.</div>
-      </div>
-    </div>
+      <p><strong>Prix : </strong><span id="prix-produit">€99.99</span></p><div class="ratings">
+    <span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>
+    <small>(3/5)</small>
+  </div>  <div class="actions">
+    <button class="btn-buy" onclick="ajouterAuPanier()">Acheter</button>
+    <button class="btn-like">❤️ J'aime</button>
+    <button class="btn-comment">💬 Commenter</button>
+  </div>  <div class="comments">
+    <h3>Commentaires :</h3>
+    <div class="comment-box"><strong>Jean :</strong> Super produit, je recommande !</div>
+    <div class="comment-box"><strong>Sarah :</strong> Livraison rapide et qualité au top.</div>
   </div>
-
-  <div class="similar-products">
+</div>  </div>  <div class="similar-products">
     <h2>Produits Similaires</h2>
     <div class="product-grid" id="similar-grid"></div>
-  </div>
-
-  <footer>
+  </div>  <footer>
     <div class="footer-links">
       <a href="about.html">À propos</a>
       <a href="contact.html">Contact</a>
@@ -284,77 +134,71 @@
     <div class="copyright">
       &copy; 2025 Benzzone. Tous droits réservés.
     </div>
-  </footer>
-
-  <script>
-    // Ligne facultative : à activer une seule fois pour réinitialiser le panier
-    // localStorage.setItem("panier", JSON.stringify([]));
-
+  </footer>  <script>
     function mettreAJourCompteur() {
       const panier = JSON.parse(localStorage.getItem("panier")) || [];
       document.getElementById("compteur-panier").textContent = panier.length;
-    }
+    }function ajouterAuPanier() {
+  const nom = document.getElementById("nom-produit").textContent;
+  const prixText = document.getElementById("prix-produit").textContent.replace("€", "");
+  const prix = parseFloat(prixText);
+  const produit = {
+    nom,
+    prix,
+    taille: document.getElementById("taille").value,
+    couleur: document.getElementById("couleur").value,
+    categorie: document.getElementById("categorie").value
+  };
+  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+  panier.push(produit);
+  localStorage.setItem("panier", JSON.stringify(panier));
+  mettreAJourCompteur();
+}
 
-    function ajouterAuPanier() {
-      const nom = document.getElementById("nom-produit").textContent;
-      const prixText = document.getElementById("prix-produit").textContent.replace("€", "");
-      const prix = parseFloat(prixText);
-      const produit = {
-        nom,
-        prix,
-        taille: document.getElementById("taille").value,
-        couleur: document.getElementById("couleur").value,
-        categorie: document.getElementById("categorie").value
-      };
-      let panier = JSON.parse(localStorage.getItem("panier")) || [];
-      panier.push(produit);
-      localStorage.setItem("panier", JSON.stringify(panier));
-      mettreAJourCompteur();
-    }
+function chargerProduit() {
+  const produit = JSON.parse(localStorage.getItem("produitSelectionne"));
+  if (produit) {
+    document.getElementById("nom-produit").textContent = produit.nom;
+    document.getElementById("prix-produit").textContent = `€${produit.prix}`;
+    document.getElementById("img-produit").src = produit.image;
+    document.getElementById("description-produit").textContent = produit.description || "Un super produit de qualité.";
+  }
+}
 
-    function chargerProduit() {
-      const produit = JSON.parse(localStorage.getItem("produitSelectionne"));
-      if (produit) {
-        document.getElementById("nom-produit").textContent = produit.nom;
-        document.getElementById("prix-produit").textContent = `€${produit.prix}`;
-        document.getElementById("img-produit").src = produit.image;
-        document.getElementById("description-produit").textContent = produit.description || "Un super produit de qualité.";
-      }
-    }
+function voirDetails(produit) {
+  localStorage.setItem("produitSelectionne", JSON.stringify(produit));
+  location.href = "detail-produit.html";
+}
 
-    function voirDetails(produit) {
-      localStorage.setItem("produitSelectionne", JSON.stringify(produit));
-      location.href = "detail-produit.html";
-    }
+function ajouterAuPanierDepuisSimilaire(produit) {
+  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+  panier.push(produit);
+  localStorage.setItem("panier", JSON.stringify(panier));
+  mettreAJourCompteur();
+}
 
-    function ajouterAuPanierDepuisSimilaire(produit) {
-      let panier = JSON.parse(localStorage.getItem("panier")) || [];
-      panier.push(produit);
-      localStorage.setItem("panier", JSON.stringify(panier));
-      mettreAJourCompteur();
-    }
+const grid = document.getElementById("similar-grid");
+for (let i = 1; i <= 30; i++) {
+  const prix = (Math.random() * 100 + 10).toFixed(2);
+  const produit = {
+    nom: `Produit ${i}`,
+    prix,
+    image: `https://via.placeholder.com/200?text=Produit+${i}`,
+    description: `Description du produit ${i}`
+  };
 
-    const grid = document.getElementById("similar-grid");
-    for (let i = 1; i <= 30; i++) {
-      const prix = (Math.random() * 100 + 10).toFixed(2);
-      const produit = {
-        nom: `Produit ${i}`,
-        prix,
-        image: `https://via.placeholder.com/200?text=Produit+${i}`,
-        description: `Description du produit ${i}`
-      };
+  const card = document.createElement('div');
+  card.className = 'product-card';
+  card.innerHTML = `
+    <img src="${produit.image}" alt="${produit.nom}">
+    <h4>${produit.nom}</h4>
+    <p>€${produit.prix}</p>
+    <button class="btn-buy" onclick='voirDetails(${JSON.stringify(produit)})'>Acheter</button>
+    <button class="btn-panier" onclick='ajouterAuPanierDepuisSimilaire(${JSON.stringify(produit)})'>🛒</button>
+  `;
+  grid.appendChild(card);
+}
 
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      card.innerHTML = `
-        <img src="${produit.image}" alt="${produit.nom}">
-        <h4>${produit.nom}</h4>
-        <p>€${produit.prix}</p>
-        <button class="btn-buy" onclick='voirDetails(${JSON.stringify(produit)})'>Acheter</button>
-        <button class="btn-panier" onclick='ajouterAuPanierDepuisSimilaire(${JSON.stringify(produit)})'>🛒</button>
-      `;
-      grid.appendChild(card);
-    }
-  </script>
-</body>
+</script></body>
+
 </html>
