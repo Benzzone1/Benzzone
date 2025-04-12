@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Benzzone</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     :root {
       --main-color: #1e3c72;
@@ -12,7 +13,7 @@
       --button-hover: #376bb0;
       --text-light: #ffffff;
       --shadow: rgba(0, 0, 0, 0.2);
-      --header-footer-color: #243b62; /* Couleur partagée pour la tête et les pieds */
+      --header-footer-color: #243b62;
     }
 
     * {
@@ -29,18 +30,17 @@
     }
 
     header {
-      background-color: var(--header-footer-color); /* Même couleur que le pied de page */
+      background-color: var(--header-footer-color);
       padding: 20px;
       box-shadow: 0 4px 10px var(--shadow);
       position: sticky;
       top: 0;
       z-index: 999;
-      margin-bottom: 30px; /* Espacement entre la tête et le corps */
+      margin-bottom: 30px;
     }
 
-    /* Logo Benzzone */
     .logo {
-      font-size: 2em; /* Taille réduite */
+      font-size: 2em;
       font-weight: bold;
       cursor: pointer;
       text-shadow: 2px 2px 6px #000;
@@ -55,30 +55,34 @@
       transform: scale(1.05);
     }
 
-    /* Icônes de profil, paramètres et mail */
-    .header-icons {
-      position: absolute;
-      top: 20px;
-      right: 20px;
+    .btn-absolute {
+      width: 42px;
+      height: 42px;
       display: flex;
-      gap: 15px;
-    }
-
-    .header-icons a {
-      font-size: 20px;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      position: absolute;
+      background-color: transparent;
       color: white;
-      text-decoration: none;
-      transition: color 0.3s ease;
+      border: 1px solid white;
+      border-radius: 4px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
 
-    .header-icons a:hover {
-      color: #e0e0e0;
+    .btn-profil { top: 70px; left: 20px; }
+    .btn-parametres { top: 20px; right: 20px; background-color: var(--button-color); }
+    .btn-mail { top: 70px; right: 20px; }
+
+    .btn-absolute:hover {
+      background-color: rgba(255, 255, 255, 0.2);
     }
 
-    /* Main Content */
     .main-content {
       text-align: center;
-      padding: 100px 20px 20px; /* Plus d'espace entre la tête et le corps */
+      padding: 100px 20px 20px;
     }
 
     .main-content h1 {
@@ -92,7 +96,7 @@
       margin: 25px 0;
     }
 
-    .main-content .shop-button {
+    .shop-button {
       background: var(--button-color);
       padding: 14px 28px;
       border-radius: 30px;
@@ -105,7 +109,7 @@
       display: inline-block;
     }
 
-    .main-content .shop-button:hover {
+    .shop-button:hover {
       background: var(--button-hover);
       transform: scale(1.05);
     }
@@ -135,20 +139,28 @@
       transform: scale(1.05);
     }
 
-    /* Products Section */
-    .products {
+    .category-title {
+      font-size: 1.5em;
+      margin: 40px 20px 10px;
+      text-align: left;
+    }
+
+    .featured-products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 20px;
       padding: 20px;
+      max-width: 1200px;
+      margin: auto;
     }
 
     .product-card {
-      background-color: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
       padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px var(--shadow);
-      transition: transform 0.3s ease;
+      text-align: center;
+      transition: transform 0.3s;
     }
 
     .product-card:hover {
@@ -157,40 +169,19 @@
 
     .product-card img {
       width: 100%;
-      height: auto;
+      height: 120px;
+      object-fit: cover;
       border-radius: 8px;
     }
 
-    .product-card h3 {
-      margin-top: 15px;
-      font-size: 1.2em;
-      color: white;
-    }
-
-    .product-card p {
-      color: white;
+    .product-card h4 {
       font-size: 0.9em;
-      margin: 10px 0;
-    }
-
-    .product-card .buy-button {
-      background-color: var(--button-color);
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      display: inline-block;
+      opacity: 0.85;
       margin-top: 10px;
-      transition: background-color 0.3s ease;
     }
 
-    .product-card .buy-button:hover {
-      background-color: var(--button-hover);
-    }
-
-    /* Footer */
     footer {
-      background-color: var(--header-footer-color); /* Même couleur que la tête */
+      background-color: var(--header-footer-color);
       padding: 25px 15px;
       text-align: center;
       margin-top: 60px;
@@ -200,7 +191,7 @@
     footer a {
       color: #fff;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 0 10px;
       font-weight: 500;
       transition: color 0.3s ease;
     }
@@ -217,19 +208,17 @@
   </style>
 </head>
 <body>
-  <!-- Header with icons -->
+  <a href="#" class="btn-absolute btn-profil" title="Profil"><i class="fas fa-user"></i></a>
+  <a href="#" class="btn-absolute btn-parametres" title="Paramètres"><i class="fas fa-cog"></i></a>
+  <a href="mailto:contact@benzzone.com" class="btn-absolute btn-mail" title="Mail"><i class="fas fa-envelope"></i></a>
+
   <header>
     <div class="logo" onclick="location.href='#'">Benzzone</div>
-    <div class="header-icons">
-      <a href="#"><i class="fa fa-user"></i></a> <!-- Profil Icon -->
-      <a href="#"><i class="fa fa-cogs"></i></a> <!-- Paramètres Icon -->
-      <a href="mailto:contact@benzzone.com"><i class="fa fa-envelope"></i></a> <!-- Mail Icon -->
-    </div>
   </header>
 
   <div class="main-content">
     <h1>Bienvenue sur Benzzone</h1>
-    <a href="produits.html" class="shop-button">Produits & Commencer les achats</a> <!-- Lien vers produits.html -->
+    <a href="produits.html" class="shop-button">Produits & Commencer les achats</a>
     <p>Découvrez nos meilleures catégories</p>
     <div class="category-buttons">
       <a href="#">Tech</a>
@@ -243,24 +232,46 @@
       <a href="#">Accessoires</a>
       <a href="#">Jardin</a>
     </div>
-    
-    <!-- Liste de produits phares -->
-    <div class="products">
-      <!-- 50 produits phares (exemple) -->
-      <div class="product-card">
-        <img src="produit1.jpg" alt="Produit 1">
-        <h3>Produit 1</h3>
-        <p>Description du produit 1</p>
-        <a href="detail-produit.html" class="buy-button">Acheter</a>
-      </div>
-      <div class="product-card">
-        <img src="produit2.jpg" alt="Produit 2">
-        <h3>Produit 2</h3>
-        <p>Description du produit 2</p>
-        <a href="detail-produit.html" class="buy-button">Acheter</a>
-      </div>
-      <!-- Ajoute 48 autres produits ici -->
-    </div>
+  </div>
+
+  <!-- Produits par catégories -->
+  <h3 class="category-title">Tech</h3>
+  <div class="featured-products">
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Tech+1"><h4>Casque Bluetooth</h4></div>
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Tech+2"><h4>Smartwatch</h4></div>
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Tech+3"><h4>Mini projecteur</h4></div>
+  </div>
+
+  <h3 class="category-title">Maison</h3>
+  <div class="featured-products">
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Maison+1"><h4>Lampe LED</h4></div>
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Maison+2"><h4>Diffuseur d’huiles</h4></div>
+  </div>
+
+  <h3 class="category-title">Cuisine</h3>
+  <div class="featured-products">
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Cuisine+1"><h4>Mixeur portable</h4></div>
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Cuisine+2"><h4>Balance numérique</h4></div>
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Cuisine+3"><h4>Moulin à café</h4></div>
+  </div>
+
+  <h3 class="category-title">Beauté</h3>
+  <div class="featured-products">
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Beauté+1"><h4>Brosse visage</h4></div>
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Beauté+2"><h4>Soin LED</h4></div>
+  </div>
+
+  <h3 class="category-title">Jeux & Sport</h3>
+  <div class="featured-products">
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Sport+1"><h4>Tapis yoga</h4></div>
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Jeux+1"><h4>Manette sans fil</h4></div>
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Jeux+2"><h4>Casque gamer</h4></div>
+  </div>
+
+  <h3 class="category-title">Livres</h3>
+  <div class="featured-products">
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Livre+1"><h4>Roman science-fiction</h4></div>
+    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Livre+2"><h4>Développement perso</h4></div>
   </div>
 
   <footer>
@@ -270,8 +281,5 @@
     <a href="#">Qui sommes-nous</a>
     <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
   </footer>
-
-  <!-- Ajout des icônes FontAwesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
