@@ -17,7 +17,6 @@
       --background-color: #f4f4f4;
       --button-active-color: #376bb0;
     }
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -214,7 +213,6 @@
   <header>
     <div class="logo" onclick="location.href='index.html'">Benzzone</div>
     <div class="nav-icons">
-      <a href="#"><span class="material-icons">search</span></a>
       <a href="panier.html">
         <span class="material-icons">shopping_cart</span>
         <span id="cart-count">0</span>
@@ -225,7 +223,6 @@
 
   <div class="content">
     <h1>Nos Produits</h1>
-
     <div class="category-buttons">
       <a href="#">Tech</a>
       <a href="#">Maison</a>
@@ -269,10 +266,19 @@
 
   <script>
     function ajouterAuPanier(nom, image, prix) {
-      const produit = { name: nom, img: image, price: prix };
-      let panier = JSON.parse(localStorage.getItem("cart")) || [];
+      const produit = {
+        nom: nom,
+        image: image,
+        prix: prix,
+        taille: "",
+        couleur: "",
+        categorie: "",
+        quantite: 1
+      };
+
+      let panier = JSON.parse(localStorage.getItem("panier")) || [];
       panier.push(produit);
-      localStorage.setItem("cart", JSON.stringify(panier));
+      localStorage.setItem("panier", JSON.stringify(panier));
 
       const compteur = document.getElementById("cart-count");
       if (compteur) compteur.textContent = panier.length;
@@ -282,7 +288,6 @@
 
     const products = Array.from({ length: 25 }, (_, i) => ({
       name: `Produit ${i + 1}`,
-      desc: `Produit ${i + 1}`,
       price: `${Math.floor(Math.random() * 200 + 30)},00 €`,
       img: `https://via.placeholder.com/250x250?text=Produit+${i + 1}`
     }));
@@ -300,15 +305,14 @@
           <button class="btn-cart" onclick="ajouterAuPanier('${p.name}', '${p.img}', '${p.price}')">
             <span class="material-icons">shopping_cart</span>
           </button>
-          <button class="btn-buy" onclick="location.href='detail-produit.html'">Acheter</button>
+          <button class="btn-buy" onclick="ajouterAuPanier('${p.name}', '${p.img}', '${p.price}')">Acheter</button>
         </div>
       `;
       productList.appendChild(card);
     });
 
-    // Mise à jour du compteur au chargement de la page
     window.onload = function () {
-      const panier = JSON.parse(localStorage.getItem("cart")) || [];
+      const panier = JSON.parse(localStorage.getItem("panier")) || [];
       const compteur = document.getElementById("cart-count");
       if (compteur) compteur.textContent = panier.length;
     };
