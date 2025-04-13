@@ -1,233 +1,336 @@
+ 
+</html>  Voici le code du panier
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Benzzone - Détail Produit</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: linear-gradient(135deg, #f0f0f0, #e6e6e6);
-            color: #333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benzzone - Détail Produit</title>
+  <style>
+    :root {
+      --main-color: #1e3c72;
+      --accent-color: #2a5298;
+      --button-color: #4e9af1;
+      --button-hover: #376bb0;
+      --text-light: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.2);
+      --header-color: #243b62;
+      --background-color: #f4f4f4;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--background-color);
+      margin: 0;
+      color: #333;
+    }
+    header {
+      background-color: var(--header-color);
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px var(--shadow);
+    }
 
-        header {
-            background-color: #222;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem;
-        }
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
+    .header-buttons {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
 
-        .cart-icon {
-            position: relative;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+    .header-buttons button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      padding: 8px;
+      transition: transform 0.2s;
+    }
 
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background: red;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 0.75rem;
-        }
+    .header-buttons button:hover {
+      transform: scale(1.1);
+    }
 
-        main {
-            padding: 1rem;
-        }
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 50px;
+      gap: 40px;
+    }
 
-        .product-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
+    .product-image img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
 
-        .product-description {
-            margin: 1rem 0;
-        }
+    .product-details h1 {
+      font-size: 2.5em;
+      color: var(--main-color);
+    }
 
-        .options {
-            margin: 1rem 0;
-        }
+    .product-details p {
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
 
-        .options span {
-            margin-right: 1rem;
-            background: #ccc;
-            padding: 0.3rem 0.6rem;
-            border-radius: 5px;
-        }
+    .options {
+      margin: 20px 0;
+    }
 
-        .price {
-            font-size: 1.2rem;
-            margin: 1rem 0;
-            font-weight: bold;
-        }
+    .options select {
+      margin-right: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-        .stars {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
+    .actions {
+      display: flex;
+      gap: 15px;
+      margin: 20px 0;
+    }
 
-        .actions button {
-            margin: 0.5rem;
-            padding: 0.5rem 1rem;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-weight: bold;
-        }
+    .actions button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-        .buy-button {
-            background: #28a745;
-            color: white;
-        }
+    .btn-buy {
+      background-color: var(--button-color);
+      color: white;
+    }
 
-        .like-button {
-            background: #ff5c5c;
-            color: white;
-        }
+    .btn-buy:hover {
+      background-color: var(--button-hover);
+    }
 
-        .comment-button {
-            background: #007bff;
-            color: white;
-        }
+    .btn-like, .btn-comment {
+      background-color: #eee;
+    }
 
-        .comments {
-            margin-top: 2rem;
-        }
+    .ratings {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
 
-        .similar-products {
-            margin-top: 3rem;
-        }
+    .ratings span {
+      font-size: 1.5em;
+      color: gold;
+    }
 
-        footer {
-            background-color: #222;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-        }
+    .comments {
+      margin-top: 80px;
+    }
 
-        footer a {
-            color: #aaa;
-            margin: 0 0.5rem;
-            text-decoration: none;
-        }
+    .comments h3 {
+      margin-bottom: 10px;
+      color: var(--main-color);
+    }
 
-        img.product-img {
-            width: 100%;
-            max-width: 300px;
-            display: block;
-            margin: auto;
-        }
+    .comment-box {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px var(--shadow);
+    }
 
-        .back-link {
-            margin-bottom: 1rem;
-            display: inline-block;
-            color: #007bff;
-            text-decoration: none;
-        }
-    </style>
+    .similar-products {
+      padding: 40px;
+      background-color: #fff;
+    }
+
+    .similar-products h2 {
+      color: var(--main-color);
+      margin-bottom: 25px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px var(--shadow);
+      text-align: center;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .product-card h4 {
+      margin: 10px 0;
+      color: var(--main-color);
+    }
+
+    .product-card .btn-buy,
+    .product-card .btn-panier {
+      margin-top: 5px;
+      width: 100%;
+    }
+
+    footer {
+      background-color: var(--header-color);
+      color: white;
+      padding: 30px 20px;
+    }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    footer .footer-links a {
+      color: white;
+      text-decoration: none;
+      margin: 5px 10px;
+    }
+
+    footer .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    footer .copyright {
+      text-align: center;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
-<body>
-    <header>
-        <h1>Benzzone</h1>
-        <div class="cart-icon" onclick="window.location.href='cart.html'">
-            🛒
-            <span id="cart-count" class="cart-count">0</span>
-        </div>
-    </header>
+<body onload="chargerProduit();">
+  <header>
+    <div class="logo" onclick="location.href='index.html'">Benzzone</div>
+    <div class="header-buttons">
+      <button onclick="alert('Paramètres')">⚙️</button>
+    </div>
+  </header>
 
-    <main>
-        <a href="products.html" class="back-link">&lt; Retour</a>
+  <div class="product-container">
+    <div class="product-image">
+      <img id="img-produit" src="https://via.placeholder.com/450x450" alt="Produit">
+    </div>
+    <div class="product-details">
+      <h1 id="nom-produit">Nom du Produit</h1>
+      <p id="description-produit">Description détaillée du produit.</p>
+      <div class="options">
+        <select id="taille"><option>S</option><option>M</option><option>L</option></select>
+        <select id="couleur"><option>Rouge</option><option>Bleu</option><option>Noir</option></select>
+        <select id="categorie"><option>Mode</option><option>Tech</option></select>
+      </div>
+      <p><strong>Prix : </strong><span id="prix-produit">€99.99</span></p>
+      <div class="ratings">
+        <span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>
+        <small>(3/5)</small>
+      </div>
+      <div class="actions">
+        <button class="btn-buy" onclick="ajouterProduitDetailAuPanier()">Acheter</button>
+        <button class="btn-like">❤️ J'aime</button>
+        <button class="btn-comment">💬 Commenter</button>
+      </div>
+      <div class="comments">
+        <h3>Commentaires :</h3>
+        <div class="comment-box"><strong>Jean :</strong> Super produit, je recommande !</div>
+        <div class="comment-box"><strong>Sarah :</strong> Livraison rapide et qualité au top.</div>
+      </div>
+    </div>
+  </div>
 
-        <img src="https://via.placeholder.com/300x200" alt="Produit" class="product-img" />
+  <div class="similar-products">
+    <h2>Produits Similaires</h2>
+    <div class="product-grid" id="similar-grid"></div>
+  </div>
 
-        <div class="product-title">Nom du Produit</div>
-        <div class="product-description">
-            Description détaillée du produit.
-        </div>
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">À propos</a>
+      <a href="contact.html">Contact</a>
+      <a href="conditions.html">Conditions</a>
+      <a href="confidentialite.html">Confidentialité</a>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Benzzone. Tous droits réservés.
+    </div>
+  </footer>
 
-        <div class="options">
-            <span>S</span><span>M</span><span>L</span>
-            <span>Rouge</span><span>Bleu</span><span>Noir</span>
-            <span>Mode</span><span>Tech</span>
-        </div>
+  <script>
+    function ajouterProduitDetailAuPanier() {
+      const nom = document.getElementById("nom-produit").textContent;
+      const prixText = document.getElementById("prix-produit").textContent.replace("€", "");
+      const prix = parseFloat(prixText);
+      const produit = {
+        nom,
+        prix,
+        taille: document.getElementById("taille").value,
+        couleur: document.getElementById("couleur").value,
+        categorie: document.getElementById("categorie").value
+      };
+      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+      panier.push(produit);
+      localStorage.setItem("panier", JSON.stringify(panier));
+    }
 
-        <div class="price">Prix : €99.99</div>
+    function chargerProduit() {
+      const produit = JSON.parse(localStorage.getItem("produitSelectionne"));
+      if (produit) {
+        document.getElementById("nom-produit").textContent = produit.nom;
+        document.getElementById("prix-produit").textContent = `€${produit.prix}`;
+        document.getElementById("img-produit").src = produit.image;
+        document.getElementById("description-produit").textContent = produit.description || "Un super produit de qualité.";
+      }
+    }
 
-        <div class="stars">★★★☆☆ (3/5)</div>
+    function voirDetails(produit) {
+      localStorage.setItem("produitSelectionne", JSON.stringify(produit));
+      location.href = "detail-produit.html";
+    }
 
-        <div class="actions">
-            <button class="buy-button">Acheter</button>
-            <button class="like-button">❤️ J'aime</button>
-            <button class="comment-button">💬 Commenter</button>
-        </div>
+    const grid = document.getElementById("similar-grid");
+    for (let i = 1; i <= 30; i++) {
+      const prix = (Math.random() * 100 + 10).toFixed(2);
+      const produit = {
+        nom: `Produit ${i}`,
+        prix,
+        image: `https://via.placeholder.com/200?text=Produit+${i}`,
+        description: `Description du produit ${i}`
+      };
 
-        <div class="comments">
-            <h3>Commentaires :</h3>
-            <p><strong>Jean :</strong> Super produit, je recommande !</p>
-            <p><strong>Sarah :</strong> Livraison rapide et qualité au top.</p>
-        </div>
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <img src="${produit.image}" alt="${produit.nom}">
+        <h4>${produit.nom}</h4>
+        <p>€${produit.prix}</p>
+        <button class="btn-buy" onclick='voirDetails(${JSON.stringify(produit)})'>Acheter</button>
+        <button class="btn-panier" onclick='ajouterAuPanierDepuisSimilaire(${JSON.stringify(produit)})'>🛒</button>
+      `;
+      grid.appendChild(card);
+    }
 
-        <div class="similar-products">
-            <h3>Produits Similaires</h3>
-            <p>Autres articles qui pourraient vous plaire...</p>
-        </div>
-    </main>
-
-    <footer>
-        <div>
-            <a href="#">À propos</a>
-            <a href="#">Contact</a>
-            <a href="#">Conditions</a>
-            <a href="#">Confidentialité</a>
-        </div>
-        <p>© 2025 Benzzone. Tous droits réservés.</p>
-    </footer>
-
-    <script>
-        function getPanier() {
-            let panier = localStorage.getItem("panier");
-            return panier ? JSON.parse(panier) : [];
-        }
-
-        function setPanier(panier) {
-            localStorage.setItem("panier", JSON.stringify(panier));
-        }
-
-        function updateCartCount() {
-            const count = getPanier().length;
-            document.getElementById("cart-count").textContent = count;
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            updateCartCount();
-
-            document.querySelector(".buy-button").addEventListener("click", function () {
-                const product = {
-                    title: document.querySelector(".product-title").textContent,
-                    price: document.querySelector(".price").textContent,
-                    image: document.querySelector(".product-img").src
-                };
-
-                let panier = getPanier();
-                panier.push(product);
-                setPanier(panier);
-                updateCartCount();
-                alert("Produit ajouté au panier !");
-            });
-        });
-    </script>
+    function ajouterAuPanierDepuisSimilaire(produit) {
+      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+      panier.push(produit);
+      localStorage.setItem("panier", JSON.stringify(panier));
+    }
+  </script>
 </body>
 </html>
