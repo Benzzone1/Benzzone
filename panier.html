@@ -186,20 +186,15 @@
   </footer>
 
   <script>
-    function updateCartCount() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      // compteur supprimé du header
-    }
-
     function removeItem(index) {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
+      let panier = JSON.parse(localStorage.getItem('panier')) || [];
+      panier.splice(index, 1);
+      localStorage.setItem('panier', JSON.stringify(panier));
+      renderPanier();
     }
 
-    function renderCart() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    function renderPanier() {
+      const panier = JSON.parse(localStorage.getItem('panier')) || [];
       const container = document.getElementById('cart-items');
       const emptyText = document.getElementById('empty-text');
       const totalEl = document.getElementById('total-price');
@@ -207,12 +202,12 @@
       container.innerHTML = '';
       let total = 0;
 
-      if (cart.length === 0) {
+      if (panier.length === 0) {
         emptyText.style.display = 'block';
         totalEl.textContent = '';
       } else {
         emptyText.style.display = 'none';
-        cart.forEach((p, index) => {
+        panier.forEach((p, index) => {
           const price = parseFloat(p.price);
           total += price;
 
@@ -232,12 +227,11 @@
 
     function passerCommande() {
       alert("Merci pour votre commande !");
-      localStorage.removeItem('cart');
-      renderCart();
+      localStorage.removeItem('panier');
+      renderPanier();
     }
 
-    updateCartCount();
-    renderCart();
+    renderPanier();
   </script>
 </body>
 </html>
