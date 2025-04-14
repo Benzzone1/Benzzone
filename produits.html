@@ -88,6 +88,22 @@
       margin-bottom: 30px;
     }
 
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .search-input {
+      padding: 10px 20px;
+      width: 300px;
+      border-radius: 30px;
+      border: 1px solid var(--button-color);
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--main-color);
+      font-size: 16px;
+    }
+
     .category-buttons {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -226,31 +242,42 @@
 
   <div class="content">
     <h1>Nos Produits</h1>
+    
+    <!-- Barre de recherche ajoutée -->
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Rechercher un produit..." id="search-input">
+    </div>
+
     <div class="category-buttons">
-      <a href="#">Tech</a>
-      <a href="#">Maison</a>
-      <a href="#">Cuisine</a>
-      <a href="#">Beauté</a>
-      <a href="#">Mode</a>
-      <a href="#">Jeux</a>
-      <a href="#">Sport</a>
-      <a href="#">Livres</a>
-      <a href="#">Accessoires</a>
-      <a href="#">Jardin</a>
+      <a href="#" data-category="all">Tous</a>
+      <a href="#" data-category="tech">Tech</a>
+      <a href="#" data-category="maison">Maison</a>
+      <a href="#" data-category="cuisine">Cuisine</a>
+      <a href="#" data-category="beaute">Beauté</a>
+      <a href="#" data-category="mode">Mode</a>
+      <a href="#" data-category="jeux">Jeux</a>
+      <a href="#" data-category="sport">Sport</a>
+      <a href="#" data-category="livres">Livres</a>
     </div>
 
     <div class="filters">
-      <select>
-        <option value="all">Tous les Produits</option>
-        <option value="tech">Technologie</option>
-        <option value="home">Maison</option>
-        <option value="beauty">Beauté</option>
-        <option value="fashion">Mode</option>
+      <select id="price-range">
+        <option value="all">Tous les prix</option>
+        <option value="0-50">0 - 50 €</option>
+        <option value="50-100">50 - 100 €</option>
+        <option value="100-200">100 - 200 €</option>
+        <option value="200+">200+ €</option>
       </select>
 
-      <select>
-        <option value="price-low-to-high">Prix : Croissant</option>
-        <option value="price-high-to-low">Prix : Décroissant</option>
+      <select id="category-filter">
+        <option value="all">Toutes catégories</option>
+        <option value="tech">Technologie</option>
+        <option value="maison">Maison</option>
+        <option value="cuisine">Cuisine</option>
+        <option value="beaute">Beauté</option>
+        <option value="mode">Mode</option>
+        <option value="jeux">Jeux</option>
+        <option value="sport">Sport</option>
       </select>
     </div>
 
@@ -268,57 +295,11 @@
   </footer>
 
   <script>
-    function ajouterAuPanier(nom, image, prix) {
-      const produit = {
-        nom: nom,
-        image: image,
-        prix: prix,
-        taille: "",
-        couleur: "",
-        categorie: "",
-        quantite: 1
-      };
-
-      let panier = JSON.parse(localStorage.getItem("panier")) || [];
-      panier.push(produit);
-      localStorage.setItem("panier", JSON.stringify(panier));
-
-      const compteur = document.getElementById("cart-count");
-      if (compteur) compteur.textContent = panier.length;
-
-      alert("Produit ajouté au panier !");
-    }
-
-    const products = Array.from({ length: 25 }, (_, i) => ({
-      name: `Produit ${i + 1}`,
-      price: `${Math.floor(Math.random() * 200 + 30)},00 €`,
-      img: `https://via.placeholder.com/250x250?text=Produit+${i + 1}`
-    }));
-
-    const productList = document.getElementById('product-list');
-
-    products.forEach(p => {
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      card.innerHTML = `
-        <img src="${p.img}" alt="${p.name}" />
-        <h3>${p.name}</h3>
-        <p class="price">${p.price}</p>
-        <div>
-          <button class="btn-cart" onclick="ajouterAuPanier('${p.name}', '${p.img}', '${p.price}')">
-            <span class="material-icons">shopping_cart</span>
-          </button>
-          <button class="btn-buy" onclick="ajouterAuPanier('${p.name}', '${p.img}', '${p.price}')">Acheter</button>
-        </div>
-      `;
-      productList.appendChild(card);
-    });
-
-    window.onload = function () {
-      const panier = JSON.parse(localStorage.getItem("panier")) || [];
-      const compteur = document.getElementById("cart-count");
-      if (compteur) compteur.textContent = panier.length;
-    };
-  </script>
-</body>
-</html>
+    // Données des produits avec catégories et prix numériques
+    const products = [
+      { id: 1, name: "Casque Bluetooth", price: 59.99, category: "tech", img: "https://via.placeholder.com/250x250?text=Casque+Bluetooth" },
+      { id: 2, name: "Smartwatch", price: 129.99, category: "tech", img: "https://via.placeholder.com/250x250?text=Smartwatch" },
+      { id: 3, name: "Lampe LED", price: 29.99, category: "maison", img: "https://via.placeholder.com/250x250?text=Lampe+LED" },
+      { id: 4, name: "Mixeur portable", price: 39.99, category: "cuisine", img: "https://via.placeholder.com/250x250?text=Mixeur" },
+      { id: 5, name: "Brosse visage", price: 19.99, category: "beaute", img: "https://via.placeholder.com/250x250?text=Brosse" },
+      { id: 6, name: "Tapis yoga", price: 24.99, category: "sport", img: "https://via.placeholder.com/250x250?text=Tapis+Yoga" },
