@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Produits - Benzzone</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benzzone - Produits</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     :root {
       --main-color: #1e3c72;
@@ -13,9 +13,10 @@
       --button-hover: #376bb0;
       --text-light: #ffffff;
       --shadow: rgba(0, 0, 0, 0.2);
-      --header-footer-color: #243b62;
+      --header-color: #243b62;
+      --background-color: #f4f4f9;
+      --button-active-color: #376bb0;
     }
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -26,234 +27,298 @@
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, var(--main-color), var(--accent-color));
       color: var(--text-light);
-      overflow-x: hidden;
     }
 
     header {
-      background-color: var(--header-footer-color);
+      background-color: var(--header-color);
       padding: 20px;
       box-shadow: 0 4px 10px var(--shadow);
       position: sticky;
       top: 0;
       z-index: 999;
-      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .logo {
-      font-size: 2em;
+      font-size: 2.2em;
       font-weight: bold;
+      color: white;
       cursor: pointer;
       text-shadow: 2px 2px 6px #000;
       transition: transform 0.3s ease;
-      text-align: left;
-      position: absolute;
-      top: 20px;
-      left: 20px;
     }
 
-    .btn-absolute {
-      width: 42px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      position: absolute;
-      background-color: transparent;
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-icons a {
       color: white;
-      border: 1px solid white;
-      border-radius: 4px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background-color 0.3s;
+      text-decoration: none;
+      margin-left: 15px;
+      font-size: 28px;
+      transition: color 0.3s;
+      position: relative;
     }
 
-    .btn-profil { top: 70px; left: 20px; }
-    .btn-parametres { top: 20px; right: 20px; background-color: var(--button-color); }
-    .btn-mail { top: 70px; right: 20px; }
-
-    .filters-container {
-      display: flex;
-      justify-content: space-between;
-      padding: 15px 20px;
-      background: rgba(255, 255, 255, 0.1);
-      margin: 10px 0;
+    .nav-icons a:hover {
+      color: var(--button-color);
     }
 
-    .filter-group {
-      display: flex;
-      gap: 10px;
-    }
-
-    select, .search-input {
-      padding: 8px 12px;
-      border-radius: 20px;
-      border: 1px solid var(--button-color);
-      background: rgba(255, 255, 255, 0.1);
+    #cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: red;
       color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      padding: 2px 6px;
     }
 
-    .products-grid {
+    .content {
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--text-light);
+      margin-bottom: 30px;
+    }
+
+    .category-buttons {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      max-width: 1000px;
+      margin: 0 auto 40px;
+    }
+
+    .category-buttons a {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid var(--button-color);
+      padding: 12px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      box-shadow: 0 4px 8px var(--shadow);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .category-buttons a:hover {
+      background: var(--button-hover);
+      color: white;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .filters select {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid var(--button-color);
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--main-color);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px;
-      padding: 20px;
     }
 
     .product-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px var(--shadow);
       padding: 15px;
-      transition: transform 0.3s;
+      text-align: center;
+      color: var(--text-light);
     }
 
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .product-image {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
+    .product-card img {
+      max-width: 100%;
+      height: auto;
       border-radius: 8px;
-      margin-bottom: 10px;
     }
 
-    .product-title {
+    .product-card h3 {
       font-size: 1.1em;
-      margin-bottom: 5px;
+      color: var(--text-light);
+      margin: 8px 0;
     }
 
-    .product-price {
+    .product-card .price {
       font-weight: bold;
       color: var(--button-color);
-      margin-bottom: 10px;
+      margin: 8px 0;
     }
 
-    .add-to-cart {
-      background: var(--button-color);
+    .btn-buy, .btn-cart {
+      background-color: var(--button-color);
       color: white;
       border: none;
-      padding: 8px 15px;
+      padding: 8px 14px;
+      font-size: 13px;
       border-radius: 20px;
       cursor: pointer;
-      width: 100%;
+      margin: 5px 4px;
       transition: background 0.3s;
     }
 
+    .btn-buy:hover, .btn-cart:hover {
+      background-color: var(--button-hover);
+    }
+
+    .btn-cart .material-icons {
+      vertical-align: middle;
+    }
+
     footer {
-      background-color: var(--header-footer-color);
-      padding: 25px 15px;
-      text-align: center;
       margin-top: 60px;
+      background-color: var(--header-color);
+      text-align: center;
+      color: white;
+      padding: 25px 15px;
+      box-shadow: 0 -4px 10px var(--shadow);
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #e0e0e0;
+    }
+
+    footer p {
+      margin-top: 10px;
+      font-size: 0.9em;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-  <a href="#" class="btn-absolute btn-profil" title="Profil"><i class="fas fa-user"></i></a>
-  <a href="#" class="btn-absolute btn-parametres" title="Paramètres"><i class="fas fa-cog"></i></a>
-  <a href="mailto:contact@benzzone.com" class="btn-absolute btn-mail" title="Mail"><i class="fas fa-envelope"></i></a>
-
   <header>
     <div class="logo" onclick="location.href='index.html'">Benzzone</div>
+    <div class="nav-icons">
+      <a href="panier.html">
+        <span class="material-icons">shopping_cart</span>
+        <span id="cart-count">0</span>
+      </a>
+      <a href="#"><span class="material-icons">settings</span></a>
+    </div>
   </header>
 
-  <div class="filters-container">
-    <div class="filter-group">
-      <select id="category-filter">
-        <option value="all">Toutes catégories</option>
-        <option value="tech">Tech</option>
-        <option value="maison">Maison</option>
-        <option value="cuisine">Cuisine</option>
-      </select>
-      <select id="price-filter">
-        <option value="all">Tous prix</option>
-        <option value="0-50">0-50€</option>
-        <option value="50-100">50-100€</option>
-      </select>
+  <div class="content">
+    <h1>Nos Produits</h1>
+    <div class="category-buttons">
+      <a href="#">Tech</a>
+      <a href="#">Maison</a>
+      <a href="#">Cuisine</a>
+      <a href="#">Beauté</a>
+      <a href="#">Mode</a>
+      <a href="#">Jeux</a>
+      <a href="#">Sport</a>
+      <a href="#">Livres</a>
+      <a href="#">Accessoires</a>
+      <a href="#">Jardin</a>
     </div>
-    <div class="filter-group">
-      <input type="text" class="search-input" placeholder="Rechercher..." id="search-input">
-    </div>
-  </div>
 
-  <div class="products-grid" id="products-container">
-    <!-- Les produits seront générés par JavaScript -->
+    <div class="filters">
+      <select>
+        <option value="all">Tous les Produits</option>
+        <option value="tech">Technologie</option>
+        <option value="home">Maison</option>
+        <option value="beauty">Beauté</option>
+        <option value="fashion">Mode</option>
+      </select>
+
+      <select>
+        <option value="price-low-to-high">Prix : Croissant</option>
+        <option value="price-high-to-low">Prix : Décroissant</option>
+      </select>
+    </div>
+
+    <div class="products" id="product-list"></div>
   </div>
 
   <footer>
+    <div class="nav-buttons">
+      <a href="#">À propos</a>
+      <a href="#">Contact</a>
+      <a href="#">FAQ</a>
+      <a href="#">Qui sommes-nous</a>
+    </div>
     <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
   </footer>
 
   <script>
-    // Données des produits
-    const products = [
-      { id: 1, name: "Casque Bluetooth", price: 59.99, category: "tech", image: "https://via.placeholder.com/300x200?text=Casque+Bluetooth" },
-      { id: 2, name: "Smartwatch", price: 129.99, category: "tech", image: "https://via.placeholder.com/300x200?text=Smartwatch" },
-      { id: 3, name: "Lampe LED", price: 29.99, category: "maison", image: "https://via.placeholder.com/300x200?text=Lampe+LED" },
-      { id: 4, name: "Mixeur portable", price: 39.99, category: "cuisine", image: "https://via.placeholder.com/300x200?text=Mixeur" },
-      { id: 5, name: "Brosse visage", price: 19.99, category: "beaute", image: "https://via.placeholder.com/300x200?text=Brosse" },
-      { id: 6, name: "Tapis yoga", price: 24.99, category: "sport", image: "https://via.placeholder.com/300x200?text=Tapis+Yoga" }
-    ];
+    function ajouterAuPanier(nom, image, prix) {
+      const produit = {
+        nom: nom,
+        image: image,
+        prix: prix,
+        taille: "",
+        couleur: "",
+        categorie: "",
+        quantite: 1
+      };
 
-    // Fonction pour afficher les produits
-    function displayProducts(productsToShow) {
-      const container = document.getElementById('products-container');
-      container.innerHTML = '';
+      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+      panier.push(produit);
+      localStorage.setItem("panier", JSON.stringify(panier));
 
-      productsToShow.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        productCard.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" class="product-image">
-          <h3 class="product-title">${product.name}</h3>
-          <p class="product-price">${product.price.toFixed(2)}€</p>
-          <button class="add-to-cart" onclick="addToCart(${product.id})">Ajouter au panier</button>
-        `;
-        container.appendChild(productCard);
-      });
+      const compteur = document.getElementById("cart-count");
+      if (compteur) compteur.textContent = panier.length;
+
+      alert("Produit ajouté au panier !");
     }
 
-    // Fonction de filtrage
-    function filterProducts() {
-      const category = document.getElementById('category-filter').value;
-      const priceRange = document.getElementById('price-filter').value;
-      const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    const products = Array.from({ length: 25 }, (_, i) => ({
+      name: `Produit ${i + 1}`,
+      price: `${Math.floor(Math.random() * 200 + 30)},00 €`,
+      img: `https://via.placeholder.com/250x250?text=Produit+${i + 1}`
+    }));
 
-      let filteredProducts = products.filter(product => {
-        // Filtre par catégorie
-        if (category !== 'all' && product.category !== category) return false;
-        
-        // Filtre par prix
-        if (priceRange !== 'all') {
-          const [min, max] = priceRange.split('-').map(Number);
-          if (product.price < min || product.price > max) return false;
-        }
-        
-        // Filtre par recherche
-        if (searchTerm && !product.name.toLowerCase().includes(searchTerm)) return false;
-        
-        return true;
-      });
+    const productList = document.getElementById('product-list');
 
-      displayProducts(filteredProducts);
-    }
+    products.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <img src="${p.img}" alt="${p.name}" />
+        <h3>${p.name}</h3>
+        <p class="price">${p.price}</p>
+        <div>
+          <button class="btn-cart" onclick="ajouterAuPanier('${p.name}', '${p.img}', '${p.price}')">
+            <span class="material-icons">shopping_cart</span>
+          </button>
+          <button class="btn-buy" onclick="ajouterAuPanier('${p.name}', '${p.img}', '${p.price}')">Acheter</button>
+        </div>
+      `;
+      productList.appendChild(card);
+    });
 
-    // Fonction pour ajouter au panier
-    function addToCart(productId) {
-      // À implémenter avec la logique du panier
-      alert(`Produit ${productId} ajouté au panier`);
-    }
-
-    // Écouteurs d'événements
-    document.getElementById('category-filter').addEventListener('change', filterProducts);
-    document.getElementById('price-filter').addEventListener('change', filterProducts);
-    document.getElementById('search-input').addEventListener('input', filterProducts);
-
-    // Afficher tous les produits au chargement
-    displayProducts(products);
+    window.onload = function () {
+      const panier = JSON.parse(localStorage.getItem("panier")) || [];
+      const compteur = document.getElementById("cart-count");
+      if (compteur) compteur.textContent = panier.length;
+    };
   </script>
 </body>
 </html>
