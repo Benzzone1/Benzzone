@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -18,6 +18,7 @@
       --button-active-color: #376bb0;
       --text-dark: #333333;
       --border-color: #e0e0e0;
+      --success-color: #4CAF50;
     }
     * {
       box-sizing: border-box;
@@ -55,18 +56,6 @@
       display: flex;
       align-items: center;
       gap: 15px;
-    }
-    .search-container {
-      display: flex;
-    }
-    .search-input {
-      padding: 10px 20px;
-      width: 300px;
-      border-radius: 30px;
-      border: 1px solid var(--button-color);
-      background-color: rgba(255, 255, 255, 0.9);
-      color: var(--main-color);
-      font-size: 16px;
     }
     .nav-icons a {
       color: white;
@@ -358,15 +347,35 @@
       font-size: 0.9em;
       opacity: 0.8;
     }
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: var(--success-color);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: none;
+      animation: slideIn 0.5s, fadeOut 0.5s 2.5s;
+    }
+    @keyframes slideIn {
+      from { right: -100px; opacity: 0; }
+      to { right: 20px; opacity: 1; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
   </style>
 </head>
 <body>
+  <div class="notification" id="notification">Produit ajouté au panier !</div>
+
   <header>
     <div class="logo" onclick="location.href='index.html'">Benzzone</div>
     <div class="header-controls">
-      <div class="search-container">
-        <input type="text" class="search-input" placeholder="Rechercher..." id="search-input">
-      </div>
       <div class="nav-icons">
         <a href="panier.html">
           <span class="material-icons">shopping_cart</span>
@@ -558,10 +567,16 @@
       
       let panier = JSON.parse(localStorage.getItem("panier")) || [];
       
-      const existingProduct = panier.find(p => p.id === product.id && p.size === size && p.color === color);
-      if (existingProduct) {
-        existingProduct.quantity += quantity;
+      // Vérifier si le produit existe déjà avec les mêmes options
+      const existingProductIndex = panier.findIndex(p => 
+        p.id === product.id && p.size === size && p.color === color
+      );
+      
+      if (existingProductIndex !== -1) {
+        // Produit existant - augmenter la quantité
+        panier[existingProductIndex].quantity += quantity;
       } else {
+        // Nouveau produit - ajouter au panier
         panier.push({
           id: product.id,
           name: product.name,
@@ -575,7 +590,18 @@
       
       localStorage.setItem("panier", JSON.stringify(panier));
       updateCartCount();
-      alert(`${product.name} (${size}, ${color}) x${quantity} ajouté au panier !`);
+      showNotification(`${product.name} (${size}, ${color}) x${quantity} ajouté au panier !`);
+    }
+    
+    // Afficher une notification
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.style.display = 'block';
+      
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
     }
     
     // Acheter maintenant
@@ -608,7 +634,8 @@
           name: `Produit Similaire ${i + 1}`,
           price: Math.floor(Math.random() * 200) + 20,
           img: `https://via.placeholder.com/250x250?text=Produit+${currentProductId + i + 1}`,
-          category: category
+          category: category,
+          description: `Description du produit similaire ${i + 1}. Un excellent produit de la catégorie ${category}.`
         };
       });
       
@@ -623,14 +650,51 @@
           <h3>${product.name}</h3>
           <div class="price">${product.price.toFixed(2)} €</div>
           <div>
-            <button class="btn-cart-sm" onclick="location.href='detail-produit.html'; localStorage.setItem('produitSelectionne', JSON.stringify(${JSON.stringify(product)}))">
+            <button class="btn-cart-sm" onclick="ajouterProduitSimilaireAuPanier(${JSON.stringify(product).replace(/"/g, '&quot;')})">
               <span class="material-icons">shopping_cart</span>
             </button>
-            <button class="btn-buy-sm" onclick="location.href='detail-produit.html'; localStorage.setItem('produitSelectionne', JSON.stringify(${JSON.stringify(product)}))">Voir</button>
+            <button class="btn-buy-sm" onclick="voirProduitSimilaire(${JSON.stringify(product).replace(/"/g, '&quot;')})">Voir</button>
           </div>
         `;
         container.appendChild(card);
       });
+    }
+    
+    // Voir un produit similaire
+    function voirProduitSimilaire(product) {
+      localStorage.setItem("produitSelectionne", JSON.stringify(product));
+      window.location.href = "detail-produit.html";
+    }
+    
+    // Ajouter un produit similaire au panier
+    function ajouterProduitSimilaireAuPanier(product) {
+      if (confirm(`Ajouter "${product.name}" à votre panier ?`)) {
+        
+        let panier = JSON.parse(localStorage.getItem("panier")) || [];
+        
+        // Vérifier si le produit existe déjà
+        const existingProductIndex = panier.findIndex(p => p.id === product.id);
+        
+        if (existingProductIndex !== -1) {
+          // Produit existant - augmenter la quantité
+          panier[existingProductIndex].quantity += 1;
+        } else {
+          // Nouveau produit - ajouter au panier
+          panier.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            img: product.img,
+            size: 'M', // Taille par défaut
+            color: 'blue', // Couleur par défaut
+            quantity: 1
+          });
+        }
+        
+        localStorage.setItem("panier", JSON.stringify(panier));
+        updateCartCount();
+        showNotification(`${product.name} ajouté au panier !`);
+      }
     }
     
     // Mettre à jour le compteur du panier
@@ -644,4 +708,5 @@
     }
   </script>
 </body>
-  </html>
+</html>
+      
