@@ -17,10 +17,11 @@
       --background-color: #f4f4f9;
     }
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, var(--main-color), var(--accent-color));
       color: var(--text-light);
       margin: 0;
+      line-height: 1.6;
     }
     header {
       background-color: var(--header-color);
@@ -38,7 +39,7 @@
       font-weight: bold;
       color: white;
       cursor: pointer;
-      text-shadow: 2px 2px 6px #000;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
     .header-controls {
       display: flex;
@@ -49,7 +50,7 @@
       color: white;
       text-decoration: none;
       margin-left: 15px;
-      font-size: 28px;
+      font-size: 24px;
       transition: color 0.3s;
       position: relative;
     }
@@ -65,41 +66,51 @@
       border-radius: 50%;
       font-size: 12px;
       padding: 2px 6px;
+      font-weight: bold;
     }
     .product-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      padding: 50px;
+      padding: 40px;
       gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     .product-image img {
-      max-width: 100%;
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain;
       border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background: white;
+      padding: 20px;
     }
     .product-details h1 {
-      font-size: 2.5em;
+      font-size: 2.2em;
       color: var(--text-light);
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      font-weight: 600;
     }
     .product-details p {
       margin: 15px 0;
       font-size: 1.1em;
-      line-height: 1.6;
     }
     .options {
       margin: 25px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
     .options select {
-      margin-right: 15px;
       padding: 10px 15px;
       border: 1px solid var(--button-color);
       border-radius: 5px;
       background-color: rgba(255,255,255,0.9);
-      font-size: 16px;
+      font-size: 15px;
+      min-width: 120px;
     }
     .price {
-      font-size: 1.8em;
+      font-size: 1.6em;
       font-weight: bold;
       color: var(--button-color);
       margin: 20px 0;
@@ -108,6 +119,7 @@
       display: flex;
       gap: 15px;
       margin: 30px 0;
+      flex-wrap: wrap;
     }
     .actions button {
       padding: 12px 25px;
@@ -116,6 +128,7 @@
       font-size: 16px;
       cursor: pointer;
       transition: all 0.3s;
+      font-weight: 500;
     }
     .btn-buy {
       background-color: var(--button-color);
@@ -124,13 +137,14 @@
     .btn-buy:hover {
       background-color: var(--button-hover);
       transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     .btn-like, .btn-comment {
-      background-color: rgba(255,255,255,0.2);
+      background-color: rgba(255,255,255,0.15);
       color: white;
     }
     .btn-like:hover, .btn-comment:hover {
-      background-color: rgba(255,255,255,0.3);
+      background-color: rgba(255,255,255,0.25);
     }
     .ratings {
       margin-top: 20px;
@@ -139,16 +153,17 @@
       gap: 5px;
     }
     .ratings span {
-      font-size: 1.5em;
+      font-size: 1.3em;
       color: gold;
     }
     .comments {
-      margin-top: 50px;
+      margin-top: 40px;
     }
     .comments h3 {
       margin-bottom: 15px;
       color: var(--text-light);
-      font-size: 1.5em;
+      font-size: 1.3em;
+      font-weight: 500;
     }
     .comment-box {
       background: rgba(255,255,255,0.1);
@@ -157,52 +172,69 @@
       border-radius: 8px;
       border-left: 3px solid var(--button-color);
     }
+    .comment-box strong {
+      font-weight: 500;
+    }
     .similar-products {
       padding: 40px;
-      background-color: rgba(255,255,255,0.1);
+      background-color: rgba(255,255,255,0.05);
       margin-top: 50px;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
     .similar-products h2 {
       color: var(--text-light);
-      margin-bottom: 25px;
-      font-size: 2em;
+      margin-bottom: 30px;
+      font-size: 1.8em;
       text-align: center;
+      font-weight: 500;
     }
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     .product-card {
-      background: rgba(255,255,255,0.1);
-      padding: 15px;
+      background: rgba(255,255,255,0.08);
+      padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 10px var(--shadow);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
-      transition: transform 0.3s;
+      transition: all 0.3s;
     }
     .product-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     }
     .product-card img {
-      max-width: 100%;
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
       border-radius: 8px;
-      height: 150px;
-      object-fit: cover;
+      background: white;
+      padding: 10px;
+      margin-bottom: 15px;
     }
     .product-card h4 {
       margin: 10px 0;
       color: var(--text-light);
+      font-size: 1.1em;
+      font-weight: 500;
+      min-height: 40px;
     }
     .product-card .price {
       font-size: 1.2em;
-      margin: 10px 0;
+      margin: 10px 0 15px;
+      font-weight: bold;
+      color: var(--button-color);
     }
     .product-card .btn-buy,
     .product-card .btn-panier {
       padding: 8px 15px;
-      margin: 5px;
+      margin: 5px 0;
       width: 100%;
+      font-size: 14px;
     }
     footer {
       background-color: var(--header-color);
@@ -220,11 +252,13 @@
     .footer-links a {
       color: #fff;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 400;
       transition: color 0.3s ease;
+      font-size: 15px;
     }
     .footer-links a:hover {
       color: #e0e0e0;
+      text-decoration: underline;
     }
     .copyright {
       text-align: center;
@@ -256,18 +290,18 @@
       <p id="description-produit">Description détaillée du produit.</p>
       <div class="options">
         <select id="taille">
+          <option value="">Sélectionnez une taille</option>
           <option>S</option>
           <option>M</option>
           <option>L</option>
+          <option>XL</option>
         </select>
         <select id="couleur">
+          <option value="">Sélectionnez une couleur</option>
           <option>Rouge</option>
           <option>Bleu</option>
           <option>Noir</option>
-        </select>
-        <select id="categorie">
-          <option>Mode</option>
-          <option>Tech</option>
+          <option>Blanc</option>
         </select>
       </div>
       <p class="price" id="prix-produit">€99.99</p>
@@ -284,6 +318,7 @@
         <h3>Commentaires :</h3>
         <div class="comment-box"><strong>Jean :</strong> Super produit, je recommande !</div>
         <div class="comment-box"><strong>Sarah :</strong> Livraison rapide et qualité au top.</div>
+        <div class="comment-box"><strong>Marc :</strong> Très satisfait de mon achat.</div>
       </div>
     </div>
   </div>
@@ -313,30 +348,67 @@
     function chargerProduit() {
       const produit = JSON.parse(localStorage.getItem("produitSelectionne"));
       if (produit) {
-        document.getElementById("nom-produit").textContent = produit.nom;
-        document.getElementById("prix-produit").textContent = `€${produit.prix.toFixed(2)}`;
-        document.getElementById("img-produit").src = produit.img;
-        document.getElementById("description-produit").textContent = produit.description || "Un super produit de qualité.";
+        document.getElementById("nom-produit").textContent = produit.nom || "Nom du produit";
+        document.getElementById("prix-produit").textContent = `€${(produit.prix || 0).toFixed(2)}`;
+        document.getElementById("img-produit").src = produit.img || "https://via.placeholder.com/450x450";
+        document.getElementById("description-produit").textContent = produit.description || "Description détaillée du produit.";
       }
       updateCartCount();
+      genererProduitsSimilaires();
     }
 
-    // Ajouter le produit principal au panier
+    // Générer des produits similaires (16 au lieu de 8)
+    function genererProduitsSimilaires() {
+      const grid = document.getElementById("similar-grid");
+      grid.innerHTML = '';
+      
+      for (let i = 1; i <= 16; i++) {
+        const prix = (Math.random() * 200 + 20).toFixed(2);
+        const produit = {
+          id: 100 + i,
+          nom: `Produit Similaire ${i}`,
+          prix: parseFloat(prix),
+          img: `https://via.placeholder.com/250x250?text=Similaire+${i}`,
+          description: `Description du produit similaire ${i}. Un excellent produit complémentaire.`
+        };
+
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${produit.img}" alt="${produit.nom}">
+          <h4>${produit.nom}</h4>
+          <p class="price">€${produit.prix.toFixed(2)}</p>
+          <button class="btn-buy" onclick="voirDetails(${JSON.stringify(produit)})">Acheter</button>
+          <button class="btn-panier" onclick="ajouterAuPanierDepuisSimilaire(${JSON.stringify(produit)})">🛒 Ajouter</button>
+        `;
+        grid.appendChild(card);
+      }
+    }
+
+    // Ajouter le produit principal au panier avec toutes les infos
     function ajouterProduitDetailAuPanier() {
       const produit = JSON.parse(localStorage.getItem("produitSelectionne"));
       if (!produit) return;
 
+      const taille = document.getElementById("taille").value;
+      const couleur = document.getElementById("couleur").value;
+      
+      if (!taille || !couleur) {
+        alert("Veuillez sélectionner une taille et une couleur");
+        return;
+      }
+
       const produitAvecOptions = {
         ...produit,
-        taille: document.getElementById("taille").value,
-        couleur: document.getElementById("couleur").value,
-        categorie: document.getElementById("categorie").value,
-        quantity: 1
+        taille: taille,
+        couleur: couleur,
+        quantity: 1,
+        dateAjout: new Date().toISOString()
       };
 
       let panier = JSON.parse(localStorage.getItem(PANIER_KEY)) || [];
       
-      // Vérifier si le produit existe déjà dans le panier
+      // Vérifier si le produit existe déjà dans le panier avec les mêmes options
       const existingIndex = panier.findIndex(p => 
         p.id === produit.id && 
         p.taille === produitAvecOptions.taille && 
@@ -351,22 +423,28 @@
 
       localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
       updateCartCount();
-      alert(`${produit.nom} ajouté au panier !`);
+      alert(`${produit.nom} (${taille}, ${couleur}) ajouté au panier !`);
     }
 
-    // Ajouter un produit similaire au panier
+    // Ajouter un produit similaire au panier avec toutes les infos
     function ajouterAuPanierDepuisSimilaire(produit) {
       let panier = JSON.parse(localStorage.getItem(PANIER_KEY)) || [];
+      
+      // Ajouter des options par défaut pour les produits similaires
+      const produitAvecOptions = {
+        ...produit,
+        taille: "Unique",
+        couleur: "Standard",
+        quantity: 1,
+        dateAjout: new Date().toISOString()
+      };
       
       const existingIndex = panier.findIndex(p => p.id === produit.id);
       
       if (existingIndex >= 0) {
         panier[existingIndex].quantity += 1;
       } else {
-        panier.push({
-          ...produit,
-          quantity: 1
-        });
+        panier.push(produitAvecOptions);
       }
 
       localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
@@ -377,7 +455,7 @@
     // Voir les détails d'un produit similaire
     function voirDetails(produit) {
       localStorage.setItem("produitSelectionne", JSON.stringify(produit));
-      location.reload(); // Recharge la page avec le nouveau produit
+      location.reload();
     }
 
     // Mettre à jour le compteur du panier
@@ -386,32 +464,6 @@
       const totalItems = panier.reduce((sum, item) => sum + item.quantity, 0);
       document.getElementById("cart-count").textContent = totalItems;
     }
-
-    // Générer des produits similaires
-    document.addEventListener('DOMContentLoaded', () => {
-      const grid = document.getElementById("similar-grid");
-      for (let i = 1; i <= 8; i++) {
-        const prix = (Math.random() * 200 + 20).toFixed(2);
-        const produit = {
-          id: 100 + i,
-          nom: `Produit Similaire ${i}`,
-          prix: parseFloat(prix),
-          img: `https://via.placeholder.com/200?text=Similaire+${i}`,
-          description: `Description du produit similaire ${i}`
-        };
-
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-          <img src="${produit.img}" alt="${produit.nom}">
-          <h4>${produit.nom}</h4>
-          <p class="price">€${produit.prix.toFixed(2)}</p>
-          <button class="btn-buy" onclick='voirDetails(${JSON.stringify(produit)})'>Acheter</button>
-          <button class="btn-panier" onclick='ajouterAuPanierDepuisSimilaire(${JSON.stringify(produit)})'>🛒</button>
-        `;
-        grid.appendChild(card);
-      }
-    });
   </script>
 </body>
-</html>
+        </html>
