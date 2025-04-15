@@ -18,6 +18,7 @@
       --search-bg: rgba(255, 255, 255, 0.9);
       --search-text: #333;
       --success-color: #4CAF50;
+      --notification-color: #ff4757;
     }
 
     * {
@@ -91,7 +92,7 @@
       color: white;
       text-decoration: none;
       margin-left: 15px;
-      font-size: 24px;
+      font-size: 20px;
       transition: color 0.3s;
       position: relative;
     }
@@ -100,7 +101,7 @@
       color: var(--button-color);
     }
 
-    #cart-count {
+    #cart-count, .notification-badge {
       position: absolute;
       top: -8px;
       right: -8px;
@@ -109,6 +110,10 @@
       border-radius: 50%;
       font-size: 12px;
       padding: 2px 6px;
+    }
+
+    .notification-badge {
+      background-color: var(--notification-color);
     }
 
     .main-content {
@@ -301,6 +306,13 @@
         <i class="fas fa-search search-icon"></i>
       </div>
       <div class="nav-icons">
+        <a href="#" class="notification-icon" title="Notifications">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge">3</span>
+        </a>
+        <a href="#" class="settings-icon" title="Paramètres">
+          <i class="fas fa-cog"></i>
+        </a>
         <a href="panier.html">
           <i class="fas fa-shopping-cart"></i>
           <span id="cart-count">0</span>
@@ -331,7 +343,6 @@
   <!-- Produits par catégories -->
   <h3 class="category-title">Tech</h3>
   <div class="featured-products" id="tech-products">
-    <!-- Produits tech populaires -->
     <div class="product-card" onclick="viewProduct(1)">
       <img src="https://via.placeholder.com/200x120?text=Casque+Bluetooth">
       <h4>Casque Bluetooth</h4>
@@ -453,7 +464,7 @@
   </footer>
 
   <script>
-    // Données des produits (simulées)
+    // Données des produits
     const products = [
       { id: 1, name: "Casque Bluetooth", price: 89.99, category: "tech", img: "https://via.placeholder.com/250x250?text=Casque+Bluetooth", description: "Casque Bluetooth avec réduction de bruit active et son haute qualité." },
       { id: 2, name: "Smartwatch", price: 129.99, category: "tech", img: "https://via.placeholder.com/250x250?text=Smartwatch", description: "Montre connectée avec suivi d'activité et notifications." },
