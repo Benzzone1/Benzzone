@@ -22,13 +22,11 @@
       margin: 0;
       padding: 0;
     }
-
     body {
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, var(--main-color), var(--accent-color));
       color: var(--text-light);
     }
-
     header {
       background-color: var(--header-color);
       padding: 20px;
@@ -40,7 +38,6 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .logo {
       font-size: 2.2em;
       font-weight: bold;
@@ -49,21 +46,17 @@
       text-shadow: 2px 2px 6px #000;
       transition: transform 0.3s ease;
     }
-
     .logo:hover {
       transform: scale(1.05);
     }
-
     .header-controls {
       display: flex;
       align-items: center;
       gap: 15px;
     }
-
     .search-container {
       display: flex;
     }
-    
     .search-input {
       padding: 10px 20px;
       width: 300px;
@@ -73,7 +66,6 @@
       color: var(--main-color);
       font-size: 16px;
     }
-
     .nav-icons a {
       color: white;
       text-decoration: none;
@@ -82,11 +74,9 @@
       transition: color 0.3s;
       position: relative;
     }
-
     .nav-icons a:hover {
       color: var(--button-color);
     }
-
     #cart-count {
       position: absolute;
       top: -8px;
@@ -97,17 +87,14 @@
       font-size: 12px;
       padding: 2px 6px;
     }
-
     .content {
       padding: 40px 20px;
     }
-
     h1 {
       text-align: center;
       color: var(--text-light);
       margin-bottom: 30px;
     }
-
     .filters-container {
       display: flex;
       justify-content: center;
@@ -117,7 +104,6 @@
       padding: 15px;
       border-radius: 10px;
     }
-
     .filters-container select {
       padding: 10px 20px;
       font-size: 16px;
@@ -126,13 +112,11 @@
       background-color: rgba(255, 255, 255, 0.9);
       color: var(--main-color);
     }
-
     .products {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px;
     }
-
     .product-card {
       background-color: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -142,25 +126,21 @@
       text-align: center;
       color: var(--text-light);
     }
-
     .product-card img {
       max-width: 100%;
       height: auto;
       border-radius: 8px;
     }
-
     .product-card h3 {
       font-size: 1.1em;
       color: var(--text-light);
       margin: 8px 0;
     }
-
     .product-card .price {
       font-weight: bold;
       color: var(--button-color);
       margin: 8px 0;
     }
-
     .btn-buy, .btn-cart {
       background-color: var(--button-color);
       color: white;
@@ -172,15 +152,12 @@
       margin: 5px 4px;
       transition: background 0.3s;
     }
-
     .btn-buy:hover, .btn-cart:hover {
       background-color: var(--button-hover);
     }
-
     .btn-cart .material-icons {
       vertical-align: middle;
     }
-
     footer {
       margin-top: 60px;
       background-color: var(--header-color);
@@ -189,7 +166,6 @@
       padding: 25px 15px;
       box-shadow: 0 -4px 10px var(--shadow);
     }
-
     footer a {
       color: #fff;
       text-decoration: none;
@@ -197,11 +173,9 @@
       font-weight: 500;
       transition: color 0.3s ease;
     }
-
     footer a:hover {
       color: #e0e0e0;
     }
-
     footer p {
       margin-top: 10px;
       font-size: 0.9em;
@@ -228,7 +202,6 @@
 
   <div class="content">
     <h1>Nos Produits</h1>
-
     <div class="filters-container">
       <select id="price-range">
         <option value="all">Tous les prix</option>
@@ -237,7 +210,6 @@
         <option value="100-200">100 - 200 €</option>
         <option value="200+">200+ €</option>
       </select>
-
       <select id="category-filter">
         <option value="all">Toutes catégories</option>
         <option value="tech">Technologie</option>
@@ -251,9 +223,7 @@
       </select>
     </div>
 
-    <div class="products" id="product-list">
-      <!-- Produits générés par JavaScript -->
-    </div>
+    <div class="products" id="product-list"></div>
   </div>
 
   <footer>
@@ -267,7 +237,7 @@
   </footer>
 
   <script>
-    // Génération de 50 produits
+    // Données des produits
     const products = Array.from({ length: 50 }, (_, i) => {
       const categories = ['tech', 'maison', 'cuisine', 'beaute', 'mode', 'jeux', 'sport', 'livres'];
       const randomPrice = Math.floor(Math.random() * 250) + 10;
@@ -276,11 +246,12 @@
         name: `Produit ${i + 1}`,
         price: randomPrice,
         category: categories[Math.floor(Math.random() * categories.length)],
-        img: `https://via.placeholder.com/250x250?text=Produit+${i + 1}`
+        img: `https://via.placeholder.com/250x250?text=Produit+${i + 1}`,
+        description: `Description détaillée du Produit ${i + 1}. Un produit de qualité supérieure.`
       };
     });
 
-    // Fonction pour afficher les produits
+    // Afficher les produits
     function displayProducts(productsToShow) {
       const productList = document.getElementById('product-list');
       productList.innerHTML = '';
@@ -293,51 +264,29 @@
           <h3>${product.name}</h3>
           <p class="price">${product.price.toFixed(2)} €</p>
           <div>
-            <button class="btn-cart" onclick="ajouterAuPanier(${product.id})">
+            <button class="btn-cart" onclick="ajouterAuPanier(${product.id}, event)">
               <span class="material-icons">shopping_cart</span>
             </button>
-            <button class="btn-buy" onclick="ajouterAuPanier(${product.id})">Acheter</button>
+            <button class="btn-buy" onclick="voirDetails(${product.id})">Acheter</button>
           </div>
         `;
         productList.appendChild(card);
       });
     }
 
-    // Fonction de filtrage
-    function filterProducts() {
-      const searchTerm = document.getElementById('search-input').value.toLowerCase();
-      const priceRange = document.getElementById('price-range').value;
-      const category = document.getElementById('category-filter').value;
-
-      let filteredProducts = products.filter(product => {
-        // Filtre par recherche
-        if (searchTerm && !product.name.toLowerCase().includes(searchTerm)) return false;
-        
-        // Filtre par prix
-        if (priceRange !== 'all') {
-          if (priceRange === '200+') {
-            if (product.price < 200) return false;
-          } else {
-            const [min, max] = priceRange.split('-').map(Number);
-            if (product.price < min || product.price > max) return false;
-          }
-        }
-        
-        // Filtre par catégorie
-        if (category !== 'all' && product.category !== category) return false;
-        
-        return true;
-      });
-
-      displayProducts(filteredProducts);
+    // Voir les détails du produit
+    function voirDetails(productId) {
+      const product = products.find(p => p.id === productId);
+      localStorage.setItem("produitSelectionne", JSON.stringify(product));
+      window.location.href = "detail-produit.html";
     }
 
-    // Fonction pour ajouter au panier
-    function ajouterAuPanier(productId) {
+    // Ajouter au panier
+    function ajouterAuPanier(productId, event) {
+      event.stopPropagation(); // Empêche la propagation de l'événement
       const product = products.find(p => p.id === productId);
       let panier = JSON.parse(localStorage.getItem("panier")) || [];
       
-      // Vérifie si le produit est déjà dans le panier
       const existingProduct = panier.find(p => p.id === productId);
       if (existingProduct) {
         existingProduct.quantity += 1;
@@ -356,7 +305,33 @@
       alert(`${product.name} ajouté au panier !`);
     }
 
-    // Mise à jour du compteur de panier
+    // Filtrer les produits
+    function filterProducts() {
+      const searchTerm = document.getElementById('search-input').value.toLowerCase();
+      const priceRange = document.getElementById('price-range').value;
+      const category = document.getElementById('category-filter').value;
+
+      let filteredProducts = products.filter(product => {
+        if (searchTerm && !product.name.toLowerCase().includes(searchTerm)) return false;
+        
+        if (priceRange !== 'all') {
+          if (priceRange === '200+') {
+            if (product.price < 200) return false;
+          } else {
+            const [min, max] = priceRange.split('-').map(Number);
+            if (product.price < min || product.price > max) return false;
+          }
+        }
+        
+        if (category !== 'all' && product.category !== category) return false;
+        
+        return true;
+      });
+
+      displayProducts(filteredProducts);
+    }
+
+    // Mettre à jour le compteur du panier
     function updateCartCount() {
       const panier = JSON.parse(localStorage.getItem("panier")) || [];
       const compteur = document.getElementById("cart-count");
@@ -371,7 +346,6 @@
       displayProducts(products);
       updateCartCount();
       
-      // Écouteurs d'événements
       document.getElementById('search-input').addEventListener('input', filterProducts);
       document.getElementById('price-range').addEventListener('change', filterProducts);
       document.getElementById('category-filter').addEventListener('change', filterProducts);
