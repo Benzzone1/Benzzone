@@ -1,297 +1,647 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Détail du Produit - Benzzone</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benzzone - Détails Produit</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --main-color: #1e3c72;
+      --accent-color: #2a5298;
+      --button-color: #4e9af1;
+      --button-hover: #376bb0;
+      --text-light: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.2);
+      --header-color: #243b62;
+      --background-color: #f4f4f9;
+      --button-active-color: #376bb0;
+      --text-dark: #333333;
+      --border-color: #e0e0e0;
+    }
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom right, #f0f0f0, #ffffff);
     }
-
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--background-color);
+      color: var(--text-dark);
+    }
     header {
+      background-color: var(--header-color);
+      padding: 20px;
+      box-shadow: 0 4px 10px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 999;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #333;
-      color: #fff;
-      padding: 10px 20px;
     }
-
-    .header-left {
+    .logo {
+      font-size: 2.2em;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      text-shadow: 2px 2px 6px #000;
+      transition: transform 0.3s ease;
+    }
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    .header-controls {
       display: flex;
       align-items: center;
+      gap: 15px;
     }
-
-    .retour-btn {
-      font-size: 20px;
-      margin-right: 10px;
-      cursor: pointer;
-      background: none;
-      color: white;
-      border: none;
+    .search-container {
+      display: flex;
     }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .header-right button {
-      background: none;
-      border: none;
-      color: white;
-      margin-left: 10px;
-      cursor: pointer;
+    .search-input {
+      padding: 10px 20px;
+      width: 300px;
+      border-radius: 30px;
+      border: 1px solid var(--button-color);
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--main-color);
       font-size: 16px;
     }
-
-    main {
-      padding: 20px;
+    .nav-icons a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-size: 28px;
+      transition: color 0.3s;
+      position: relative;
     }
-
-    .produit-detail {
+    .nav-icons a:hover {
+      color: var(--button-color);
+    }
+    #cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      padding: 2px 6px;
+    }
+    .content {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .product-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    .product-images {
       display: flex;
       flex-direction: column;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
-    .produit-detail img {
+    .main-image {
+      width: 100%;
+      height: 400px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+    }
+    .thumbnail-container {
+      display: flex;
+      gap: 10px;
+    }
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 5px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+    }
+    .thumbnail:hover, .thumbnail.active {
+      border-color: var(--button-color);
+    }
+    .product-info h1 {
+      font-size: 2.2em;
+      color: var(--main-color);
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .price {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: var(--button-color);
+      margin: 15px 0;
+    }
+    .description {
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+    .options {
+      margin: 25px 0;
+    }
+    .option-group {
+      margin-bottom: 20px;
+    }
+    .option-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .option-select {
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: 1px solid var(--border-color);
       width: 100%;
       max-width: 300px;
-      margin: 0 auto 20px;
+      background: white;
     }
-
-    .options {
-      margin: 10px 0;
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
     }
-
-    .options label {
+    .btn-buy, .btn-cart {
+      padding: 12px 30px;
+      font-size: 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-buy {
+      background-color: var(--button-color);
+      color: white;
+      border: none;
+    }
+    .btn-buy:hover {
+      background-color: var(--button-hover);
+    }
+    .btn-cart {
+      background-color: white;
+      color: var(--button-color);
+      border: 2px solid var(--button-color);
+    }
+    .btn-cart:hover {
+      background-color: var(--button-color);
+      color: white;
+    }
+    .reviews {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-color);
+    }
+    .rating-summary {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .average-rating {
+      font-size: 2.5em;
+      font-weight: bold;
+      margin-right: 15px;
+      color: var(--main-color);
+    }
+    .stars {
+      color: #FFD700;
+      font-size: 1.5em;
+      margin-right: 15px;
+    }
+    .review-count {
+      color: #666;
+    }
+    .review-form {
+      margin: 30px 0;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .review-form h3 {
+      margin-bottom: 15px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
       display: block;
       margin-bottom: 5px;
     }
-
-    .options select {
+    .form-group input, .form-group textarea, .form-group select {
       width: 100%;
-      padding: 5px;
-    }
-
-    .btn-ajouter {
-      margin-top: 15px;
       padding: 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
+      border: 1px solid var(--border-color);
       border-radius: 5px;
     }
-
-    .produits-similaires {
-      margin-top: 40px;
+    .form-group textarea {
+      height: 100px;
     }
-
-    .produits-similaires h2 {
+    .submit-review {
+      background-color: var(--button-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .submit-review:hover {
+      background-color: var(--button-hover);
+    }
+    .recent-reviews {
+      margin-top: 30px;
+    }
+    .review-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+    .review-header {
+      display: flex;
+      justify-content: space-between;
       margin-bottom: 10px;
     }
-
-    .produits-similaires .liste-produits {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
+    .review-author {
+      font-weight: bold;
     }
-
-    .produit {
-      background-color: #fff;
-      padding: 10px;
-      border-radius: 8px;
-      width: calc(25% - 10px);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .review-date {
+      color: #666;
+      font-size: 0.9em;
     }
-
-    .produit img {
+    .review-stars {
+      color: #FFD700;
+      margin: 5px 0;
+    }
+    .related-products {
+      margin-top: 60px;
+    }
+    .related-products h2 {
+      color: var(--main-color);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      background-color: white;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px var(--shadow);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+    .product-card img {
       max-width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 6px;
+      height: auto;
+      border-radius: 8px;
     }
-
-    .produit h3 {
-      font-size: 16px;
-      margin: 10px 0 5px;
+    .product-card h3 {
+      font-size: 1.1em;
+      color: var(--main-color);
+      margin: 8px 0;
     }
-
-    .produit p {
-      font-size: 14px;
-      margin: 0 0 10px;
+    .product-card .price {
+      font-weight: bold;
+      color: var(--button-color);
+      margin: 8px 0;
     }
-
-    .produit button {
-      padding: 5px 10px;
-      background-color: #007bff;
+    .btn-buy-sm, .btn-cart-sm {
+      background-color: var(--button-color);
       color: white;
       border: none;
-      border-radius: 5px;
+      padding: 8px 14px;
+      font-size: 13px;
+      border-radius: 20px;
       cursor: pointer;
+      margin: 5px 4px;
+      transition: background 0.3s;
     }
-
+    .btn-buy-sm:hover, .btn-cart-sm:hover {
+      background-color: var(--button-hover);
+    }
     footer {
+      margin-top: 60px;
+      background-color: var(--header-color);
       text-align: center;
-      background-color: #333;
       color: white;
-      padding: 15px;
-      margin-top: 40px;
+      padding: 25px 15px;
+      box-shadow: 0 -4px 10px var(--shadow);
     }
-
-    #cart-count {
-      background: red;
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 14px;
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #e0e0e0;
+    }
+    footer p {
+      margin-top: 10px;
+      font-size: 0.9em;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-left">
-      <button onclick="window.location.href='produits.html'" class="retour-btn">&lt;</button>
-      <div class="logo">Benzzone</div>
-    </div>
-    <div class="header-right">
-      <button onclick="window.location.href='panier.html'" class="panier-btn">
-        Panier <span id="cart-count">0</span>
-      </button>
-      <button onclick="window.location.href='parametres.html'">Paramètres</button>
+    <div class="logo" onclick="location.href='index.html'">Benzzone</div>
+    <div class="header-controls">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Rechercher..." id="search-input">
+      </div>
+      <div class="nav-icons">
+        <a href="panier.html">
+          <span class="material-icons">shopping_cart</span>
+          <span id="cart-count">0</span>
+        </a>
+        <a href="#"><span class="material-icons">settings</span></a>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section class="produit-detail" id="produit-detail">
-      <img src="https://via.placeholder.com/300x300" alt="Produit" id="image-produit">
-      <h1 id="nom-produit">Nom du Produit</h1>
-      <p id="description-produit">Description du produit ici.</p>
-      <p><strong>Prix: </strong><span id="prix-produit">0 €</span></p>
-
-      <div class="options">
-        <label for="taille">Taille :</label>
-        <select id="taille">
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-        </select>
+  <div class="content">
+    <div class="product-detail">
+      <div class="product-images">
+        <img id="main-image" src="" alt="Produit" class="main-image">
+        <div class="thumbnail-container">
+          <img src="https://via.placeholder.com/250x250?text=Produit+1" alt="Miniature 1" class="thumbnail active" onclick="changeImage(this)">
+          <img src="https://via.placeholder.com/250x250?text=Produit+2" alt="Miniature 2" class="thumbnail" onclick="changeImage(this)">
+          <img src="https://via.placeholder.com/250x250?text=Produit+3" alt="Miniature 3" class="thumbnail" onclick="changeImage(this)">
+        </div>
       </div>
-
-      <div class="options">
-        <label for="couleur">Couleur :</label>
-        <select id="couleur">
-          <option value="Rouge">Rouge</option>
-          <option value="Bleu">Bleu</option>
-          <option value="Vert">Vert</option>
-          <option value="Noir">Noir</option>
-        </select>
+      <div class="product-info">
+        <h1 id="product-name">Nom du Produit</h1>
+        <div class="price" id="product-price">0.00 €</div>
+        <div class="description" id="product-description">
+          Description détaillée du produit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+        </div>
+        
+        <div class="options">
+          <div class="option-group">
+            <label for="size">Taille</label>
+            <select id="size" class="option-select">
+              <option value="S">Petit (S)</option>
+              <option value="M" selected>Moyen (M)</option>
+              <option value="L">Large (L)</option>
+              <option value="XL">Très Large (XL)</option>
+            </select>
+          </div>
+          
+          <div class="option-group">
+            <label for="color">Couleur</label>
+            <select id="color" class="option-select">
+              <option value="red">Rouge</option>
+              <option value="blue" selected>Bleu</option>
+              <option value="green">Vert</option>
+              <option value="black">Noir</option>
+            </select>
+          </div>
+          
+          <div class="option-group">
+            <label for="quantity">Quantité</label>
+            <select id="quantity" class="option-select">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="action-buttons">
+          <button class="btn-buy" onclick="acheterMaintenant()">Acheter maintenant</button>
+          <button class="btn-cart" onclick="ajouterAuPanier()">
+            <span class="material-icons" style="vertical-align: middle;">shopping_cart</span>
+            Ajouter au panier
+          </button>
+        </div>
       </div>
-
-      <button class="btn-ajouter" onclick="ajouterAuPanier()">Acheter</button>
-    </section>
-
-    <section class="produits-similaires">
+    </div>
+    
+    <div class="reviews">
+      <h2>Avis des clients</h2>
+      
+      <div class="rating-summary">
+        <div class="average-rating">4.5</div>
+        <div class="stars">
+          ★★★★☆
+        </div>
+        <div class="review-count">(24 avis)</div>
+      </div>
+      
+      <div class="review-form">
+        <h3>Donnez votre avis</h3>
+        <form id="review-form">
+          <div class="form-group">
+            <label for="review-rating">Note</label>
+            <select id="review-rating" class="option-select">
+              <option value="5">★★★★★ Excellent</option>
+              <option value="4">★★★★☆ Très bien</option>
+              <option value="3">★★★☆☆ Bien</option>
+              <option value="2">★★☆☆☆ Moyen</option>
+              <option value="1">★☆☆☆☆ Médiocre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="review-name">Nom</label>
+            <input type="text" id="review-name" placeholder="Votre nom">
+          </div>
+          <div class="form-group">
+            <label for="review-text">Commentaire</label>
+            <textarea id="review-text" placeholder="Décrivez votre expérience avec ce produit"></textarea>
+          </div>
+          <button type="button" class="submit-review" onclick="submitReview()">Soumettre l'avis</button>
+        </form>
+      </div>
+      
+      <div class="recent-reviews">
+        <h3>Derniers avis</h3>
+        
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">Jean Dupont</div>
+            <div class="review-date">12/05/2025</div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p>Produit excellent, correspond parfaitement à mes attentes. Livraison rapide et emballage soigné.</p>
+        </div>
+        
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">Marie Martin</div>
+            <div class="review-date">08/05/2025</div>
+          </div>
+          <div class="review-stars">★★★★☆</div>
+          <p>Très satisfaite de mon achat, bien que la taille soit un peu petite. Je recommande tout de même.</p>
+        </div>
+        
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">Pierre Lambert</div>
+            <div class="review-date">02/05/2025</div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p>Qualité premium pour le prix. Je l'ai offert à mon frère qui en est ravi. A renouveller sans hésiter.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="related-products">
       <h2>Produits similaires</h2>
-      <div class="liste-produits" id="liste-produits"></div>
-    </section>
-  </main>
+      <div class="products" id="related-products"></div>
+    </div>
+  </div>
 
   <footer>
-    <p>&copy; 2025 Benzzone - <a href="contact.html" style="color: lightgray;">Contact</a> | <a href="a-propos.html" style="color: lightgray;">À propos</a></p>
+    <div class="nav-buttons">
+      <a href="#">À propos</a>
+      <a href="#">Contact</a>
+      <a href="#">FAQ</a>
+      <a href="#">Qui sommes-nous</a>
+    </div>
+    <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
   </footer>
 
   <script>
-    // Exemple de produit (à remplacer par les données dynamiques)
-    const produit = {
-      id: 1,
-      nom: "Chaussure de Sport",
-      description: "Chaussures confortables pour toutes activités.",
-      prix: 79.99,
-      image: "https://via.placeholder.com/300x300"
-    };
-
-    const similaires = Array.from({length: 16}, (_, i) => ({
-      id: i + 2,
-      nom: `Produit ${i + 2}`,
-      prix: (Math.random() * 100).toFixed(2),
-      image: "https://via.placeholder.com/150"
-    }));
-
-    document.getElementById('image-produit').src = produit.image;
-    document.getElementById('nom-produit').textContent = produit.nom;
-    document.getElementById('description-produit').textContent = produit.description;
-    document.getElementById('prix-produit').textContent = `${produit.prix} €`;
-
-    function afficherProduitsSimilaires() {
-      const container = document.getElementById('liste-produits');
-      similaires.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'produit';
-        div.innerHTML = `
-          <img src="${p.image}" alt="${p.nom}">
-          <h3>${p.nom}</h3>
-          <p>${p.prix} €</p>
-          <button onclick="ajouterProduitSimilaire(${p.id}, '${p.nom}', ${p.prix}, '${p.image}')">Ajouter</button>
+    // Charger les données du produit depuis le localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+      const product = JSON.parse(localStorage.getItem("produitSelectionne"));
+      if (product) {
+        document.getElementById('product-name').textContent = product.name;
+        document.getElementById('product-price').textContent = product.price.toFixed(2) + ' €';
+        document.getElementById('product-description').textContent = product.description;
+        document.getElementById('main-image').src = product.img;
+        
+        // Mettre à jour le compteur du panier
+        updateCartCount();
+        
+        // Charger les produits similaires
+        loadRelatedProducts(product.category, product.id);
+      }
+    });
+    
+    // Changer l'image principale lorsqu'on clique sur une miniature
+    function changeImage(thumbnail) {
+      document.querySelectorAll('.thumbnail').forEach(img => img.classList.remove('active'));
+      thumbnail.classList.add('active');
+      document.getElementById('main-image').src = thumbnail.src;
+    }
+    
+    // Ajouter au panier
+    function ajouterAuPanier() {
+      const product = JSON.parse(localStorage.getItem("produitSelectionne"));
+      if (!product) return;
+      
+      const size = document.getElementById('size').value;
+      const color = document.getElementById('color').value;
+      const quantity = parseInt(document.getElementById('quantity').value);
+      
+      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+      
+      const existingProduct = panier.find(p => p.id === product.id && p.size === size && p.color === color);
+      if (existingProduct) {
+        existingProduct.quantity += quantity;
+      } else {
+        panier.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          img: product.img,
+          size: size,
+          color: color,
+          quantity: quantity
+        });
+      }
+      
+      localStorage.setItem("panier", JSON.stringify(panier));
+      updateCartCount();
+      alert(`${product.name} (${size}, ${color}) x${quantity} ajouté au panier !`);
+    }
+    
+    // Acheter maintenant
+    function acheterMaintenant() {
+      ajouterAuPanier();
+      window.location.href = "panier.html";
+    }
+    
+    // Soumettre un avis
+    function submitReview() {
+      const name = document.getElementById('review-name').value;
+      const rating = document.getElementById('review-rating').value;
+      const text = document.getElementById('review-text').value;
+      
+      if (!name || !text) {
+        alert("Veuillez remplir tous les champs");
+        return;
+      }
+      
+      alert("Merci pour votre avis !");
+      document.getElementById('review-form').reset();
+    }
+    
+    // Charger les produits similaires
+    function loadRelatedProducts(category, currentProductId) {
+      // Simuler des produits similaires (en réalité, vous feriez une requête à votre API)
+      const relatedProducts = Array.from({ length: 4 }, (_, i) => {
+        return {
+          id: currentProductId + i + 1,
+          name: `Produit Similaire ${i + 1}`,
+          price: Math.floor(Math.random() * 200) + 20,
+          img: `https://via.placeholder.com/250x250?text=Produit+${currentProductId + i + 1}`,
+          category: category
+        };
+      });
+      
+      const container = document.getElementById('related-products');
+      container.innerHTML = '';
+      
+      relatedProducts.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${product.img}" alt="${product.name}" />
+          <h3>${product.name}</h3>
+          <div class="price">${product.price.toFixed(2)} €</div>
+          <div>
+            <button class="btn-cart-sm" onclick="location.href='detail-produit.html'; localStorage.setItem('produitSelectionne', JSON.stringify(${JSON.stringify(product)}))">
+              <span class="material-icons">shopping_cart</span>
+            </button>
+            <button class="btn-buy-sm" onclick="location.href='detail-produit.html'; localStorage.setItem('produitSelectionne', JSON.stringify(${JSON.stringify(product)}))">Voir</button>
+          </div>
         `;
-        container.appendChild(div);
+        container.appendChild(card);
       });
     }
-
-    function ajouterAuPanier() {
-      const taille = document.getElementById('taille').value;
-      const couleur = document.getElementById('couleur').value;
-      const article = {
-        id: produit.id,
-        nom: produit.nom,
-        prix: produit.prix,
-        image: produit.image,
-        taille,
-        couleur
-      };
-
-      let panier = JSON.parse(localStorage.getItem('panier')) || [];
-      panier.push(article);
-      localStorage.setItem('panier', JSON.stringify(panier));
-      mettreAJourCompteurPanier();
-      alert("Produit ajouté au panier !");
+    
+    // Mettre à jour le compteur du panier
+    function updateCartCount() {
+      const panier = JSON.parse(localStorage.getItem("panier")) || [];
+      const compteur = document.getElementById("cart-count");
+      if (compteur) {
+        const totalItems = panier.reduce((sum, item) => sum + item.quantity, 0);
+        compteur.textContent = totalItems;
+      }
     }
-
-    function ajouterProduitSimilaire(id, nom, prix, image) {
-      const article = {
-        id,
-        nom,
-        prix,
-        image,
-        taille: 'M',
-        couleur: 'Noir'
-      };
-      let panier = JSON.parse(localStorage.getItem('panier')) || [];
-      panier.push(article);
-      localStorage.setItem('panier', JSON.stringify(panier));
-      mettreAJourCompteurPanier();
-      alert("Produit ajouté au panier !");
-    }
-
-    function mettreAJourCompteurPanier() {
-      const panier = JSON.parse(localStorage.getItem('panier')) || [];
-      document.getElementById('cart-count').textContent = panier.length;
-    }
-
-    afficherProduitsSimilaires();
-    mettreAJourCompteurPanier();
   </script>
 </body>
   </html>
