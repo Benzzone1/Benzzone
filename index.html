@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Benzzone</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     :root {
       --main-color: #1e3c72;
@@ -14,6 +15,9 @@
       --text-light: #ffffff;
       --shadow: rgba(0, 0, 0, 0.2);
       --header-footer-color: #243b62;
+      --search-bg: rgba(255, 255, 255, 0.9);
+      --search-text: #333;
+      --success-color: #4CAF50;
     }
 
     * {
@@ -37,6 +41,9 @@
       top: 0;
       z-index: 999;
       margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .logo {
@@ -45,49 +52,68 @@
       cursor: pointer;
       text-shadow: 2px 2px 6px #000;
       transition: transform 0.3s ease;
-      text-align: left;
-      position: absolute;
-      top: 20px;
-      left: 20px;
     }
 
     .logo:hover {
       transform: scale(1.05);
     }
 
-    .btn-absolute {
-      width: 42px;
-      height: 42px;
+    .header-controls {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 0;
-      position: absolute;
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-      border-radius: 4px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background-color 0.3s;
+      gap: 15px;
     }
 
-    .btn-profil { top: 70px; left: 20px; }
-.btn-parametres {
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-color);
-  z-index: 1000;
-}
-    .btn-mail { top: 70px; right: 20px; }
+    .search-container {
+      position: relative;
+      width: 300px;
+    }
 
-    .btn-absolute:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+    .search-input {
+      padding: 10px 40px 10px 15px;
+      width: 100%;
+      border-radius: 30px;
+      border: 1px solid var(--button-color);
+      background-color: var(--search-bg);
+      color: var(--search-text);
+      font-size: 16px;
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--search-text);
+    }
+
+    .nav-icons a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-size: 24px;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-icons a:hover {
+      color: var(--button-color);
+    }
+
+    #cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      padding: 2px 6px;
     }
 
     .main-content {
       text-align: center;
-      padding: 100px 20px 20px;
+      padding: 50px 20px 20px;
     }
 
     .main-content h1 {
@@ -148,11 +174,25 @@
       font-size: 1.5em;
       margin: 40px 20px 10px;
       text-align: left;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .category-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 70%;
+      width: 5px;
+      background: var(--button-color);
+      border-radius: 5px;
     }
 
     .featured-products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
       padding: 20px;
       max-width: 1200px;
@@ -166,10 +206,12 @@
       padding: 15px;
       text-align: center;
       transition: transform 0.3s;
+      cursor: pointer;
     }
 
     .product-card:hover {
-      transform: scale(1.05);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
 
     .product-card img {
@@ -177,12 +219,24 @@
       height: 120px;
       object-fit: cover;
       border-radius: 8px;
+      margin-bottom: 10px;
     }
 
     .product-card h4 {
       font-size: 0.9em;
       opacity: 0.85;
       margin-top: 10px;
+      transition: color 0.3s;
+    }
+
+    .product-card:hover h4 {
+      color: var(--button-color);
+    }
+
+    .product-price {
+      font-weight: bold;
+      color: var(--button-color);
+      margin: 8px 0;
     }
 
     footer {
@@ -210,15 +264,50 @@
       font-size: 0.9em;
       opacity: 0.8;
     }
+
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: var(--success-color);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: none;
+      animation: slideIn 0.5s, fadeOut 0.5s 2.5s;
+    }
+
+    @keyframes slideIn {
+      from { right: -100px; opacity: 0; }
+      to { right: 20px; opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
   </style>
 </head>
 <body>
-  <a href="#" class="btn-absolute btn-profil" title="Profil"><i class="fas fa-user"></i></a>
-  <a href="#" class="btn-absolute btn-parametres" title="Paramètres"><i class="fas fa-cog"></i></a>
-  <a href="mailto:contact@benzzone.com" class="btn-absolute btn-mail" title="Mail"><i class="fas fa-envelope"></i></a>
+  <div class="notification" id="notification">Produit ajouté au panier !</div>
 
   <header>
-    <div class="logo" onclick="location.href='#'">Benzzone</div>
+    <div class="logo" onclick="location.href='index.html'">Benzzone</div>
+    <div class="header-controls">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Rechercher...">
+        <i class="fas fa-search search-icon"></i>
+      </div>
+      <div class="nav-icons">
+        <a href="panier.html">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cart-count">0</span>
+        </a>
+        <a href="#"><i class="fas fa-user"></i></a>
+      </div>
+    </div>
   </header>
 
   <div class="main-content">
@@ -226,57 +315,133 @@
     <a href="produits.html" class="shop-button">Produits & Commencer les achats</a>
     <p>Découvrez nos meilleures catégories</p>
     <div class="category-buttons">
-      <a href="#">Tech</a>
-      <a href="#">Maison</a>
-      <a href="#">Cuisine</a>
-      <a href="#">Beauté</a>
-      <a href="#">Mode</a>
-      <a href="#">Jeux</a>
-      <a href="#">Sport</a>
-      <a href="#">Livres</a>
-      <a href="#">Accessoires</a>
-      <a href="#">Jardin</a>
+      <a href="produits.html?category=tech">Tech</a>
+      <a href="produits.html?category=maison">Maison</a>
+      <a href="produits.html?category=cuisine">Cuisine</a>
+      <a href="produits.html?category=beaute">Beauté</a>
+      <a href="produits.html?category=mode">Mode</a>
+      <a href="produits.html?category=jeux">Jeux</a>
+      <a href="produits.html?category=sport">Sport</a>
+      <a href="produits.html?category=livres">Livres</a>
+      <a href="produits.html?category=accessoires">Accessoires</a>
+      <a href="produits.html?category=jardin">Jardin</a>
     </div>
   </div>
 
   <!-- Produits par catégories -->
   <h3 class="category-title">Tech</h3>
-  <div class="featured-products">
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Tech+1"><h4>Casque Bluetooth</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Tech+2"><h4>Smartwatch</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Tech+3"><h4>Mini projecteur</h4></div>
+  <div class="featured-products" id="tech-products">
+    <!-- Produits tech populaires -->
+    <div class="product-card" onclick="viewProduct(1)">
+      <img src="https://via.placeholder.com/200x120?text=Casque+Bluetooth">
+      <h4>Casque Bluetooth</h4>
+      <div class="product-price">89.99 €</div>
+    </div>
+    <div class="product-card" onclick="viewProduct(2)">
+      <img src="https://via.placeholder.com/200x120?text=Smartwatch">
+      <h4>Smartwatch</h4>
+      <div class="product-price">129.99 €</div>
+    </div>
+    <div class="product-card" onclick="viewProduct(3)">
+      <img src="https://via.placeholder.com/200x120?text=Mini+Projecteur">
+      <h4>Mini projecteur</h4>
+      <div class="product-price">149.99 €</div>
+    </div>
   </div>
 
   <h3 class="category-title">Maison</h3>
-  <div class="featured-products">
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Maison+1"><h4>Lampe LED</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Maison+2"><h4>Diffuseur d’huiles</h4></div>
+  <div class="featured-products" id="maison-products">
+    <div class="product-card" onclick="viewProduct(4)">
+      <img src="https://via.placeholder.com/200x120?text=Lampe+LED">
+      <h4>Lampe LED</h4>
+      <div class="product-price">29.99 €</div>
+    </div>
+    <div class="product-card" onclick="viewProduct(5)">
+      <img src="https://via.placeholder.com/200x120?text=Diffuseur">
+      <h4>Diffuseur d'huiles</h4>
+      <div class="product-price">39.99 €</div>
+    </div>
+    <div class="product-card" onclick="viewProduct(6)">
+      <img src="https://via.placeholder.com/200x120?text=Coussin+Chauffant">
+      <h4>Coussin chauffant</h4>
+      <div class="product-price">24.99 €</div>
+    </div>
   </div>
 
   <h3 class="category-title">Cuisine</h3>
-  <div class="featured-products">
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Cuisine+1"><h4>Mixeur portable</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Cuisine+2"><h4>Balance numérique</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Cuisine+3"><h4>Moulin à café</h4></div>
+  <div class="featured-products" id="cuisine-products">
+    <div class="product-card" onclick="viewProduct(7)">
+      <img src="https://via.placeholder.com/200x120?text=Mixeur+Portable">
+      <h4>Mixeur portable</h4>
+      <div class="product-price">49.99 €</div>
+    </div>
+    <div class="product-card" onclick="viewProduct(8)">
+      <img src="https://via.placeholder.com/200x120?text=Balance+Numérique">
+      <h4>Balance numérique</h4>
+      <div class="product-price">19.99 €</div>
+    </div>
+    <div class="product-card" onclick="viewProduct(9)">
+      <img src="https://via.placeholder.com/200x120?text=Moulin+à+Café">
+      <h4>Moulin à café</h4>
+      <div class="product-price">34.99 €</div>
+    </div>
   </div>
 
   <h3 class="category-title">Beauté</h3>
-  <div class="featured-products">
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Beauté+1"><h4>Brosse visage</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Beauté+2"><h4>Soin LED</h4></div>
+  <div class="featured-products" id="beaute-products">
+    <div class="product-card" onclick="viewProduct(10)">
+      <img src="https://via.placeholder.com/200x120?text=Brosse+Visage">
+      <h4>Brosse visage</h4>
+      <div class="product-price">59.99 €</div>
+    </div>
+    <div class="product-card" onclick="viewProduct(11)">
+      <img src="https://via.placeholder.com/200x120?text=Soin+LED">
+      <h4>Soin LED</h4>
+      <div class="product-price">79.99 €</div>
+    </div>
+    <div class="product-card" onclick="viewProduct(12)">
+      <img src="https://via.placeholder.com/200x120?text=Masque+Visage">
+      <h4>Masque visage</h4>
+      <div class="product-price">14.99 €</div>
+    </div>
   </div>
 
   <h3 class="category-title">Jeux & Sport</h3>
-  <div class="featured-products">
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Sport+1"><h4>Tapis yoga</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Jeux+1"><h4>Manette sans fil</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Jeux+2"><h4>Casque gamer</h4></div>
+  <div class="featured-products" id="jeux-sport-products">
+    <div class="product-card" onclick="viewProduct(13)">
+      <img src="https://via.placeholder.com/200x120?text=Tapis+Yoga">
+      <h4>Tapis yoga</h4>
+      <div class="product-price">29.99 €</div>
+    </div>
+    <div class="product-card" onclick="viewProduct(14)">
+      <img src="https://via.placeholder.com/200x120?text=Manette+Sans+Fil">
+      <h4>Manette sans fil</h4>
+      <div class="product-price">44.99 €</div>
+    </div>
+    <div class="product-card" onclick="viewProduct(15)">
+      <img src="https://via.placeholder.com/200x120?text=Casque+Gamer">
+      <h4>Casque gamer</h4>
+      <div class="product-price">69.99 €</div>
+    </div>
   </div>
 
   <h3 class="category-title">Livres</h3>
-  <div class="featured-products">
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Livre+1"><h4>Roman science-fiction</h4></div>
-    <div class="product-card"><img src="https://via.placeholder.com/150x120?text=Livre+2"><h4>Développement perso</h4></div>
+  <div class="featured-products" id="livres-products">
+    <div class="product-card" onclick="viewProduct(16)">
+      <img src="https://via.placeholder.com/200x120?text=Roman+SF">
+      <h4>Roman science-fiction</h4>
+      <div class="product-price">14.99 €</div>
+    </div>
+    <div class="product-card" onclick="viewProduct(17)">
+      <img src="https://via.placeholder.com/200x120?text=Développement+Perso">
+      <h4>Développement perso</h4>
+      <div class="product-price">12.99 €</div>
+    </div>
+    <div class="product-card" onclick="viewProduct(18)">
+      <img src="https://via.placeholder.com/200x120?text=Cuisine+Créative">
+      <h4>Cuisine créative</h4>
+      <div class="product-price">19.99 €</div>
+    </div>
   </div>
 
   <footer>
@@ -286,5 +451,76 @@
     <a href="#">Qui sommes-nous</a>
     <p>&copy; 2025 Benzzone. Tous droits réservés.</p>
   </footer>
+
+  <script>
+    // Données des produits (simulées)
+    const products = [
+      { id: 1, name: "Casque Bluetooth", price: 89.99, category: "tech", img: "https://via.placeholder.com/250x250?text=Casque+Bluetooth", description: "Casque Bluetooth avec réduction de bruit active et son haute qualité." },
+      { id: 2, name: "Smartwatch", price: 129.99, category: "tech", img: "https://via.placeholder.com/250x250?text=Smartwatch", description: "Montre connectée avec suivi d'activité et notifications." },
+      { id: 3, name: "Mini projecteur", price: 149.99, category: "tech", img: "https://via.placeholder.com/250x250?text=Mini+Projecteur", description: "Projecteur portable HD pour vos films et présentations." },
+      { id: 4, name: "Lampe LED", price: 29.99, category: "maison", img: "https://via.placeholder.com/250x250?text=Lampe+LED", description: "Lampe LED intelligente avec contrôle via smartphone." },
+      { id: 5, name: "Diffuseur d'huiles", price: 39.99, category: "maison", img: "https://via.placeholder.com/250x250?text=Diffuseur", description: "Diffuseur d'huiles essentielles avec lumière d'ambiance." },
+      { id: 6, name: "Coussin chauffant", price: 24.99, category: "maison", img: "https://via.placeholder.com/250x250?text=Coussin+Chauffant", description: "Coussin chauffant thérapeutique pour le dos et les épaules." },
+      { id: 7, name: "Mixeur portable", price: 49.99, category: "cuisine", img: "https://via.placeholder.com/250x250?text=Mixeur+Portable", description: "Mixeur sans fil pour smoothies et préparations culinaires." },
+      { id: 8, name: "Balance numérique", price: 19.99, category: "cuisine", img: "https://via.placeholder.com/250x250?text=Balance+Numérique", description: "Balance de cuisine précise avec écran LCD." },
+      { id: 9, name: "Moulin à café", price: 34.99, category: "cuisine", img: "https://via.placeholder.com/250x250?text=Moulin+à+Café", description: "Moulin à café électrique avec broyeur en acier inoxydable." },
+      { id: 10, name: "Brosse visage", price: 59.99, category: "beaute", img: "https://via.placeholder.com/250x250?text=Brosse+Visage", description: "Brosse nettoyante visage avec 6 têtes interchangeables." },
+      { id: 11, name: "Soin LED", price: 79.99, category: "beaute", img: "https://via.placeholder.com/250x250?text=Soin+LED", description: "Masque LED thérapie pour soin du visage à domicile." },
+      { id: 12, name: "Masque visage", price: 14.99, category: "beaute", img: "https://via.placeholder.com/250x250?text=Masque+Visage", description: "Masque hydratant en tissu pour soin du visage." },
+      { id: 13, name: "Tapis yoga", price: 29.99, category: "sport", img: "https://via.placeholder.com/250x250?text=Tapis+Yoga", description: "Tapis de yoga antidérapant et écologique." },
+      { id: 14, name: "Manette sans fil", price: 44.99, category: "jeux", img: "https://via.placeholder.com/250x250?text=Manette+Sans+Fil", description: "Manette de jeu compatible avec PC et consoles." },
+      { id: 15, name: "Casque gamer", price: 69.99, category: "jeux", img: "https://via.placeholder.com/250x250?text=Casque+Gamer", description: "Casque gaming avec micro intégré et son surround." },
+      { id: 16, name: "Roman science-fiction", price: 14.99, category: "livres", img: "https://via.placeholder.com/250x250?text=Roman+SF", description: "Roman de science-fiction best-seller." },
+      { id: 17, name: "Développement perso", price: 12.99, category: "livres", img: "https://via.placeholder.com/250x250?text=Développement+Perso", description: "Guide de développement personnel et professionnel." },
+      { id: 18, name: "Cuisine créative", price: 19.99, category: "livres", img: "https://via.placeholder.com/250x250?text=Cuisine+Créative", description: "Livre de recettes créatives pour tous les niveaux." }
+    ];
+
+    // Mettre à jour le compteur du panier
+    function updateCartCount() {
+      const panier = JSON.parse(localStorage.getItem("panier")) || [];
+      const compteur = document.getElementById("cart-count");
+      if (compteur) {
+        const totalItems = panier.reduce((sum, item) => sum + item.quantity, 0);
+        compteur.textContent = totalItems;
+      }
+    }
+
+    // Afficher une notification
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.style.display = 'block';
+      
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
+    }
+
+    // Voir un produit
+    function viewProduct(productId) {
+      const product = products.find(p => p.id === productId);
+      if (product) {
+        localStorage.setItem("produitSelectionne", JSON.stringify(product));
+        window.location.href = "detail-produit.html";
+      }
+    }
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCartCount();
+      
+      // Recherche de produits
+      const searchInput = document.querySelector('.search-input');
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          const searchTerm = this.value.toLowerCase();
+          if (searchTerm.trim() !== '') {
+            localStorage.setItem("searchTerm", searchTerm);
+            window.location.href = "produits.html";
+          }
+        }
+      });
+    });
+  </script>
 </body>
-</html>
+  </html>
